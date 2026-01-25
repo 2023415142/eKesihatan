@@ -1,188 +1,4 @@
-diff --git a/.env.example b/.env.example
---- a/.env.example
-+++ b/.env.example
-@@
--APP_NAME=Laravel
-+APP_NAME=eKesihatan
-@@
--DB_CONNECTION=sqlite
--# DB_HOST=127.0.0.1
--# DB_PORT=3306
--# DB_DATABASE=laravel
--# DB_USERNAME=root
--# DB_PASSWORD=
-+DB_CONNECTION=mysql
-+DB_HOST=127.0.0.1
-+DB_PORT=3306
-+DB_DATABASE=ekesihatan
-+DB_USERNAME=root
-+DB_PASSWORD=
-@@
- AWS_USE_PATH_STYLE_ENDPOINT=false
-+
-+GOOGLE_TRANSLATE_API_KEY=
-+SMS_PROVIDER=log
-+TWILIO_SID=
-+TWILIO_AUTH_TOKEN=
-+TWILIO_FROM=
- 
-diff --git a/README.md b/README.md
---- a/README.md
-+++ b/README.md
-@@
--<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
--
--<p align="center">
--<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
--<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
--<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
--<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
--</p>
--
--## About Laravel
--
--Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
--
--- [Simple, fast routing engine](https://laravel.com/docs/routing).
--- [Powerful dependency injection container](https://laravel.com/docs/container).
--- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
--- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
--- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
--- [Robust background job processing](https://laravel.com/docs/queues).
--- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
--
--Laravel is accessible, powerful, and provides tools required for large, robust applications.
--
--## Learning Laravel
--
--Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
--
--If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
--
--## Laravel Sponsors
--
--We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
--
--### Premium Partners
--
--- **[Vehikl](https://vehikl.com)**
--- **[Tighten Co.](https://tighten.co)**
--- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
--- **[64 Robots](https://64robots.com)**
--- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
--- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
--- **[Redberry](https://redberry.international/laravel-development)**
--- **[Active Logic](https://activelogic.com)**
--
--## Contributing
--
--Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
--
--## Code of Conduct
--
--In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
--
--## Security Vulnerabilities
--
--If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
--
--## License
--
--The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-+# eKesihatan
-+
-+eKesihatan is a web-based appointment booking system for Unit Kesihatan UiTM Perlis. It supports role-based dashboards for Admin, Doctor, and Patient, allowing students and staff to schedule, modify, and track appointments while reducing clinic congestion.
-+
-+## Objectives
-+
-+1. Enable students and staff to schedule, modify, and track medical appointments conveniently.
-+2. Reduce patient waiting time and overcrowding by issuing queue numbers before arrival.
-+3. Help Unit Kesihatan staff forecast daily patient flow and improve resource allocation.
-+
-+## Roles & Modules
-+
-+### Patient
-+- Register and login
-+- View health services
-+- Book, reschedule, and cancel appointments
-+- Manage personal profile
-+- BMI calculator
-+- QR check-in for queue number
-+
-+### Doctor
-+- Login and manage profile
-+- View daily appointment list
-+- Update appointment status (completed / no-show)
-+- Upload medical documents (certificates/referral letters)
-+- View patient history
-+
-+### Admin
-+- Login and manage profile
-+- Manage health services (CRUD)
-+- Manage doctors (CRUD)
-+- Manage appointment slots (CRUD)
-+- Approve/reject/reschedule appointments
-+
-+## Integrations
-+
-+- **Google Translate API** for English → Bahasa Melayu or Mandarin
-+- **SMS notifications** after booking + reminders (1 day and 1 hour before)
-+- **QR check-in** to place patients in the daily queue
-+
-+## Setup (Laravel + MySQL via XAMPP)
-+
-+1. Install dependencies:
-+   ```bash
-+   composer install
-+   npm install
-+   npm run build
-+   ```
-+2. Copy environment file:
-+   ```bash
-+   cp .env.example .env
-+   ```
-+3. Update `.env` (MySQL in XAMPP):
-+   - `DB_CONNECTION=mysql`
-+   - `DB_HOST=127.0.0.1`
-+   - `DB_PORT=3306`
-+   - `DB_DATABASE=ekesihatan`
-+   - `DB_USERNAME=root`
-+   - `DB_PASSWORD=`
-+4. Generate app key and migrate:
-+   ```bash
-+   php artisan key:generate
-+   php artisan migrate --seed
-+   ```
-+5. Start the server:
-+   ```bash
-+   php artisan serve
-+   ```
-+
-+## SMS & Translate Configuration
-+
-+Add these to `.env` for production:
-+
-+```env
-+GOOGLE_TRANSLATE_API_KEY=your_google_api_key
-+SMS_PROVIDER=twilio
-+TWILIO_SID=your_twilio_sid
-+TWILIO_AUTH_TOKEN=your_twilio_token
-+TWILIO_FROM=your_twilio_phone
-+```
-+
-+Reminder SMS is scheduled to run hourly:
-+
-+```bash
-+php artisan schedule:work
-+```
-+
-+## Seeded Accounts
-+
-+After running `php artisan migrate --seed`, you can use:
-+
-+- **Admin:** admin@ekesihatan.test / password
-+- **Doctor:** doctor@ekesihatan.test / password
-+
+git apply <<'PATCH'
 diff --git a/app/Models/User.php b/app/Models/User.php
 --- a/app/Models/User.php
 +++ b/app/Models/User.php
@@ -257,424 +73,6 @@ diff --git a/app/Models/User.php b/app/Models/User.php
 +        return $this->hasMany(MedicalDocument::class, 'uploaded_by');
 +    }
  }
- 
-diff --git a/bootstrap/app.php b/bootstrap/app.php
---- a/bootstrap/app.php
-+++ b/bootstrap/app.php
-@@
-     )
-     ->withMiddleware(function (Middleware $middleware): void {
--        //
-+        $middleware->alias([
-+            'role' => \App\Http\Middleware\EnsureRole::class,
-+        ]);
-     })
-     ->withExceptions(function (Exceptions $exceptions): void {
-         //
-     })->create();
- 
-diff --git a/config/services.php b/config/services.php
---- a/config/services.php
-+++ b/config/services.php
-@@
-     'slack' => [
-         'notifications' => [
-             'bot_user_oauth_token' => env('SLACK_BOT_USER_OAUTH_TOKEN'),
-             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
-         ],
-     ],
-+
-+    'google' => [
-+        'translate_key' => env('GOOGLE_TRANSLATE_API_KEY'),
-+    ],
-+
-+    'sms' => [
-+        'provider' => env('SMS_PROVIDER', 'log'),
-+        'twilio_sid' => env('TWILIO_SID'),
-+        'twilio_token' => env('TWILIO_AUTH_TOKEN'),
-+        'twilio_from' => env('TWILIO_FROM'),
-+    ],
- 
- ];
- 
-diff --git a/routes/web.php b/routes/web.php
---- a/routes/web.php
-+++ b/routes/web.php
-@@
- use Illuminate\Support\Facades\Route;
-+use App\Http\Controllers\AuthController;
-+use App\Http\Controllers\DashboardController;
-+use App\Http\Controllers\LandingController;
-+use App\Http\Controllers\ProfileController;
-+use App\Http\Controllers\QueueController;
-+use App\Http\Controllers\TranslationController;
-+use App\Http\Controllers\Admin\AppointmentController as AdminAppointmentController;
-+use App\Http\Controllers\Admin\AppointmentSlotController;
-+use App\Http\Controllers\Admin\DoctorController;
-+use App\Http\Controllers\Admin\HealthServiceController;
-+use App\Http\Controllers\Doctor\AppointmentController as DoctorAppointmentController;
-+use App\Http\Controllers\Doctor\MedicalDocumentController;
-+use App\Http\Controllers\Doctor\PatientHistoryController;
-+use App\Http\Controllers\Patient\AppointmentController as PatientAppointmentController;
-+use App\Http\Controllers\Patient\BmiController;
-+use App\Http\Controllers\Patient\ServiceController as PatientServiceController;
- 
--Route::get('/', function () {
--    return view('welcome');
--});
-+Route::get('/', [LandingController::class, 'index'])->name('landing');
-+
-+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-+Route::post('/login', [AuthController::class, 'login'])->name('login.attempt');
-+Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
-+Route::post('/register', [AuthController::class, 'register'])->name('register.store');
-+
-+Route::post('/translate', [TranslationController::class, 'translate'])->name('translate');
-+
-+Route::get('/check-in/{token}', [QueueController::class, 'checkIn'])->name('queue.check-in');
-+
-+Route::middleware('auth')->group(function () {
-+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
-+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-+});
-+
-+Route::middleware(['auth', 'role:patient'])->prefix('patient')->name('patient.')->group(function () {
-+    Route::get('services', [PatientServiceController::class, 'index'])->name('services.index');
-+    Route::get('appointments/{appointment}/qr', [QueueController::class, 'qr'])->name('appointments.qr');
-+    Route::get('documents/{document}', [MedicalDocumentController::class, 'show'])->name('documents.show');
-+    Route::get('bmi', [BmiController::class, 'show'])->name('bmi.show');
-+    Route::post('bmi', [BmiController::class, 'calculate'])->name('bmi.calculate');
-+    Route::resource('appointments', PatientAppointmentController::class);
-+});
-+
-+Route::middleware(['auth', 'role:doctor'])->prefix('doctor')->name('doctor.')->group(function () {
-+    Route::get('appointments', [DoctorAppointmentController::class, 'index'])->name('appointments.index');
-+    Route::get('appointments/{appointment}', [DoctorAppointmentController::class, 'show'])->name('appointments.show');
-+    Route::patch('appointments/{appointment}', [DoctorAppointmentController::class, 'update'])->name('appointments.update');
-+    Route::get('appointments/{appointment}/documents/create', [MedicalDocumentController::class, 'create'])->name('documents.create');
-+    Route::post('appointments/{appointment}/documents', [MedicalDocumentController::class, 'store'])->name('documents.store');
-+    Route::get('documents/{document}', [MedicalDocumentController::class, 'show'])->name('documents.show');
-+    Route::get('patients/{patient}/history', [PatientHistoryController::class, 'show'])->name('patients.history');
-+});
-+
-+Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
-+    Route::resource('services', HealthServiceController::class)->except(['show']);
-+    Route::resource('doctors', DoctorController::class)->except(['show']);
-+    Route::resource('slots', AppointmentSlotController::class)->except(['show']);
-+    Route::get('appointments', [AdminAppointmentController::class, 'index'])->name('appointments.index');
-+    Route::get('appointments/{appointment}', [AdminAppointmentController::class, 'show'])->name('appointments.show');
-+    Route::put('appointments/{appointment}', [AdminAppointmentController::class, 'update'])->name('appointments.update');
-+});
- 
-diff --git a/routes/console.php b/routes/console.php
---- a/routes/console.php
-+++ b/routes/console.php
-@@
- use Illuminate\Foundation\Inspiring;
- use Illuminate\Support\Facades\Artisan;
-+use Illuminate\Support\Facades\Schedule;
-@@
- Artisan::command('inspire', function () {
-     $this->comment(Inspiring::quote());
- })->purpose('Display an inspiring quote');
-+
-+Schedule::command('appointments:send-reminders')->hourly();
- 
-diff --git a/database/seeders/DatabaseSeeder.php b/database/seeders/DatabaseSeeder.php
---- a/database/seeders/DatabaseSeeder.php
-+++ b/database/seeders/DatabaseSeeder.php
-@@
--use App\Models\User;
-+use App\Models\Appointment;
-+use App\Models\AppointmentSlot;
-+use App\Models\HealthService;
-+use App\Models\User;
- use Illuminate\Database\Console\Seeds\WithoutModelEvents;
- use Illuminate\Database\Seeder;
-+use Illuminate\Support\Facades\Hash;
-@@
-     public function run(): void
-     {
--        // User::factory(10)->create();
--
--        User::factory()->create([
--            'name' => 'Test User',
--            'email' => 'test@example.com',
--        ]);
-+        $admin = User::create([
-+            'name' => 'eKesihatan Admin',
-+            'email' => 'admin@ekesihatan.test',
-+            'password' => Hash::make('password'),
-+            'role' => User::ROLE_ADMIN,
-+            'phone_number' => '0123456789',
-+        ]);
-+
-+        $doctor = User::create([
-+            'name' => 'Dr. Aisyah',
-+            'email' => 'doctor@ekesihatan.test',
-+            'password' => Hash::make('password'),
-+            'role' => User::ROLE_DOCTOR,
-+            'phone_number' => '0123456790',
-+            'specialization' => 'General Practitioner',
-+            'staff_id' => 'DOC-001',
-+        ]);
-+
-+        $patient = User::create([
-+            'name' => 'Patient Example',
-+            'email' => 'patient@ekesihatan.test',
-+            'password' => Hash::make('password'),
-+            'role' => User::ROLE_PATIENT,
-+            'phone_number' => '0123456791',
-+            'student_id' => 'STU-12345',
-+        ]);
-+
-+        $service = HealthService::create([
-+            'name' => 'General Consultation',
-+            'description' => 'Basic medical consultation and assessment.',
-+            'duration_minutes' => 20,
-+            'is_active' => true,
-+        ]);
-+
-+        $slot = AppointmentSlot::create([
-+            'doctor_id' => $doctor->id,
-+            'slot_date' => now()->addDay()->toDateString(),
-+            'start_time' => '09:00',
-+            'end_time' => '09:30',
-+            'capacity' => 5,
-+            'location' => 'Unit Kesihatan UiTM Perlis',
-+            'is_active' => true,
-+        ]);
-+
-+        Appointment::create([
-+            'patient_id' => $patient->id,
-+            'doctor_id' => $doctor->id,
-+            'health_service_id' => $service->id,
-+            'appointment_slot_id' => $slot->id,
-+            'scheduled_at' => $slot->slot_date->format('Y-m-d') . ' ' . $slot->start_time,
-+            'status' => 'approved',
-+            'check_in_token' => (string) \Illuminate\Support\Str::uuid(),
-+            'approved_at' => now(),
-+        ]);
-     }
- }
- 
-diff --git a/database/migrations/2026_01_25_000000_add_profile_fields_to_users_table.php b/database/migrations/2026_01_25_000000_add_profile_fields_to_users_table.php
-new file mode 100644
---- /dev/null
-+++ b/database/migrations/2026_01_25_000000_add_profile_fields_to_users_table.php
-@@
-+<?php
-+
-+use Illuminate\Database\Migrations\Migration;
-+use Illuminate\Database\Schema\Blueprint;
-+use Illuminate\Support\Facades\Schema;
-+
-+return new class extends Migration
-+{
-+    public function up(): void
-+    {
-+        Schema::table('users', function (Blueprint $table) {
-+            $table->string('role')->default('patient')->index();
-+            $table->string('student_id')->nullable()->unique();
-+            $table->string('staff_id')->nullable()->unique();
-+            $table->string('phone_number')->nullable();
-+            $table->string('specialization')->nullable();
-+        });
-+    }
-+
-+    public function down(): void
-+    {
-+        Schema::table('users', function (Blueprint $table) {
-+            $table->dropColumn([
-+                'role',
-+                'student_id',
-+                'staff_id',
-+                'phone_number',
-+                'specialization',
-+            ]);
-+        });
-+    }
-+};
- 
-diff --git a/database/migrations/2026_01_25_000001_create_health_services_table.php b/database/migrations/2026_01_25_000001_create_health_services_table.php
-new file mode 100644
---- /dev/null
-+++ b/database/migrations/2026_01_25_000001_create_health_services_table.php
-@@
-+<?php
-+
-+use Illuminate\Database\Migrations\Migration;
-+use Illuminate\Database\Schema\Blueprint;
-+use Illuminate\Support\Facades\Schema;
-+
-+return new class extends Migration
-+{
-+    public function up(): void
-+    {
-+        Schema::create('health_services', function (Blueprint $table) {
-+            $table->id();
-+            $table->string('name');
-+            $table->text('description')->nullable();
-+            $table->unsignedInteger('duration_minutes')->default(15);
-+            $table->boolean('is_active')->default(true);
-+            $table->timestamps();
-+        });
-+    }
-+
-+    public function down(): void
-+    {
-+        Schema::dropIfExists('health_services');
-+    }
-+};
- 
-diff --git a/database/migrations/2026_01_25_000002_create_appointment_slots_table.php b/database/migrations/2026_01_25_000002_create_appointment_slots_table.php
-new file mode 100644
---- /dev/null
-+++ b/database/migrations/2026_01_25_000002_create_appointment_slots_table.php
-@@
-+<?php
-+
-+use Illuminate\Database\Migrations\Migration;
-+use Illuminate\Database\Schema\Blueprint;
-+use Illuminate\Support\Facades\Schema;
-+
-+return new class extends Migration
-+{
-+    public function up(): void
-+    {
-+        Schema::create('appointment_slots', function (Blueprint $table) {
-+            $table->id();
-+            $table->foreignId('doctor_id')->constrained('users')->cascadeOnDelete();
-+            $table->date('slot_date');
-+            $table->time('start_time');
-+            $table->time('end_time');
-+            $table->unsignedInteger('capacity')->default(1);
-+            $table->string('location')->nullable();
-+            $table->boolean('is_active')->default(true);
-+            $table->timestamps();
-+
-+            $table->index(['doctor_id', 'slot_date']);
-+        });
-+    }
-+
-+    public function down(): void
-+    {
-+        Schema::dropIfExists('appointment_slots');
-+    }
-+};
- 
-diff --git a/database/migrations/2026_01_25_000003_create_appointments_table.php b/database/migrations/2026_01_25_000003_create_appointments_table.php
-new file mode 100644
---- /dev/null
-+++ b/database/migrations/2026_01_25_000003_create_appointments_table.php
-@@
-+<?php
-+
-+use Illuminate\Database\Migrations\Migration;
-+use Illuminate\Database\Schema\Blueprint;
-+use Illuminate\Support\Facades\Schema;
-+
-+return new class extends Migration
-+{
-+    public function up(): void
-+    {
-+        Schema::create('appointments', function (Blueprint $table) {
-+            $table->id();
-+            $table->foreignId('patient_id')->constrained('users')->cascadeOnDelete();
-+            $table->foreignId('doctor_id')->constrained('users')->cascadeOnDelete();
-+            $table->foreignId('health_service_id')->nullable()->constrained('health_services')->nullOnDelete();
-+            $table->foreignId('appointment_slot_id')->nullable()->constrained('appointment_slots')->nullOnDelete();
-+            $table->dateTime('scheduled_at');
-+            $table->string('status')->default('pending')->index();
-+            $table->text('notes')->nullable();
-+            $table->unsignedInteger('queue_number')->nullable();
-+            $table->string('check_in_token')->unique();
-+            $table->timestamp('checked_in_at')->nullable();
-+            $table->timestamp('approved_at')->nullable();
-+            $table->timestamp('cancelled_at')->nullable();
-+            $table->timestamp('reminder_day_sent_at')->nullable();
-+            $table->timestamp('reminder_hour_sent_at')->nullable();
-+            $table->timestamps();
-+
-+            $table->index(['doctor_id', 'scheduled_at']);
-+            $table->index(['patient_id', 'scheduled_at']);
-+        });
-+    }
-+
-+    public function down(): void
-+    {
-+        Schema::dropIfExists('appointments');
-+    }
-+};
- 
-diff --git a/database/migrations/2026_01_25_000004_create_medical_documents_table.php b/database/migrations/2026_01_25_000004_create_medical_documents_table.php
-new file mode 100644
---- /dev/null
-+++ b/database/migrations/2026_01_25_000004_create_medical_documents_table.php
-@@
-+<?php
-+
-+use Illuminate\Database\Migrations\Migration;
-+use Illuminate\Database\Schema\Blueprint;
-+use Illuminate\Support\Facades\Schema;
-+
-+return new class extends Migration
-+{
-+    public function up(): void
-+    {
-+        Schema::create('medical_documents', function (Blueprint $table) {
-+            $table->id();
-+            $table->foreignId('appointment_id')->constrained('appointments')->cascadeOnDelete();
-+            $table->foreignId('uploaded_by')->constrained('users')->cascadeOnDelete();
-+            $table->string('document_type')->nullable();
-+            $table->string('filename');
-+            $table->string('mime_type');
-+            $table->unsignedBigInteger('size_bytes');
-+            $table->longBlob('document_data');
-+            $table->timestamp('uploaded_at')->nullable();
-+            $table->timestamps();
-+        });
-+    }
-+
-+    public function down(): void
-+    {
-+        Schema::dropIfExists('medical_documents');
-+    }
-+};
- 
-diff --git a/database/migrations/2026_01_25_000005_create_queue_tickets_table.php b/database/migrations/2026_01_25_000005_create_queue_tickets_table.php
-new file mode 100644
---- /dev/null
-+++ b/database/migrations/2026_01_25_000005_create_queue_tickets_table.php
-@@
-+<?php
-+
-+use Illuminate\Database\Migrations\Migration;
-+use Illuminate\Database\Schema\Blueprint;
-+use Illuminate\Support\Facades\Schema;
-+
-+return new class extends Migration
-+{
-+    public function up(): void
-+    {
-+        Schema::create('queue_tickets', function (Blueprint $table) {
-+            $table->id();
-+            $table->foreignId('appointment_id')->unique()->constrained('appointments')->cascadeOnDelete();
-+            $table->date('issued_on');
-+            $table->unsignedInteger('number');
-+            $table->timestamps();
-+
-+            $table->unique(['issued_on', 'number']);
-+        });
-+    }
-+
-+    public function down(): void
-+    {
-+        Schema::dropIfExists('queue_tickets');
-+    }
-+};
  
 diff --git a/app/Models/HealthService.php b/app/Models/HealthService.php
 new file mode 100644
@@ -898,1241 +296,297 @@ new file mode 100644
 +    }
 +}
  
-diff --git a/app/Http/Middleware/EnsureRole.php b/app/Http/Middleware/EnsureRole.php
+diff --git a/database/migrations/2026_01_25_000000_add_profile_fields_to_users_table.php b/database/migrations/2026_01_25_000000_add_profile_fields_to_users_table.php
 new file mode 100644
 --- /dev/null
-+++ b/app/Http/Middleware/EnsureRole.php
++++ b/database/migrations/2026_01_25_000000_add_profile_fields_to_users_table.php
 @@
 +<?php
 +
-+namespace App\Http\Middleware;
++use Illuminate\Database\Migrations\Migration;
++use Illuminate\Database\Schema\Blueprint;
++use Illuminate\Support\Facades\Schema;
 +
-+use Closure;
-+use Illuminate\Http\Request;
-+
-+class EnsureRole
++return new class extends Migration
 +{
-+    public function handle(Request $request, Closure $next, ...$roles)
++    public function up(): void
 +    {
-+        $user = $request->user();
-+
-+        if (!$user) {
-+            abort(403);
-+        }
-+
-+        if (!empty($roles) && !in_array($user->role, $roles, true)) {
-+            abort(403);
-+        }
-+
-+        return $next($request);
-+    }
-+}
- 
-diff --git a/app/Services/SmsService.php b/app/Services/SmsService.php
-new file mode 100644
---- /dev/null
-+++ b/app/Services/SmsService.php
-@@
-+<?php
-+
-+namespace App\Services;
-+
-+use App\Models\Appointment;
-+use App\Models\User;
-+use Illuminate\Support\Facades\Http;
-+use Illuminate\Support\Facades\Log;
-+
-+class SmsService
-+{
-+    public function send(string $to, string $message): void
-+    {
-+        $provider = config('services.sms.provider', 'log');
-+
-+        if ($provider === 'twilio') {
-+            $sid = config('services.sms.twilio_sid');
-+            $token = config('services.sms.twilio_token');
-+            $from = config('services.sms.twilio_from');
-+
-+            if (!$sid || !$token || !$from) {
-+                Log::warning('Twilio credentials missing, skipping SMS.', ['to' => $to]);
-+                return;
-+            }
-+
-+            Http::withBasicAuth($sid, $token)->asForm()->post(
-+                "https://api.twilio.com/2010-04-01/Accounts/{$sid}/Messages.json",
-+                [
-+                    'From' => $from,
-+                    'To' => $to,
-+                    'Body' => $message,
-+                ]
-+            );
-+
-+            return;
-+        }
-+
-+        Log::info('SMS (log provider)', ['to' => $to, 'message' => $message]);
-+    }
-+
-+    public function sendAppointmentConfirmation(User $patient, Appointment $appointment): void
-+    {
-+        if (!$patient->phone_number) {
-+            return;
-+        }
-+
-+        $message = sprintf(
-+            'eKesihatan: Your appointment request is received for %s with Dr. %s. Status: %s.',
-+            $appointment->scheduled_at->format('d M Y, h:i A'),
-+            $appointment->doctor->name ?? 'Assigned Doctor',
-+            ucfirst($appointment->status)
-+        );
-+
-+        $this->send($patient->phone_number, $message);
-+    }
-+
-+    public function sendAppointmentUpdate(User $patient, Appointment $appointment, string $status): void
-+    {
-+        if (!$patient->phone_number) {
-+            return;
-+        }
-+
-+        $message = sprintf(
-+            'eKesihatan: Your appointment is %s for %s with Dr. %s.',
-+            $status,
-+            $appointment->scheduled_at->format('d M Y, h:i A'),
-+            $appointment->doctor->name ?? 'Assigned Doctor'
-+        );
-+
-+        $this->send($patient->phone_number, $message);
-+    }
-+
-+    public function sendReminder(User $patient, Appointment $appointment, string $window): void
-+    {
-+        if (!$patient->phone_number) {
-+            return;
-+        }
-+
-+        $message = sprintf(
-+            'eKesihatan reminder (%s): Your appointment is scheduled at %s with Dr. %s.',
-+            $window,
-+            $appointment->scheduled_at->format('d M Y, h:i A'),
-+            $appointment->doctor->name ?? 'Assigned Doctor'
-+        );
-+
-+        $this->send($patient->phone_number, $message);
-+    }
-+}
- 
-diff --git a/app/Services/TranslationService.php b/app/Services/TranslationService.php
-new file mode 100644
---- /dev/null
-+++ b/app/Services/TranslationService.php
-@@
-+<?php
-+
-+namespace App\Services;
-+
-+use Illuminate\Support\Facades\Http;
-+use Illuminate\Support\Facades\Log;
-+
-+class TranslationService
-+{
-+    public function translate(string $text, string $target): string
-+    {
-+        $apiKey = config('services.google.translate_key');
-+
-+        if (!$apiKey) {
-+            Log::info('Google Translate API key missing, returning original text.');
-+            return $text;
-+        }
-+
-+        $response = Http::asForm()->post('https://translation.googleapis.com/language/translate/v2', [
-+            'q' => $text,
-+            'target' => $target,
-+            'source' => 'en',
-+            'key' => $apiKey,
-+        ]);
-+
-+        if (!$response->ok()) {
-+            Log::warning('Translate API failed', ['status' => $response->status(), 'body' => $response->body()]);
-+            return $text;
-+        }
-+
-+        $translated = (string) data_get($response->json(), 'data.translations.0.translatedText', $text);
-+
-+        return html_entity_decode($translated, ENT_QUOTES, 'UTF-8');
-+    }
-+}
- 
-diff --git a/app/Console/Commands/SendAppointmentReminders.php b/app/Console/Commands/SendAppointmentReminders.php
-new file mode 100644
---- /dev/null
-+++ b/app/Console/Commands/SendAppointmentReminders.php
-@@
-+<?php
-+
-+namespace App\Console\Commands;
-+
-+use App\Models\Appointment;
-+use App\Services\SmsService;
-+use Illuminate\Console\Command;
-+
-+class SendAppointmentReminders extends Command
-+{
-+    protected $signature = 'appointments:send-reminders';
-+    protected $description = 'Send SMS reminders for upcoming appointments.';
-+
-+    public function handle(SmsService $smsService): int
-+    {
-+        $this->sendWindowReminder($smsService, 'day', now()->addDay()->startOfHour(), now()->addDay()->endOfHour());
-+        $this->sendWindowReminder($smsService, 'hour', now()->addHour()->startOfMinute(), now()->addHour()->endOfMinute());
-+
-+        $this->info('Appointment reminders processed.');
-+
-+        return self::SUCCESS;
-+    }
-+
-+    private function sendWindowReminder(SmsService $smsService, string $window, $start, $end): void
-+    {
-+        $column = $window === 'day' ? 'reminder_day_sent_at' : 'reminder_hour_sent_at';
-+
-+        $appointments = Appointment::with(['patient', 'doctor'])
-+            ->whereIn('status', ['approved', 'pending'])
-+            ->whereNull($column)
-+            ->whereBetween('scheduled_at', [$start, $end])
-+            ->get();
-+
-+        foreach ($appointments as $appointment) {
-+            $smsService->sendReminder($appointment->patient, $appointment, $window === 'day' ? '1 day' : '1 hour');
-+            $appointment->update([$column => now()]);
-+        }
-+    }
-+}
- 
-diff --git a/app/Http/Controllers/LandingController.php b/app/Http/Controllers/LandingController.php
-new file mode 100644
---- /dev/null
-+++ b/app/Http/Controllers/LandingController.php
-@@
-+<?php
-+
-+namespace App\Http\Controllers;
-+
-+use Illuminate\Http\Request;
-+
-+class LandingController extends Controller
-+{
-+    public function index(Request $request)
-+    {
-+        return view('landing');
-+    }
-+}
- 
-diff --git a/app/Http/Controllers/AuthController.php b/app/Http/Controllers/AuthController.php
-new file mode 100644
---- /dev/null
-+++ b/app/Http/Controllers/AuthController.php
-@@
-+<?php
-+
-+namespace App\Http\Controllers;
-+
-+use App\Models\User;
-+use Illuminate\Http\Request;
-+use Illuminate\Support\Facades\Auth;
-+use Illuminate\Support\Facades\Hash;
-+
-+class AuthController extends Controller
-+{
-+    public function showLogin()
-+    {
-+        return view('auth.login');
-+    }
-+
-+    public function login(Request $request)
-+    {
-+        $credentials = $request->validate([
-+            'email' => ['required', 'email'],
-+            'password' => ['required'],
-+        ]);
-+
-+        if (Auth::attempt($credentials)) {
-+            $request->session()->regenerate();
-+
-+            return redirect()->route('dashboard');
-+        }
-+
-+        return back()->withErrors([
-+            'email' => 'The provided credentials do not match our records.',
-+        ])->withInput();
-+    }
-+
-+    public function showRegister()
-+    {
-+        return view('auth.register');
-+    }
-+
-+    public function register(Request $request)
-+    {
-+        $data = $request->validate([
-+            'name' => ['required', 'string', 'max:255'],
-+            'student_id' => ['required', 'string', 'max:50', 'unique:users,student_id'],
-+            'email' => ['required', 'email', 'max:255', 'unique:users,email'],
-+            'phone_number' => ['required', 'string', 'max:30'],
-+            'password' => ['required', 'min:8', 'confirmed'],
-+        ]);
-+
-+        $user = User::create([
-+            'name' => $data['name'],
-+            'student_id' => $data['student_id'],
-+            'email' => $data['email'],
-+            'phone_number' => $data['phone_number'],
-+            'password' => Hash::make($data['password']),
-+            'role' => User::ROLE_PATIENT,
-+        ]);
-+
-+        Auth::login($user);
-+
-+        return redirect()->route('dashboard');
-+    }
-+
-+    public function logout(Request $request)
-+    {
-+        Auth::logout();
-+
-+        $request->session()->invalidate();
-+        $request->session()->regenerateToken();
-+
-+        return redirect()->route('landing');
-+    }
-+}
- 
-diff --git a/app/Http/Controllers/DashboardController.php b/app/Http/Controllers/DashboardController.php
-new file mode 100644
---- /dev/null
-+++ b/app/Http/Controllers/DashboardController.php
-@@
-+<?php
-+
-+namespace App\Http\Controllers;
-+
-+use App\Models\Appointment;
-+use App\Models\HealthService;
-+use App\Models\User;
-+use Illuminate\Http\Request;
-+
-+class DashboardController extends Controller
-+{
-+    public function index(Request $request)
-+    {
-+        $user = $request->user();
-+
-+        if ($user->isAdmin()) {
-+            return view('dashboard.admin', [
-+                'pendingAppointments' => Appointment::where('status', 'pending')->count(),
-+                'todayAppointments' => Appointment::whereDate('scheduled_at', now()->toDateString())->count(),
-+                'servicesCount' => HealthService::count(),
-+                'doctorsCount' => User::where('role', User::ROLE_DOCTOR)->count(),
-+            ]);
-+        }
-+
-+        if ($user->isDoctor()) {
-+            $todayAppointments = Appointment::with(['patient', 'service'])
-+                ->where('doctor_id', $user->id)
-+                ->whereDate('scheduled_at', now()->toDateString())
-+                ->orderBy('scheduled_at')
-+                ->get();
-+
-+            return view('dashboard.doctor', [
-+                'appointments' => $todayAppointments,
-+            ]);
-+        }
-+
-+        $upcomingAppointments = Appointment::with(['doctor', 'service'])
-+            ->where('patient_id', $user->id)
-+            ->where('scheduled_at', '>=', now())
-+            ->orderBy('scheduled_at')
-+            ->get();
-+
-+        return view('dashboard.patient', [
-+            'appointments' => $upcomingAppointments,
-+        ]);
-+    }
-+}
- 
-diff --git a/app/Http/Controllers/ProfileController.php b/app/Http/Controllers/ProfileController.php
-new file mode 100644
---- /dev/null
-+++ b/app/Http/Controllers/ProfileController.php
-@@
-+<?php
-+
-+namespace App\Http\Controllers;
-+
-+use Illuminate\Http\Request;
-+use Illuminate\Support\Facades\Hash;
-+
-+class ProfileController extends Controller
-+{
-+    public function edit(Request $request)
-+    {
-+        return view('profile.edit', [
-+            'user' => $request->user(),
-+        ]);
-+    }
-+
-+    public function update(Request $request)
-+    {
-+        $user = $request->user();
-+
-+        $data = $request->validate([
-+            'name' => ['required', 'string', 'max:255'],
-+            'email' => ['required', 'email', 'max:255', 'unique:users,email,' . $user->id],
-+            'phone_number' => ['nullable', 'string', 'max:30'],
-+            'student_id' => ['nullable', 'string', 'max:50', 'unique:users,student_id,' . $user->id],
-+            'staff_id' => ['nullable', 'string', 'max:50', 'unique:users,staff_id,' . $user->id],
-+            'specialization' => ['nullable', 'string', 'max:255'],
-+            'password' => ['nullable', 'min:8', 'confirmed'],
-+        ]);
-+
-+        if (!empty($data['password'])) {
-+            $data['password'] = Hash::make($data['password']);
-+        } else {
-+            unset($data['password']);
-+        }
-+
-+        $user->update($data);
-+
-+        return redirect()->route('profile.edit')->with('status', 'Profile updated successfully.');
-+    }
-+}
- 
-diff --git a/app/Http/Controllers/Admin/HealthServiceController.php b/app/Http/Controllers/Admin/HealthServiceController.php
-new file mode 100644
---- /dev/null
-+++ b/app/Http/Controllers/Admin/HealthServiceController.php
-@@
-+<?php
-+
-+namespace App\Http\Controllers\Admin;
-+
-+use App\Http\Controllers\Controller;
-+use App\Models\HealthService;
-+use Illuminate\Http\Request;
-+
-+class HealthServiceController extends Controller
-+{
-+    public function index()
-+    {
-+        return view('admin.services.index', [
-+            'services' => HealthService::orderBy('name')->get(),
-+        ]);
-+    }
-+
-+    public function create()
-+    {
-+        return view('admin.services.create');
-+    }
-+
-+    public function store(Request $request)
-+    {
-+        $data = $request->validate([
-+            'name' => ['required', 'string', 'max:255'],
-+            'description' => ['nullable', 'string'],
-+            'duration_minutes' => ['required', 'integer', 'min:5', 'max:240'],
-+            'is_active' => ['nullable', 'boolean'],
-+        ]);
-+
-+        $data['is_active'] = $request->boolean('is_active');
-+
-+        HealthService::create($data);
-+
-+        return redirect()->route('admin.services.index')->with('status', 'Health service created.');
-+    }
-+
-+    public function edit(HealthService $service)
-+    {
-+        return view('admin.services.edit', [
-+            'service' => $service,
-+        ]);
-+    }
-+
-+    public function update(Request $request, HealthService $service)
-+    {
-+        $data = $request->validate([
-+            'name' => ['required', 'string', 'max:255'],
-+            'description' => ['nullable', 'string'],
-+            'duration_minutes' => ['required', 'integer', 'min:5', 'max:240'],
-+            'is_active' => ['nullable', 'boolean'],
-+        ]);
-+
-+        $data['is_active'] = $request->boolean('is_active');
-+
-+        $service->update($data);
-+
-+        return redirect()->route('admin.services.index')->with('status', 'Health service updated.');
-+    }
-+
-+    public function destroy(HealthService $service)
-+    {
-+        $service->delete();
-+
-+        return redirect()->route('admin.services.index')->with('status', 'Health service removed.');
-+    }
-+}
- 
-diff --git a/app/Http/Controllers/Admin/DoctorController.php b/app/Http/Controllers/Admin/DoctorController.php
-new file mode 100644
---- /dev/null
-+++ b/app/Http/Controllers/Admin/DoctorController.php
-@@
-+<?php
-+
-+namespace App\Http\Controllers\Admin;
-+
-+use App\Http\Controllers\Controller;
-+use App\Models\User;
-+use Illuminate\Http\Request;
-+use Illuminate\Support\Facades\Hash;
-+
-+class DoctorController extends Controller
-+{
-+    public function index()
-+    {
-+        return view('admin.doctors.index', [
-+            'doctors' => User::where('role', User::ROLE_DOCTOR)->orderBy('name')->get(),
-+        ]);
-+    }
-+
-+    public function create()
-+    {
-+        return view('admin.doctors.create');
-+    }
-+
-+    public function store(Request $request)
-+    {
-+        $data = $request->validate([
-+            'name' => ['required', 'string', 'max:255'],
-+            'email' => ['required', 'email', 'max:255', 'unique:users,email'],
-+            'staff_id' => ['nullable', 'string', 'max:50', 'unique:users,staff_id'],
-+            'phone_number' => ['nullable', 'string', 'max:30'],
-+            'specialization' => ['nullable', 'string', 'max:255'],
-+            'password' => ['required', 'min:8', 'confirmed'],
-+        ]);
-+
-+        $data['password'] = Hash::make($data['password']);
-+        $data['role'] = User::ROLE_DOCTOR;
-+
-+        User::create($data);
-+
-+        return redirect()->route('admin.doctors.index')->with('status', 'Doctor added.');
-+    }
-+
-+    public function edit(User $doctor)
-+    {
-+        if ($doctor->role !== User::ROLE_DOCTOR) {
-+            abort(404);
-+        }
-+
-+        return view('admin.doctors.edit', [
-+            'doctor' => $doctor,
-+        ]);
-+    }
-+
-+    public function update(Request $request, User $doctor)
-+    {
-+        if ($doctor->role !== User::ROLE_DOCTOR) {
-+            abort(404);
-+        }
-+
-+        $data = $request->validate([
-+            'name' => ['required', 'string', 'max:255'],
-+            'email' => ['required', 'email', 'max:255', 'unique:users,email,' . $doctor->id],
-+            'staff_id' => ['nullable', 'string', 'max:50', 'unique:users,staff_id,' . $doctor->id],
-+            'phone_number' => ['nullable', 'string', 'max:30'],
-+            'specialization' => ['nullable', 'string', 'max:255'],
-+            'password' => ['nullable', 'min:8', 'confirmed'],
-+        ]);
-+
-+        if (!empty($data['password'])) {
-+            $data['password'] = Hash::make($data['password']);
-+        } else {
-+            unset($data['password']);
-+        }
-+
-+        $doctor->update($data);
-+
-+        return redirect()->route('admin.doctors.index')->with('status', 'Doctor updated.');
-+    }
-+
-+    public function destroy(User $doctor)
-+    {
-+        if ($doctor->role !== User::ROLE_DOCTOR) {
-+            abort(404);
-+        }
-+
-+        $doctor->delete();
-+
-+        return redirect()->route('admin.doctors.index')->with('status', 'Doctor removed.');
-+    }
-+}
- 
-diff --git a/app/Http/Controllers/Admin/AppointmentSlotController.php b/app/Http/Controllers/Admin/AppointmentSlotController.php
-new file mode 100644
---- /dev/null
-+++ b/app/Http/Controllers/Admin/AppointmentSlotController.php
-@@
-+<?php
-+
-+namespace App\Http\Controllers\Admin;
-+
-+use App\Http\Controllers\Controller;
-+use App\Models\AppointmentSlot;
-+use App\Models\User;
-+use Illuminate\Http\Request;
-+use Illuminate\Validation\Rule;
-+
-+class AppointmentSlotController extends Controller
-+{
-+    public function index()
-+    {
-+        return view('admin.slots.index', [
-+            'slots' => AppointmentSlot::with('doctor')->orderBy('slot_date')->orderBy('start_time')->get(),
-+        ]);
-+    }
-+
-+    public function create()
-+    {
-+        return view('admin.slots.create', [
-+            'doctors' => User::where('role', User::ROLE_DOCTOR)->orderBy('name')->get(),
-+        ]);
-+    }
-+
-+    public function store(Request $request)
-+    {
-+        $data = $request->validate([
-+            'doctor_id' => ['required', Rule::exists('users', 'id')->where('role', User::ROLE_DOCTOR)],
-+            'slot_date' => ['required', 'date'],
-+            'start_time' => ['required', 'date_format:H:i'],
-+            'end_time' => ['required', 'date_format:H:i', 'after:start_time'],
-+            'capacity' => ['required', 'integer', 'min:1', 'max:20'],
-+            'location' => ['nullable', 'string', 'max:255'],
-+            'is_active' => ['nullable', 'boolean'],
-+        ]);
-+
-+        $data['is_active'] = $request->boolean('is_active');
-+
-+        AppointmentSlot::create($data);
-+
-+        return redirect()->route('admin.slots.index')->with('status', 'Appointment slot created.');
-+    }
-+
-+    public function edit(AppointmentSlot $slot)
-+    {
-+        return view('admin.slots.edit', [
-+            'slot' => $slot,
-+            'doctors' => User::where('role', User::ROLE_DOCTOR)->orderBy('name')->get(),
-+        ]);
-+    }
-+
-+    public function update(Request $request, AppointmentSlot $slot)
-+    {
-+        $data = $request->validate([
-+            'doctor_id' => ['required', Rule::exists('users', 'id')->where('role', User::ROLE_DOCTOR)],
-+            'slot_date' => ['required', 'date'],
-+            'start_time' => ['required', 'date_format:H:i'],
-+            'end_time' => ['required', 'date_format:H:i', 'after:start_time'],
-+            'capacity' => ['required', 'integer', 'min:1', 'max:20'],
-+            'location' => ['nullable', 'string', 'max:255'],
-+            'is_active' => ['nullable', 'boolean'],
-+        ]);
-+
-+        $data['is_active'] = $request->boolean('is_active');
-+
-+        $slot->update($data);
-+
-+        return redirect()->route('admin.slots.index')->with('status', 'Appointment slot updated.');
-+    }
-+
-+    public function destroy(AppointmentSlot $slot)
-+    {
-+        $slot->delete();
-+
-+        return redirect()->route('admin.slots.index')->with('status', 'Appointment slot removed.');
-+    }
-+}
- 
-diff --git a/app/Http/Controllers/Admin/AppointmentController.php b/app/Http/Controllers/Admin/AppointmentController.php
-new file mode 100644
---- /dev/null
-+++ b/app/Http/Controllers/Admin/AppointmentController.php
-@@
-+<?php
-+
-+namespace App\Http\Controllers\Admin;
-+
-+use App\Http\Controllers\Controller;
-+use App\Models\Appointment;
-+use App\Models\AppointmentSlot;
-+use App\Models\User;
-+use App\Services\SmsService;
-+use Illuminate\Http\Request;
-+use Illuminate\Validation\Rule;
-+
-+class AppointmentController extends Controller
-+{
-+    public function index()
-+    {
-+        return view('admin.appointments.index', [
-+            'appointments' => Appointment::with(['patient', 'doctor', 'service', 'slot'])
-+                ->orderByDesc('scheduled_at')
-+                ->get(),
-+        ]);
-+    }
-+
-+    public function show(Appointment $appointment)
-+    {
-+        return view('admin.appointments.show', [
-+            'appointment' => $appointment->load(['patient', 'doctor', 'service', 'slot', 'documents']),
-+            'doctors' => User::where('role', User::ROLE_DOCTOR)->orderBy('name')->get(),
-+            'slots' => AppointmentSlot::with('doctor')->orderBy('slot_date')->orderBy('start_time')->get(),
-+        ]);
-+    }
-+
-+    public function update(Request $request, Appointment $appointment, SmsService $smsService)
-+    {
-+        $data = $request->validate([
-+            'status' => ['required', 'in:pending,approved,rejected,rescheduled,cancelled'],
-+            'doctor_id' => ['required', Rule::exists('users', 'id')->where('role', User::ROLE_DOCTOR)],
-+            'appointment_slot_id' => ['required', 'exists:appointment_slots,id'],
-+            'notes' => ['nullable', 'string'],
-+        ]);
-+
-+        $slot = AppointmentSlot::findOrFail($data['appointment_slot_id']);
-+
-+        if ($slot->doctor_id !== (int) $data['doctor_id']) {
-+            return back()->withErrors(['appointment_slot_id' => 'Selected slot does not match the chosen doctor.']);
-+        }
-+
-+        $scheduledAt = $slot->slot_date->format('Y-m-d') . ' ' . $slot->start_time;
-+
-+        $appointment->update([
-+            'status' => $data['status'],
-+            'doctor_id' => $data['doctor_id'],
-+            'appointment_slot_id' => $slot->id,
-+            'scheduled_at' => $scheduledAt,
-+            'notes' => $data['notes'] ?? $appointment->notes,
-+            'approved_at' => $data['status'] === 'approved' ? now() : $appointment->approved_at,
-+            'cancelled_at' => in_array($data['status'], ['rejected', 'cancelled'], true) ? now() : $appointment->cancelled_at,
-+        ]);
-+
-+        if (in_array($data['status'], ['approved', 'rescheduled'], true)) {
-+            $appointment->load(['patient', 'doctor']);
-+            $smsService->sendAppointmentUpdate(
-+                $appointment->patient,
-+                $appointment,
-+                $data['status']
-+            );
-+        }
-+
-+        return redirect()->route('admin.appointments.show', $appointment)->with('status', 'Appointment updated.');
-+    }
-+}
- 
-diff --git a/app/Http/Controllers/Patient/ServiceController.php b/app/Http/Controllers/Patient/ServiceController.php
-new file mode 100644
---- /dev/null
-+++ b/app/Http/Controllers/Patient/ServiceController.php
-@@
-+<?php
-+
-+namespace App\Http\Controllers\Patient;
-+
-+use App\Http\Controllers\Controller;
-+use App\Models\HealthService;
-+
-+class ServiceController extends Controller
-+{
-+    public function index()
-+    {
-+        return view('patient.services.index', [
-+            'services' => HealthService::where('is_active', true)->orderBy('name')->get(),
-+        ]);
-+    }
-+}
- 
-diff --git a/app/Http/Controllers/Patient/AppointmentController.php b/app/Http/Controllers/Patient/AppointmentController.php
-new file mode 100644
---- /dev/null
-+++ b/app/Http/Controllers/Patient/AppointmentController.php
-@@
-+<?php
-+
-+namespace App\Http\Controllers\Patient;
-+
-+use App\Http\Controllers\Controller;
-+use App\Models\Appointment;
-+use App\Models\AppointmentSlot;
-+use App\Models\HealthService;
-+use App\Models\User;
-+use App\Services\SmsService;
-+use Illuminate\Http\Request;
-+use Illuminate\Support\Str;
-+use Illuminate\Validation\Rule;
-+
-+class AppointmentController extends Controller
-+{
-+    public function index(Request $request)
-+    {
-+        return view('patient.appointments.index', [
-+            'appointments' => Appointment::with(['doctor', 'service', 'slot'])
-+                ->where('patient_id', $request->user()->id)
-+                ->orderByDesc('scheduled_at')
-+                ->get(),
-+        ]);
-+    }
-+
-+    public function create()
-+    {
-+        return view('patient.appointments.create', [
-+            'services' => HealthService::where('is_active', true)->orderBy('name')->get(),
-+            'doctors' => User::where('role', User::ROLE_DOCTOR)->orderBy('name')->get(),
-+            'slots' => AppointmentSlot::with('doctor')
-+                ->where('is_active', true)
-+                ->whereDate('slot_date', '>=', now()->toDateString())
-+                ->orderBy('slot_date')
-+                ->orderBy('start_time')
-+                ->get(),
-+        ]);
-+    }
-+
-+    public function store(Request $request, SmsService $smsService)
-+    {
-+        $data = $request->validate([
-+            'health_service_id' => ['required', Rule::exists('health_services', 'id')->where('is_active', true)],
-+            'doctor_id' => ['required', Rule::exists('users', 'id')->where('role', User::ROLE_DOCTOR)],
-+            'appointment_slot_id' => ['required', 'exists:appointment_slots,id'],
-+            'notes' => ['nullable', 'string'],
-+        ]);
-+
-+        $slot = AppointmentSlot::where('id', $data['appointment_slot_id'])
-+            ->where('doctor_id', $data['doctor_id'])
-+            ->firstOrFail();
-+
-+        if (!$slot->is_active || $slot->slot_date->isPast()) {
-+            return back()->withErrors(['appointment_slot_id' => 'This slot is no longer available.'])->withInput();
-+        }
-+
-+        $activeCount = Appointment::where('appointment_slot_id', $slot->id)
-+            ->whereNotIn('status', ['cancelled', 'rejected'])
-+            ->count();
-+
-+        if ($activeCount >= $slot->capacity) {
-+            return back()->withErrors(['appointment_slot_id' => 'This slot is fully booked.'])->withInput();
-+        }
-+
-+        $scheduledAt = $slot->slot_date->format('Y-m-d') . ' ' . $slot->start_time;
-+
-+        $appointment = Appointment::create([
-+            'patient_id' => $request->user()->id,
-+            'doctor_id' => $data['doctor_id'],
-+            'health_service_id' => $data['health_service_id'],
-+            'appointment_slot_id' => $slot->id,
-+            'scheduled_at' => $scheduledAt,
-+            'status' => 'pending',
-+            'notes' => $data['notes'] ?? null,
-+            'check_in_token' => (string) Str::uuid(),
-+        ]);
-+
-+        $smsService->sendAppointmentConfirmation($appointment->patient, $appointment);
-+
-+        return redirect()->route('patient.appointments.show', $appointment)
-+            ->with('status', 'Appointment booked successfully. Confirmation SMS sent.');
-+    }
-+
-+    public function show(Request $request, Appointment $appointment)
-+    {
-+        $this->authorizeAppointment($request, $appointment);
-+
-+        return view('patient.appointments.show', [
-+            'appointment' => $appointment->load(['doctor', 'service', 'slot', 'documents']),
-+        ]);
-+    }
-+
-+    public function edit(Request $request, Appointment $appointment)
-+    {
-+        $this->authorizeAppointment($request, $appointment);
-+
-+        return view('patient.appointments.edit', [
-+            'appointment' => $appointment,
-+            'slots' => AppointmentSlot::with('doctor')
-+                ->where('is_active', true)
-+                ->whereDate('slot_date', '>=', now()->toDateString())
-+                ->orderBy('slot_date')
-+                ->orderBy('start_time')
-+                ->get(),
-+        ]);
-+    }
-+
-+    public function update(Request $request, Appointment $appointment)
-+    {
-+        $this->authorizeAppointment($request, $appointment);
-+
-+        $data = $request->validate([
-+            'appointment_slot_id' => ['required', 'exists:appointment_slots,id'],
-+        ]);
-+
-+        $slot = AppointmentSlot::findOrFail($data['appointment_slot_id']);
-+        if (!$slot->is_active || $slot->slot_date->isPast()) {
-+            return back()->withErrors(['appointment_slot_id' => 'This slot is no longer available.'])->withInput();
-+        }
-+
-+        $activeCount = Appointment::where('appointment_slot_id', $slot->id)
-+            ->whereNotIn('status', ['cancelled', 'rejected'])
-+            ->where('id', '!=', $appointment->id)
-+            ->count();
-+
-+        if ($activeCount >= $slot->capacity) {
-+            return back()->withErrors(['appointment_slot_id' => 'This slot is fully booked.'])->withInput();
-+        }
-+
-+        $scheduledAt = $slot->slot_date->format('Y-m-d') . ' ' . $slot->start_time;
-+
-+        $appointment->update([
-+            'appointment_slot_id' => $slot->id,
-+            'doctor_id' => $slot->doctor_id,
-+            'scheduled_at' => $scheduledAt,
-+            'status' => 'pending',
-+        ]);
-+
-+        return redirect()->route('patient.appointments.show', $appointment)
-+            ->with('status', 'Appointment rescheduled. Awaiting approval.');
-+    }
-+
-+    public function destroy(Request $request, Appointment $appointment)
-+    {
-+        $this->authorizeAppointment($request, $appointment);
-+
-+        $appointment->update([
-+            'status' => 'cancelled',
-+            'cancelled_at' => now(),
-+        ]);
-+
-+        return redirect()->route('patient.appointments.index')->with('status', 'Appointment cancelled.');
-+    }
-+
-+    private function authorizeAppointment(Request $request, Appointment $appointment): void
-+    {
-+        if ($appointment->patient_id !== $request->user()->id) {
-+            abort(403);
-+        }
-+    }
-+}
- 
-diff --git a/app/Http/Controllers/Patient/BmiController.php b/app/Http/Controllers/Patient/BmiController.php
-new file mode 100644
---- /dev/null
-+++ b/app/Http/Controllers/Patient/BmiController.php
-@@
-+<?php
-+
-+namespace App\Http\Controllers\Patient;
-+
-+use App\Http\Controllers\Controller;
-+use Illuminate\Http\Request;
-+
-+class BmiController extends Controller
-+{
-+    public function show()
-+    {
-+        return view('patient.bmi');
-+    }
-+
-+    public function calculate(Request $request)
-+    {
-+        $data = $request->validate([
-+            'height_cm' => ['required', 'numeric', 'min:50', 'max:250'],
-+            'weight_kg' => ['required', 'numeric', 'min:20', 'max:300'],
-+        ]);
-+
-+        $heightM = $data['height_cm'] / 100;
-+        $bmi = $data['weight_kg'] / ($heightM * $heightM);
-+        $bmiRounded = round($bmi, 1);
-+
-+        $category = match (true) {
-+            $bmi < 18.5 => 'Underweight',
-+            $bmi < 25 => 'Normal',
-+            $bmi < 30 => 'Overweight',
-+            default => 'Obese',
-+        };
-+
-+        return view('patient.bmi', [
-+            'bmi' => $bmiRounded,
-+            'category' => $category,
-+            'height_cm' => $data['height_cm'],
-+            'weight_kg' => $data['weight_kg'],
-+        ]);
-+    }
-+}
- 
-diff --git a/app/Http/Controllers/Doctor/AppointmentController.php b/app/Http/Controllers/Doctor/AppointmentController.php
-new file mode 100644
---- /dev/null
-+++ b/app/Http/Controllers/Doctor/AppointmentController.php
-@@
-+<?php
-+
-+namespace App\Http\Controllers\Doctor;
-+
-+use App\Http\Controllers\Controller;
-+use App\Models\Appointment;
-+use Illuminate\Http\Request;
-+
-+class AppointmentController extends Controller
-+{
-+    public function index(Request $request)
-+    {
-+        $date = $request->query('date', now()->toDateString());
-+
-+        $appointments = Appointment::with(['patient', 'service', 'slot'])
-+            ->where('doctor_id', $request->user()->id)
-+            ->whereDate('scheduled_at', $date)
-+            ->orderBy('scheduled_at')
-+            ->get();
-+
-+        return view('doctor.appointments.index', [
-+            'appointments' => $appointments,
-+            'date' => $date,
-+        ]);
-+    }
-+
-+    public function show(Request $request, Appointment $appointment)
-+    {
-+        $this->authorizeDoctor($request, $appointment);
-+
-+        return view('doctor.appointments.show', [
-+            'appointment' => $appointment->load(['patient', 'service', 'slot', 'documents']),
-+        ]);
-+    }
-+
-+    public function update(Request $request, Appointment $appointment)
-+    {
-+        $this->authorizeDoctor($request, $appointment);
-+
-+        $data = $request->validate([
-+            'status' => ['required', 'in:completed,no-show'],
-+        ]);
-+
-+        $appointment->update([
-+            'status' => $data['status'],
-+        ]);
-+
-+        return redirect()->route('doctor.appointments.show', $appointment)->with('status', 'Appointment updated.');
-+    }
-+
-+    private function authorizeDoctor(Request $request, Appointment $appointment): void
-+    {
-+        if ($appointment->doctor_id !== $request->user()->id) {
-+            abort(403);
-+        }
-+    }
-+}
- 
-diff --git a/app/Http/Controllers/Doctor/PatientHistoryController.php b/app/Http/Controllers/Doctor/PatientHistoryController.php
-new file mode 100644
---- /dev/null
-+++ b/app/Http/Controllers/Doctor/PatientHistoryController.php
-@@
-+<?php
-+
-+namespace App\Http\Controllers\Doctor;
-+
-+use App\Http\Controllers\Controller;
-+use App\Models\Appointment;
-+use App\Models\User;
-+use Illuminate\Http\Request;
-+
-+class PatientHistoryController extends Controller
-+{
-+    public function show(Request $request, User $patient)
-+    {
-+        if (!$patient->isPatient()) {
-+            abort(404);
-+        }
-+
-+        $appointments = Appointment::with(['service', 'doctor'])
-+            ->where('patient_id', $patient->id)
-+            ->orderByDesc('scheduled_at')
-+            ->get();
-+
-+        return view('doctor.patients.history', [
-+            'patient' => $patient,
-+            'appointments' => $appointments,
-+        ]);
-+    }
-+}
- 
-diff --git a/app/Http/Controllers/Doctor/MedicalDocumentController.php b/app/Http/Controllers/Doctor/MedicalDocumentController.php
-new file mode 100644
---- /dev/null
-+++ b/app/Http/Controllers/Doctor/MedicalDocumentController.php
-@@
-+<?php
-+
-+namespace App\Http\Controllers\Doctor;
-+
-+use App\Http\Controllers\Controller;
-+use App\Models\Appointment;
-+use App\Models\MedicalDocument;
-+use Illuminate\Http\Request;
-+
-+class MedicalDocumentController extends Controller
-+{
-+    public function create(Appointment $appointment)
-+    {
-+        if ($appointment->doctor_id !== auth()->id()) {
-+            abort(403);
-+        }
-+
-+        return view('doctor.documents.create', [
-+            'appointment' => $appointment->load('patient'),
-+        ]);
-+    }
-+
-+    public function store(Request $request, Appointment $appointment)
-+    {
-+        if ($appointment->doctor_id !== $request->user()->id) {
-+            abort(403);
-+        }
-+
-+        $data = $request->validate([
-+            'document' => ['required', 'file', 'max:4096', 'mimes:jpg,jpeg,png,pdf'],
-+            'document_type' => ['nullable', 'string', 'max:255'],
-+        ]);
-+
-+        $file = $data['document'];
-+
-+        $appointment->documents()->create([
-+            'uploaded_by' => $request->user()->id,
-+            'document_type' => $data['document_type'] ?? null,
-+            'filename' => $file->getClientOriginalName(),
-+            'mime_type' => $file->getMimeType(),
-+            'size_bytes' => $file->getSize(),
-+            'document_data' => file_get_contents($file->getRealPath()),
-+            'uploaded_at' => now(),
-+        ]);
-+
-+        return redirect()->route('doctor.appointments.show', $appointment)
-+            ->with('status', 'Medical document uploaded.');
-+    }
-+
-+    public function show(MedicalDocument $document)
-+    {
-+        $document->load('appointment');
-+        $user = auth()->user();
-+
-+        if (!$user || (!$user->isDoctor() && $document->appointment->patient_id !== $user->id)) {
-+            abort(403);
-+        }
-+
-+        return response($document->document_data)
-+            ->header('Content-Type', $document->mime_type)
-+            ->header('Content-Disposition', 'inline; filename="' . $document->filename . '"');
-+    }
-+}
- 
-diff --git a/app/Http/Controllers/QueueController.php b/app/Http/Controllers/QueueController.php
-new file mode 100644
---- /dev/null
-+++ b/app/Http/Controllers/QueueController.php
-@@
-+<?php
-+
-+namespace App\Http\Controllers;
-+
-+use App\Models\Appointment;
-+use App\Models\QueueTicket;
-+use Illuminate\Http\Request;
-+use Illuminate\Support\Facades\DB;
-+
-+class QueueController extends Controller
-+{
-+    public function qr(Request $request, Appointment $appointment)
-+    {
-+        if ($appointment->patient_id !== $request->user()->id) {
-+            abort(403);
-+        }
-+
-+        $checkInUrl = route('queue.check-in', $appointment->check_in_token);
-+        $qrImageUrl = 'https://chart.googleapis.com/chart?chs=220x220&cht=qr&chl=' . urlencode($checkInUrl);
-+
-+        return view('appointments.qr', [
-+            'appointment' => $appointment,
-+            'qrImageUrl' => $qrImageUrl,
-+            'checkInUrl' => $checkInUrl,
-+        ]);
-+    }
-+
-+    public function checkIn(string $token)
-+    {
-+        $appointment = Appointment::where('check_in_token', $token)->firstOrFail();
-+
-+        if ($appointment->checked_in_at || $appointment->queueTicket) {
-+            return view('queue.checked-in', [
-+                'appointment' => $appointment,
-+                'ticket' => $appointment->queueTicket,
-+            ]);
-+        }
-+
-+        $ticket = DB::transaction(function () use ($appointment) {
-+            $today = now()->toDateString();
-+            $nextNumber = (int) QueueTicket::where('issued_on', $today)->max('number') + 1;
-+
-+            $ticket = QueueTicket::create([
-+                'appointment_id' => $appointment->id,
-+                'issued_on' => $today,
-+                'number' => $nextNumber,
-+            ]);
-+
-+            $appointment->update([
-+                'queue_number' => $nextNumber,
-+                'checked_in_at' => now(),
-+            ]);
-+
-+            return $ticket;
++        Schema::table('users', function (Blueprint $table) {
++            $table->string('role')->default('patient')->index();
++            $table->string('student_id')->nullable()->unique();
++            $table->string('staff_id')->nullable()->unique();
++            $table->string('phone_number')->nullable();
++            $table->string('specialization')->nullable();
 +        });
-+
-+        return view('queue.checked-in', [
-+            'appointment' => $appointment->fresh(),
-+            'ticket' => $ticket,
-+        ]);
 +    }
-+}
++
++    public function down(): void
++    {
++        Schema::table('users', function (Blueprint $table) {
++            $table->dropColumn([
++                'role',
++                'student_id',
++                'staff_id',
++                'phone_number',
++                'specialization',
++            ]);
++        });
++    }
++};
  
-diff --git a/app/Http/Controllers/TranslationController.php b/app/Http/Controllers/TranslationController.php
+diff --git a/database/migrations/2026_01_25_000001_create_health_services_table.php b/database/migrations/2026_01_25_000001_create_health_services_table.php
 new file mode 100644
 --- /dev/null
-+++ b/app/Http/Controllers/TranslationController.php
++++ b/database/migrations/2026_01_25_000001_create_health_services_table.php
 @@
 +<?php
 +
-+namespace App\Http\Controllers;
++use Illuminate\Database\Migrations\Migration;
++use Illuminate\Database\Schema\Blueprint;
++use Illuminate\Support\Facades\Schema;
 +
-+use App\Services\TranslationService;
-+use Illuminate\Http\Request;
-+
-+class TranslationController extends Controller
++return new class extends Migration
 +{
-+    public function translate(Request $request, TranslationService $translationService)
++    public function up(): void
 +    {
-+        $data = $request->validate([
-+            'text' => ['required', 'string', 'max:2000'],
-+            'target' => ['required', 'in:ms,zh'],
-+        ]);
-+
-+        $translated = $translationService->translate($data['text'], $data['target']);
-+
-+        return response()->json([
-+            'translated_text' => $translated,
-+        ]);
++        Schema::create('health_services', function (Blueprint $table) {
++            $table->id();
++            $table->string('name');
++            $table->text('description')->nullable();
++            $table->unsignedInteger('duration_minutes')->default(15);
++            $table->boolean('is_active')->default(true);
++            $table->timestamps();
++        });
 +    }
-+}
++
++    public function down(): void
++    {
++        Schema::dropIfExists('health_services');
++    }
++};
+ 
+diff --git a/database/migrations/2026_01_25_000002_create_appointment_slots_table.php b/database/migrations/2026_01_25_000002_create_appointment_slots_table.php
+new file mode 100644
+--- /dev/null
++++ b/database/migrations/2026_01_25_000002_create_appointment_slots_table.php
+@@
++<?php
++
++use Illuminate\Database\Migrations\Migration;
++use Illuminate\Database\Schema\Blueprint;
++use Illuminate\Support\Facades\Schema;
++
++return new class extends Migration
++{
++    public function up(): void
++    {
++        Schema::create('appointment_slots', function (Blueprint $table) {
++            $table->id();
++            $table->foreignId('doctor_id')->constrained('users')->cascadeOnDelete();
++            $table->date('slot_date');
++            $table->time('start_time');
++            $table->time('end_time');
++            $table->unsignedInteger('capacity')->default(1);
++            $table->string('location')->nullable();
++            $table->boolean('is_active')->default(true);
++            $table->timestamps();
++
++            $table->index(['doctor_id', 'slot_date']);
++        });
++    }
++
++    public function down(): void
++    {
++        Schema::dropIfExists('appointment_slots');
++    }
++};
+ 
+diff --git a/database/migrations/2026_01_25_000003_create_appointments_table.php b/database/migrations/2026_01_25_000003_create_appointments_table.php
+new file mode 100644
+--- /dev/null
++++ b/database/migrations/2026_01_25_000003_create_appointments_table.php
+@@
++<?php
++
++use Illuminate\Database\Migrations\Migration;
++use Illuminate\Database\Schema\Blueprint;
++use Illuminate\Support\Facades\Schema;
++
++return new class extends Migration
++{
++    public function up(): void
++    {
++        Schema::create('appointments', function (Blueprint $table) {
++            $table->id();
++            $table->foreignId('patient_id')->constrained('users')->cascadeOnDelete();
++            $table->foreignId('doctor_id')->constrained('users')->cascadeOnDelete();
++            $table->foreignId('health_service_id')->nullable()->constrained('health_services')->nullOnDelete();
++            $table->foreignId('appointment_slot_id')->nullable()->constrained('appointment_slots')->nullOnDelete();
++            $table->dateTime('scheduled_at');
++            $table->string('status')->default('pending')->index();
++            $table->text('notes')->nullable();
++            $table->unsignedInteger('queue_number')->nullable();
++            $table->string('check_in_token')->unique();
++            $table->timestamp('checked_in_at')->nullable();
++            $table->timestamp('approved_at')->nullable();
++            $table->timestamp('cancelled_at')->nullable();
++            $table->timestamp('reminder_day_sent_at')->nullable();
++            $table->timestamp('reminder_hour_sent_at')->nullable();
++            $table->timestamps();
++
++            $table->index(['doctor_id', 'scheduled_at']);
++            $table->index(['patient_id', 'scheduled_at']);
++        });
++    }
++
++    public function down(): void
++    {
++        Schema::dropIfExists('appointments');
++    }
++};
+ 
+diff --git a/database/migrations/2026_01_25_000004_create_medical_documents_table.php b/database/migrations/2026_01_25_000004_create_medical_documents_table.php
+new file mode 100644
+--- /dev/null
++++ b/database/migrations/2026_01_25_000004_create_medical_documents_table.php
+@@
++<?php
++
++use Illuminate\Database\Migrations\Migration;
++use Illuminate\Database\Schema\Blueprint;
++use Illuminate\Support\Facades\Schema;
++
++return new class extends Migration
++{
++    public function up(): void
++    {
++        Schema::create('medical_documents', function (Blueprint $table) {
++            $table->id();
++            $table->foreignId('appointment_id')->constrained('appointments')->cascadeOnDelete();
++            $table->foreignId('uploaded_by')->constrained('users')->cascadeOnDelete();
++            $table->string('document_type')->nullable();
++            $table->string('filename');
++            $table->string('mime_type');
++            $table->unsignedBigInteger('size_bytes');
++            $table->longBlob('document_data');
++            $table->timestamp('uploaded_at')->nullable();
++            $table->timestamps();
++        });
++    }
++
++    public function down(): void
++    {
++        Schema::dropIfExists('medical_documents');
++    }
++};
+ 
+diff --git a/database/migrations/2026_01_25_000005_create_queue_tickets_table.php b/database/migrations/2026_01_25_000005_create_queue_tickets_table.php
+new file mode 100644
+--- /dev/null
++++ b/database/migrations/2026_01_25_000005_create_queue_tickets_table.php
+@@
++<?php
++
++use Illuminate\Database\Migrations\Migration;
++use Illuminate\Database\Schema\Blueprint;
++use Illuminate\Support\Facades\Schema;
++
++return new class extends Migration
++{
++    public function up(): void
++    {
++        Schema::create('queue_tickets', function (Blueprint $table) {
++            $table->id();
++            $table->foreignId('appointment_id')->unique()->constrained('appointments')->cascadeOnDelete();
++            $table->date('issued_on');
++            $table->unsignedInteger('number');
++            $table->timestamps();
++
++            $table->unique(['issued_on', 'number']);
++        });
++    }
++
++    public function down(): void
++    {
++        Schema::dropIfExists('queue_tickets');
++    }
++};
+ 
+diff --git a/database/seeders/DatabaseSeeder.php b/database/seeders/DatabaseSeeder.php
+--- a/database/seeders/DatabaseSeeder.php
++++ b/database/seeders/DatabaseSeeder.php
+@@
+-use App\Models\User;
++use App\Models\Appointment;
++use App\Models\AppointmentSlot;
++use App\Models\HealthService;
++use App\Models\User;
+ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+ use Illuminate\Database\Seeder;
++use Illuminate\Support\Facades\Hash;
+@@
+     public function run(): void
+     {
+-        // User::factory(10)->create();
+-
+-        User::factory()->create([
+-            'name' => 'Test User',
+-            'email' => 'test@example.com',
+-        ]);
++        $admin = User::create([
++            'name' => 'eKesihatan Admin',
++            'email' => 'admin@ekesihatan.test',
++            'password' => Hash::make('password'),
++            'role' => User::ROLE_ADMIN,
++            'phone_number' => '0123456789',
++        ]);
++
++        $doctor = User::create([
++            'name' => 'Dr. Aisyah',
++            'email' => 'doctor@ekesihatan.test',
++            'password' => Hash::make('password'),
++            'role' => User::ROLE_DOCTOR,
++            'phone_number' => '0123456790',
++            'specialization' => 'General Practitioner',
++            'staff_id' => 'DOC-001',
++        ]);
++
++        $patient = User::create([
++            'name' => 'Patient Example',
++            'email' => 'patient@ekesihatan.test',
++            'password' => Hash::make('password'),
++            'role' => User::ROLE_PATIENT,
++            'phone_number' => '0123456791',
++            'student_id' => 'STU-12345',
++        ]);
++
++        $service = HealthService::create([
++            'name' => 'General Consultation',
++            'description' => 'Basic medical consultation and assessment.',
++            'duration_minutes' => 20,
++            'is_active' => true,
++        ]);
++
++        $slot = AppointmentSlot::create([
++            'doctor_id' => $doctor->id,
++            'slot_date' => now()->addDay()->toDateString(),
++            'start_time' => '09:00',
++            'end_time' => '09:30',
++            'capacity' => 5,
++            'location' => 'Unit Kesihatan UiTM Perlis',
++            'is_active' => true,
++        ]);
++
++        Appointment::create([
++            'patient_id' => $patient->id,
++            'doctor_id' => $doctor->id,
++            'health_service_id' => $service->id,
++            'appointment_slot_id' => $slot->id,
++            'scheduled_at' => $slot->slot_date->format('Y-m-d') . ' ' . $slot->start_time,
++            'status' => 'approved',
++            'check_in_token' => (string) \Illuminate\Support\Str::uuid(),
++            'approved_at' => now(),
++        ]);
+     }
+ }
+PATCH
