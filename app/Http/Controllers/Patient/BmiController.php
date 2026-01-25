@@ -35,10 +35,10 @@ class BmiController extends Controller
         $payload = [
             'bmi' => $bmiRounded,
             'category' => $category,
-            'sex' => $data['sex'],
-            'age' => $data['age'],
             'height_cm' => $data['height_cm'],
             'weight_kg' => $data['weight_kg'],
+            'sex' => $data['sex'],
+            'age' => $data['age'],
         ];
  
         if ($request->input('redirect') === 'dashboard') {

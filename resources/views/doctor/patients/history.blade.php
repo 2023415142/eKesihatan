@@ -1,8 +1,9 @@
 @extends('layouts.app')
- 
+
 @section('content')
-<h2>Patient History: {{ $patient->name }}</h2>
- 
+<h2>Patient History</h2>
+<p>{{ $patient->name }}</p>
+
 <table>
     <thead>
         <tr>

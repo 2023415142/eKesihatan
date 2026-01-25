@@ -1,8 +1,8 @@
 @extends('layouts.app')
- 
+
 @section('content')
 <h2>Appointments</h2>
- 
+
 <table>
     <thead>
         <tr>

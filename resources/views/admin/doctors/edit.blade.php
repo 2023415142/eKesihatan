@@ -1,5 +1,5 @@
 @extends('layouts.app')
- 
+
 @section('content')
 <h2>Edit Doctor</h2>
 <form method="POST" action="{{ route('admin.doctors.update', $doctor) }}">

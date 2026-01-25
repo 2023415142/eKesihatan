@@ -37,7 +37,6 @@ class AppointmentSlotController extends Controller
         ]);
  
         $data['is_active'] = $request->boolean('is_active');
- 
         AppointmentSlot::create($data);
  
         return redirect()->route('admin.slots.index')->with('status', 'Appointment slot created.');
@@ -64,7 +63,6 @@ class AppointmentSlotController extends Controller
         ]);
  
         $data['is_active'] = $request->boolean('is_active');
- 
         $slot->update($data);
  
         return redirect()->route('admin.slots.index')->with('status', 'Appointment slot updated.');
@@ -73,7 +71,6 @@ class AppointmentSlotController extends Controller
     public function destroy(AppointmentSlot $slot)
     {
         $slot->delete();
- 
         return redirect()->route('admin.slots.index')->with('status', 'Appointment slot removed.');
     }
 }

@@ -1,8 +1,8 @@
 @extends('layouts.app')
- 
+
 @section('content')
 <h2>Book Appointment</h2>
- 
+
 <form method="POST" action="{{ route('patient.appointments.store') }}">
     @csrf
     <div>
@@ -38,4 +38,9 @@
     </div>
     <button type="submit">Submit Booking</button>
 </form>
+
+<section>
+    <h3>SMS & Queue</h3>
+    <p>You will receive an SMS confirmation and your queue number once your booking is submitted.</p>
+</section>
 @endsection

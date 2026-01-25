@@ -35,33 +35,10 @@ class Appointment extends Model
         'reminder_hour_sent_at' => 'datetime',
     ];
  
-    public function patient()
-    {
-        return $this->belongsTo(User::class, 'patient_id');
-    }
- 
-    public function doctor()
-    {
-        return $this->belongsTo(User::class, 'doctor_id');
-    }
- 
-    public function service()
-    {
-        return $this->belongsTo(HealthService::class, 'health_service_id');
-    }
- 
-    public function slot()
-    {
-        return $this->belongsTo(AppointmentSlot::class, 'appointment_slot_id');
-    }
- 
-    public function documents()
-    {
-        return $this->hasMany(MedicalDocument::class);
-    }
- 
-    public function queueTicket()
-    {
-        return $this->hasOne(QueueTicket::class);
-    }
+    public function patient() { return $this->belongsTo(User::class, 'patient_id'); }
+    public function doctor() { return $this->belongsTo(User::class, 'doctor_id'); }
+    public function service() { return $this->belongsTo(HealthService::class, 'health_service_id'); }
+    public function slot() { return $this->belongsTo(AppointmentSlot::class, 'appointment_slot_id'); }
+    public function documents() { return $this->hasMany(MedicalDocument::class); }
+    public function queueTicket() { return $this->hasOne(QueueTicket::class); }
 }

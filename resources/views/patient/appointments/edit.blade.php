@@ -1,8 +1,8 @@
 @extends('layouts.app')
- 
+
 @section('content')
 <h2>Reschedule Appointment</h2>
- 
+
 <form method="POST" action="{{ route('patient.appointments.update', $appointment) }}">
     @csrf
     @method('PUT')

@@ -1,4 +1,3 @@
-
 <?php
  
 use Illuminate\Database\Migrations\Migration;
@@ -26,9 +25,8 @@ return new class extends Migration
             $table->timestamp('reminder_day_sent_at')->nullable();
             $table->timestamp('reminder_hour_sent_at')->nullable();
             $table->timestamps();
- 
-            $table->index(['doctor_id', 'scheduled_at']);
-            $table->index(['patient_id', 'scheduled_at']);
+            $table->index(['doctor_id','scheduled_at']);
+            $table->index(['patient_id','scheduled_at']);
         });
     }
  

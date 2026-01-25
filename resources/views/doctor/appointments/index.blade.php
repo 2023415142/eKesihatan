@@ -1,14 +1,14 @@
 @extends('layouts.app')
- 
+
 @section('content')
 <h2>Daily Appointments</h2>
- 
+
 <form method="GET" action="{{ route('doctor.appointments.index') }}">
     <label for="date">Select Date</label>
     <input id="date" name="date" type="date" value="{{ $date }}">
     <button type="submit">View</button>
 </form>
- 
+
 <table>
     <thead>
         <tr>

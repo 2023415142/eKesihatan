@@ -1,5 +1,5 @@
 @extends('layouts.app')
- 
+
 @section('content')
 <h2>Add Health Service</h2>
 <form method="POST" action="{{ route('admin.services.store') }}">

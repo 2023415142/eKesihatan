@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'role:patient'])->prefix('patient')->name('patient.')->group(function () {
     Route::get('services', [PatientServiceController::class, 'index'])->name('services.index');
     Route::get('appointments/{appointment}/qr', [QueueController::class, 'qr'])->name('appointments.qr');
+    Route::get('appointments/{appointment}/qr-image', [QueueController::class, 'qrImage'])->name('appointments.qr-image');
     Route::get('documents/{document}', [MedicalDocumentController::class, 'show'])->name('documents.show');
     Route::get('bmi', [BmiController::class, 'show'])->name('bmi.show');
     Route::post('bmi', [BmiController::class, 'calculate'])->name('bmi.calculate');

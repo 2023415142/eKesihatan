@@ -1,4 +1,3 @@
-
 <?php
  
 use Illuminate\Database\Migrations\Migration;
@@ -21,13 +20,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn([
-                'role',
-                'student_id',
-                'staff_id',
-                'phone_number',
-                'specialization',
-            ]);
+            $table->dropColumn(['role','student_id','staff_id','phone_number','specialization']);
         });
     }
 };

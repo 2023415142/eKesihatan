@@ -9,19 +9,8 @@ class HealthService extends Model
 {
     use HasFactory;
  
-    protected $fillable = [
-        'name',
-        'description',
-        'duration_minutes',
-        'is_active',
-    ];
+    protected $fillable = ['name','description','duration_minutes','is_active'];
+    protected $casts = ['is_active' => 'boolean'];
  
-    protected $casts = [
-        'is_active' => 'boolean',
-    ];
- 
-    public function appointments()
-    {
-        return $this->hasMany(Appointment::class);
-    }
+    public function appointments() { return $this->hasMany(Appointment::class); }
 }

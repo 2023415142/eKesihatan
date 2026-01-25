@@ -1,9 +1,9 @@
 @extends('layouts.app')
- 
+
 @section('content')
 <h2>Doctors</h2>
 <a href="{{ route('admin.doctors.create') }}">Add Doctor</a>
- 
+
 <table>
     <thead>
         <tr>

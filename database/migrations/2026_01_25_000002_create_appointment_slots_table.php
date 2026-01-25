@@ -1,4 +1,3 @@
-
 <?php
  
 use Illuminate\Database\Migrations\Migration;
@@ -19,8 +18,7 @@ return new class extends Migration
             $table->string('location')->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
- 
-            $table->index(['doctor_id', 'slot_date']);
+            $table->index(['doctor_id','slot_date']);
         });
     }
  

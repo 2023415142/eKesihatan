@@ -1,7 +1,6 @@
-
 <?php
  
-//namespace Database\Seeders;
+namespace Database\Seeders;
  
 use App\Models\Appointment;
 use App\Models\AppointmentSlot;

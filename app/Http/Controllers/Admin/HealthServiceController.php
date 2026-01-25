@@ -30,7 +30,6 @@ class HealthServiceController extends Controller
         ]);
  
         $data['is_active'] = $request->boolean('is_active');
- 
         HealthService::create($data);
  
         return redirect()->route('admin.services.index')->with('status', 'Health service created.');
@@ -53,7 +52,6 @@ class HealthServiceController extends Controller
         ]);
  
         $data['is_active'] = $request->boolean('is_active');
- 
         $service->update($data);
  
         return redirect()->route('admin.services.index')->with('status', 'Health service updated.');
@@ -62,7 +60,6 @@ class HealthServiceController extends Controller
     public function destroy(HealthService $service)
     {
         $service->delete();
- 
         return redirect()->route('admin.services.index')->with('status', 'Health service removed.');
     }
 }

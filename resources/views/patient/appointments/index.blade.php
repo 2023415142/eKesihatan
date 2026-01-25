@@ -1,10 +1,10 @@
 @extends('layouts.app')
- 
+
 @section('content')
 <h2>My Appointments</h2>
- 
+
 <a href="{{ route('patient.appointments.create') }}">Book New Appointment</a>
- 
+
 <table>
     <thead>
         <tr>

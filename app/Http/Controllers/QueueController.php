@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
  
 use App\Models\Appointment;
-use App\Models\QueueTicket;
+use Endroid\QrCode\Builder\Builder;
+use Endroid\QrCode\Encoding\Encoding;
+use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelLow;
+use Endroid\QrCode\RoundBlockSizeMode\RoundBlockSizeModeMargin;
+use Endroid\QrCode\Writer\PngWriter;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
  
 class QueueController extends Controller
 {
@@ -16,7 +19,7 @@ class QueueController extends Controller
         }
  
         $checkInUrl = route('queue.check-in', $appointment->check_in_token);
-        $qrImageUrl = 'https://chart.googleapis.com/chart?chs=220x220&cht=qr&chl=' . urlencode($checkInUrl);
+        $qrImageUrl = route('patient.appointments.qr-image', $appointment);
  
         return view('appointments.qr', [
             'appointment' => $appointment,
@@ -25,38 +28,45 @@ class QueueController extends Controller
         ]);
     }
  
+    public function qrImage(Request $request, Appointment $appointment)
+    {
+        if ($appointment->patient_id !== $request->user()->id) {
+            abort(403);
+        }
+ 
+        $checkInUrl = route('queue.check-in', $appointment->check_in_token);
+ 
+        $result = Builder::create()
+            ->writer(new PngWriter())
+            ->data($checkInUrl)
+            ->encoding(new Encoding('UTF-8'))
+            ->errorCorrectionLevel(new ErrorCorrectionLevelLow())
+            ->size(220)
+            ->margin(2)
+            ->roundBlockSizeMode(new RoundBlockSizeModeMargin())
+            ->build();
+ 
+        return response($result->getString())
+            ->header('Content-Type', $result->getMimeType());
+    }
+ 
     public function checkIn(string $token)
     {
         $appointment = Appointment::where('check_in_token', $token)->firstOrFail();
  
-        if ($appointment->checked_in_at || $appointment->queueTicket) {
+        if ($appointment->checked_in_at) {
             return view('queue.checked-in', [
                 'appointment' => $appointment,
-                'ticket' => $appointment->queueTicket,
             ]);
         }
  
-        $ticket = DB::transaction(function () use ($appointment) {
-            $today = now()->toDateString();
-            $nextNumber = (int) QueueTicket::where('issued_on', $today)->max('number') + 1;
- 
-            $ticket = QueueTicket::create([
-                'appointment_id' => $appointment->id,
-                'issued_on' => $today,
-                'number' => $nextNumber,
-            ]);
- 
-            $appointment->update([
-                'queue_number' => $nextNumber,
-                'checked_in_at' => now(),
-            ]);
- 
-            return $ticket;
-        });
+        $appointment->update([
+            'checked_in_at' => now(),
+            'status' => 'checked-in',
+        ]);
  
         return view('queue.checked-in', [
             'appointment' => $appointment->fresh(),
-            'ticket' => $ticket,
         ]);
     }
 }

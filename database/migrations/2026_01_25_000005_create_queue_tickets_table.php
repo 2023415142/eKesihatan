@@ -1,4 +1,3 @@
-
 <?php
  
 use Illuminate\Database\Migrations\Migration;
@@ -15,8 +14,7 @@ return new class extends Migration
             $table->date('issued_on');
             $table->unsignedInteger('number');
             $table->timestamps();
- 
-            $table->unique(['issued_on', 'number']);
+            $table->unique(['issued_on','number']);
         });
     }
  

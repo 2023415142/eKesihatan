@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\Appointment;
 use App\Models\AppointmentSlot;
 use App\Models\HealthService;
+use App\Models\QueueTicket;
 use App\Models\User;
 use App\Services\SmsService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
  
@@ -65,16 +67,31 @@ class AppointmentController extends Controller
  
         $scheduledAt = $slot->slot_date->format('Y-m-d') . ' ' . $slot->start_time;
  
-        $appointment = Appointment::create([
-            'patient_id' => $request->user()->id,
-            'doctor_id' => $data['doctor_id'],
-            'health_service_id' => $data['health_service_id'],
-            'appointment_slot_id' => $slot->id,
-            'scheduled_at' => $scheduledAt,
-            'status' => 'pending',
-            'notes' => $data['notes'] ?? null,
-            'check_in_token' => (string) Str::uuid(),
-        ]);
+        $appointment = DB::transaction(function () use ($request, $data, $slot, $scheduledAt) {
+            $appointment = Appointment::create([
+                'patient_id' => $request->user()->id,
+                'doctor_id' => $data['doctor_id'],
+                'health_service_id' => $data['health_service_id'],
+                'appointment_slot_id' => $slot->id,
+                'scheduled_at' => $scheduledAt,
+                'status' => 'pending',
+                'notes' => $data['notes'] ?? null,
+                'check_in_token' => (string) Str::uuid(),
+            ]);
+ 
+            $issuedOn = $slot->slot_date->format('Y-m-d');
+            $nextNumber = (int) QueueTicket::where('issued_on', $issuedOn)->max('number') + 1;
+ 
+            QueueTicket::create([
+                'appointment_id' => $appointment->id,
+                'issued_on' => $issuedOn,
+                'number' => $nextNumber,
+            ]);
+ 
+            $appointment->update(['queue_number' => $nextNumber]);
+ 
+            return $appointment;
+        });
  
         $smsService->sendAppointmentConfirmation($appointment->patient, $appointment);
  
@@ -130,12 +147,33 @@ class AppointmentController extends Controller
  
         $scheduledAt = $slot->slot_date->format('Y-m-d') . ' ' . $slot->start_time;
  
-        $appointment->update([
-            'appointment_slot_id' => $slot->id,
-            'doctor_id' => $slot->doctor_id,
-            'scheduled_at' => $scheduledAt,
-            'status' => 'pending',
-        ]);
+        DB::transaction(function () use ($appointment, $slot, $scheduledAt) {
+            $appointment->update([
+                'appointment_slot_id' => $slot->id,
+                'doctor_id' => $slot->doctor_id,
+                'scheduled_at' => $scheduledAt,
+                'status' => 'pending',
+            ]);
+ 
+            $issuedOn = $slot->slot_date->format('Y-m-d');
+            $nextNumber = (int) QueueTicket::where('issued_on', $issuedOn)->max('number') + 1;
+ 
+            $ticket = $appointment->queueTicket;
+            if ($ticket) {
+                $ticket->update([
+                    'issued_on' => $issuedOn,
+                    'number' => $nextNumber,
+                ]);
+            } else {
+                QueueTicket::create([
+                    'appointment_id' => $appointment->id,
+                    'issued_on' => $issuedOn,
+                    'number' => $nextNumber,
+                ]);
+            }
+ 
+            $appointment->update(['queue_number' => $nextNumber]);
+        });
  
         return redirect()->route('patient.appointments.show', $appointment)
             ->with('status', 'Appointment rescheduled. Awaiting approval.');

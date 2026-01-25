@@ -8,7 +8,11 @@
 <table>
     <thead>
         <tr>
-            <th>Date</th><th>Time</th><th>Doctor</th><th>Service</th><th>Status</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Doctor</th>
+            <th>Service</th>
+            <th>Status</th>
         </tr>
     </thead>
     <tbody>

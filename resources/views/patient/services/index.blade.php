@@ -1,8 +1,8 @@
 @extends('layouts.app')
- 
+
 @section('content')
 <h2>Health Services</h2>
- 
+
 <table>
     <thead>
         <tr>

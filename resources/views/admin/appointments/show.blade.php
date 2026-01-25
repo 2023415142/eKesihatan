@@ -1,8 +1,8 @@
 @extends('layouts.app')
- 
+
 @section('content')
 <h2>Appointment Review</h2>
- 
+
 <div>
     <p><strong>Patient:</strong> {{ $appointment->patient->name }}</p>
     <p><strong>Email:</strong> {{ $appointment->patient->email }}</p>
@@ -10,7 +10,7 @@
     <p><strong>Current Status:</strong> {{ ucfirst($appointment->status) }}</p>
     <p><strong>Scheduled At:</strong> {{ $appointment->scheduled_at->format('d M Y, h:i A') }}</p>
 </div>
- 
+
 <form method="POST" action="{{ route('admin.appointments.update', $appointment) }}">
     @csrf
     @method('PUT')
@@ -18,9 +18,7 @@
         <label for="doctor_id">Doctor</label>
         <select id="doctor_id" name="doctor_id" required>
             @foreach ($doctors as $doctor)
-                <option value="{{ $doctor->id }}" @selected($appointment->doctor_id === $doctor->id)>
-                    {{ $doctor->name }}
-                </option>
+                <option value="{{ $doctor->id }}" @selected($appointment->doctor_id === $doctor->id)>{{ $doctor->name }}</option>
             @endforeach
         </select>
     </div>
@@ -38,7 +36,7 @@
     <div>
         <label for="status">Status</label>
         <select id="status" name="status" required>
-            @foreach (['pending', 'approved', 'rejected', 'rescheduled', 'cancelled'] as $status)
+            @foreach (['pending', 'approved', 'checked-in', 'rejected', 'rescheduled', 'cancelled'] as $status)
                 <option value="{{ $status }}" @selected($appointment->status === $status)>{{ ucfirst($status) }}</option>
             @endforeach
         </select>
