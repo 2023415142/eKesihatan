@@ -15,6 +15,8 @@ class BmiController extends Controller
     public function calculate(Request $request)
     {
         $data = $request->validate([
+            'sex' => ['required', 'in:male,female,other'],
+            'age' => ['required', 'integer', 'min:1', 'max:120'],
             'height_cm' => ['required', 'numeric', 'min:50', 'max:250'],
             'weight_kg' => ['required', 'numeric', 'min:20', 'max:300'],
         ]);
@@ -30,11 +32,19 @@ class BmiController extends Controller
             default => 'Obese',
         };
  
-        return view('patient.bmi', [
+        $payload = [
             'bmi' => $bmiRounded,
             'category' => $category,
+            'sex' => $data['sex'],
+            'age' => $data['age'],
             'height_cm' => $data['height_cm'],
             'weight_kg' => $data['weight_kg'],
-        ]);
+        ];
+ 
+        if ($request->input('redirect') === 'dashboard') {
+            return redirect()->route('dashboard')->with('bmi_result', $payload);
+        }
+ 
+        return view('patient.bmi', $payload);
     }
 }
