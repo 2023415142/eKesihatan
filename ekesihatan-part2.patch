@@ -1,0 +1,1272 @@
+diff --git a/resources/views/layouts/app.blade.php b/resources/views/layouts/app.blade.php
+new file mode 100644
+--- /dev/null
++++ b/resources/views/layouts/app.blade.php
+@@
++<!DOCTYPE html>
++<html lang="en">
++<head>
++    <meta charset="UTF-8">
++    <meta name="viewport" content="width=device-width, initial-scale=1.0">
++    <meta name="csrf-token" content="{{ csrf_token() }}">
++    <title>eKesihatan</title>
++    @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
++        @vite(['resources/css/app.css', 'resources/js/app.js'])
++    @endif
++</head>
++<body>
++    <header>
++        <h1><a href="{{ route('landing') }}">eKesihatan</a></h1>
++        <nav>
++            <a href="{{ route('landing') }}">Home</a>
++            @auth
++                <a href="{{ route('dashboard') }}">Dashboard</a>
++                <a href="{{ route('profile.edit') }}">Profile</a>
++                <form action="{{ route('logout') }}" method="POST" style="display:inline;">
++                    @csrf
++                    <button type="submit">Logout</button>
++                </form>
++            @else
++                <a href="{{ route('login') }}">Login</a>
++                <a href="{{ route('register') }}">Register</a>
++            @endauth
++        </nav>
++    </header>
++
++    <main>
++        @include('partials.flash')
++        @yield('content')
++    </main>
++
++    <footer>
++        <p>Unit Kesihatan UiTM Perlis · eKesihatan Appointment System</p>
++    </footer>
++</body>
++</html>
+ 
+diff --git a/resources/views/partials/flash.blade.php b/resources/views/partials/flash.blade.php
+new file mode 100644
+--- /dev/null
++++ b/resources/views/partials/flash.blade.php
+@@
++@if (session('status'))
++    <div class="alert alert-success">
++        {{ session('status') }}
++    </div>
++@endif
++
++@if ($errors->any())
++    <div class="alert alert-danger">
++        <ul>
++            @foreach ($errors->all() as $error)
++                <li>{{ $error }}</li>
++            @endforeach
++        </ul>
++    </div>
++@endif
+ 
+diff --git a/resources/views/partials/translator.blade.php b/resources/views/partials/translator.blade.php
+new file mode 100644
+--- /dev/null
++++ b/resources/views/partials/translator.blade.php
+@@
++<section>
++    <h3>Translate</h3>
++    <p>Use Google Translate API to translate English text to Bahasa Melayu or Mandarin.</p>
++    <div>
++        <textarea id="translate-text" rows="3" placeholder="Enter English text..."></textarea>
++    </div>
++    <div>
++        <label for="translate-target">Target Language</label>
++        <select id="translate-target">
++            <option value="ms">Bahasa Melayu</option>
++            <option value="zh">Mandarin</option>
++        </select>
++        <button type="button" id="translate-btn">Translate</button>
++    </div>
++    <div>
++        <strong>Translated text:</strong>
++        <p id="translate-result"></p>
++    </div>
++</section>
++
++<script>
++    document.getElementById('translate-btn').addEventListener('click', async () => {
++        const text = document.getElementById('translate-text').value;
++        const target = document.getElementById('translate-target').value;
++        const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
++
++        const response = await fetch('{{ route('translate') }}', {
++            method: 'POST',
++            headers: {
++                'Content-Type': 'application/json',
++                'X-CSRF-TOKEN': token,
++            },
++            body: JSON.stringify({ text, target }),
++        });
++
++        if (!response.ok) {
++            document.getElementById('translate-result').textContent = 'Translation failed. Please try again.';
++            return;
++        }
++
++        const data = await response.json();
++        document.getElementById('translate-result').textContent = data.translated_text || '';
++    });
++</script>
+ 
+diff --git a/resources/views/landing.blade.php b/resources/views/landing.blade.php
+new file mode 100644
+--- /dev/null
++++ b/resources/views/landing.blade.php
+@@
++@extends('layouts.app')
++
++@section('content')
++<section>
++    <h2>Welcome to eKesihatan</h2>
++    <p>eKesihatan is the appointment booking system for Unit Kesihatan UiTM Perlis. Students and staff can schedule, manage, and track clinic visits with reduced waiting time.</p>
++    <div>
++        <a href="{{ route('register') }}">Create Patient Account</a>
++        <a href="{{ route('login') }}">Login</a>
++    </div>
++</section>
++
++<section>
++    <h3>Objectives</h3>
++    <ol>
++        <li>Enable students and staff to schedule and manage medical appointments conveniently.</li>
++        <li>Reduce waiting time and overcrowding by issuing queue numbers before arrival.</li>
++        <li>Help Unit Kesihatan staff forecast daily patient flow and optimize resources.</li>
++    </ol>
++</section>
++
++<section>
++    <h3>Key Features</h3>
++    <ul>
++        <li>Role-based dashboards for Admin, Doctor, and Patient.</li>
++        <li>Appointment booking with SMS confirmation and reminders.</li>
++        <li>QR check-in to place patients in the daily queue.</li>
++        <li>BMI calculator and translation helper.</li>
++        <li>Secure storage of medical documents and certificates.</li>
++    </ul>
++</section>
++@endsection
+ 
+diff --git a/resources/views/auth/login.blade.php b/resources/views/auth/login.blade.php
+new file mode 100644
+--- /dev/null
++++ b/resources/views/auth/login.blade.php
+@@
++@extends('layouts.app')
++
++@section('content')
++<h2>Login</h2>
++<form method="POST" action="{{ route('login.attempt') }}">
++    @csrf
++    <div>
++        <label for="email">Email</label>
++        <input id="email" name="email" type="email" value="{{ old('email') }}" required>
++    </div>
++    <div>
++        <label for="password">Password</label>
++        <input id="password" name="password" type="password" required>
++    </div>
++    <button type="submit">Login</button>
++</form>
++@endsection
+ 
+diff --git a/resources/views/auth/register.blade.php b/resources/views/auth/register.blade.php
+new file mode 100644
+--- /dev/null
++++ b/resources/views/auth/register.blade.php
+@@
++@extends('layouts.app')
++
++@section('content')
++<h2>Patient Registration</h2>
++<form method="POST" action="{{ route('register.store') }}">
++    @csrf
++    <div>
++        <label for="name">Full Name</label>
++        <input id="name" name="name" type="text" value="{{ old('name') }}" required>
++    </div>
++    <div>
++        <label for="student_id">Student ID</label>
++        <input id="student_id" name="student_id" type="text" value="{{ old('student_id') }}" required>
++    </div>
++    <div>
++        <label for="email">Email</label>
++        <input id="email" name="email" type="email" value="{{ old('email') }}" required>
++    </div>
++    <div>
++        <label for="phone_number">Phone Number</label>
++        <input id="phone_number" name="phone_number" type="text" value="{{ old('phone_number') }}" required>
++    </div>
++    <div>
++        <label for="password">Password</label>
++        <input id="password" name="password" type="password" required>
++    </div>
++    <div>
++        <label for="password_confirmation">Confirm Password</label>
++        <input id="password_confirmation" name="password_confirmation" type="password" required>
++    </div>
++    <button type="submit">Register</button>
++</form>
++@endsection
+ 
+diff --git a/resources/views/dashboard/admin.blade.php b/resources/views/dashboard/admin.blade.php
+new file mode 100644
+--- /dev/null
++++ b/resources/views/dashboard/admin.blade.php
+@@
++@extends('layouts.app')
++
++@section('content')
++<h2>Admin Dashboard</h2>
++<p>Manage services, doctors, appointment slots, and approvals.</p>
++
++<div>
++    <strong>Pending Appointments:</strong> {{ $pendingAppointments }}
++</div>
++<div>
++    <strong>Today's Appointments:</strong> {{ $todayAppointments }}
++</div>
++<div>
++    <strong>Active Services:</strong> {{ $servicesCount }}
++</div>
++<div>
++    <strong>Doctors:</strong> {{ $doctorsCount }}
++</div>
++
++<h3>Quick Actions</h3>
++<ul>
++    <li><a href="{{ route('admin.services.index') }}">Manage Health Services</a></li>
++    <li><a href="{{ route('admin.doctors.index') }}">Manage Doctors</a></li>
++    <li><a href="{{ route('admin.slots.index') }}">Manage Appointment Slots</a></li>
++    <li><a href="{{ route('admin.appointments.index') }}">Manage Appointments</a></li>
++</ul>
++@endsection
+ 
+diff --git a/resources/views/dashboard/doctor.blade.php b/resources/views/dashboard/doctor.blade.php
+new file mode 100644
+--- /dev/null
++++ b/resources/views/dashboard/doctor.blade.php
+@@
++@extends('layouts.app')
++
++@section('content')
++<h2>Doctor Dashboard</h2>
++<p>Today's appointments for {{ now()->format('d M Y') }}</p>
++
++<a href="{{ route('doctor.appointments.index') }}">View Daily Appointments</a>
++
++<table>
++    <thead>
++        <tr>
++            <th>Time</th>
++            <th>Patient</th>
++            <th>Service</th>
++            <th>Status</th>
++        </tr>
++    </thead>
++    <tbody>
++        @forelse ($appointments as $appointment)
++            <tr>
++                <td>{{ $appointment->scheduled_at->format('h:i A') }}</td>
++                <td>{{ $appointment->patient->name }}</td>
++                <td>{{ $appointment->service?->name ?? 'General' }}</td>
++                <td>{{ ucfirst($appointment->status) }}</td>
++            </tr>
++        @empty
++            <tr><td colspan="4">No appointments scheduled.</td></tr>
++        @endforelse
++    </tbody>
++</table>
++@endsection
+ 
+diff --git a/resources/views/dashboard/patient.blade.php b/resources/views/dashboard/patient.blade.php
+new file mode 100644
+--- /dev/null
++++ b/resources/views/dashboard/patient.blade.php
+@@
++@extends('layouts.app')
++
++@section('content')
++<h2>Patient Dashboard</h2>
++<p>Manage your appointments and health services.</p>
++
++<ul>
++    <li><a href="{{ route('patient.services.index') }}">View Health Services</a></li>
++    <li><a href="{{ route('patient.appointments.create') }}">Book Appointment</a></li>
++    <li><a href="{{ route('patient.appointments.index') }}">My Appointments</a></li>
++    <li><a href="{{ route('patient.bmi.show') }}">BMI Calculator</a></li>
++</ul>
++
++<h3>Upcoming Appointments</h3>
++<table>
++    <thead>
++        <tr>
++            <th>Date</th>
++            <th>Time</th>
++            <th>Doctor</th>
++            <th>Service</th>
++            <th>Status</th>
++        </tr>
++    </thead>
++    <tbody>
++        @forelse ($appointments as $appointment)
++            <tr>
++                <td>{{ $appointment->scheduled_at->format('d M Y') }}</td>
++                <td>{{ $appointment->scheduled_at->format('h:i A') }}</td>
++                <td>{{ $appointment->doctor->name }}</td>
++                <td>{{ $appointment->service?->name ?? 'General' }}</td>
++                <td>{{ ucfirst($appointment->status) }}</td>
++            </tr>
++        @empty
++            <tr><td colspan="5">No upcoming appointments.</td></tr>
++        @endforelse
++    </tbody>
++</table>
++
++@include('partials.translator')
++@endsection
+ 
+diff --git a/resources/views/profile/edit.blade.php b/resources/views/profile/edit.blade.php
+new file mode 100644
+--- /dev/null
++++ b/resources/views/profile/edit.blade.php
+@@
++@extends('layouts.app')
++
++@section('content')
++<h2>Update Profile</h2>
++
++<form method="POST" action="{{ route('profile.update') }}">
++    @csrf
++    @method('PUT')
++    <div>
++        <label for="name">Name</label>
++        <input id="name" name="name" type="text" value="{{ old('name', $user->name) }}" required>
++    </div>
++    <div>
++        <label for="email">Email</label>
++        <input id="email" name="email" type="email" value="{{ old('email', $user->email) }}" required>
++    </div>
++    <div>
++        <label for="phone_number">Phone Number</label>
++        <input id="phone_number" name="phone_number" type="text" value="{{ old('phone_number', $user->phone_number) }}">
++    </div>
++    <div>
++        <label for="student_id">Student ID</label>
++        <input id="student_id" name="student_id" type="text" value="{{ old('student_id', $user->student_id) }}">
++    </div>
++    <div>
++        <label for="staff_id">Staff ID</label>
++        <input id="staff_id" name="staff_id" type="text" value="{{ old('staff_id', $user->staff_id) }}">
++    </div>
++    <div>
++        <label for="specialization">Specialization (Doctor)</label>
++        <input id="specialization" name="specialization" type="text" value="{{ old('specialization', $user->specialization) }}">
++    </div>
++    <div>
++        <label for="password">New Password (optional)</label>
++        <input id="password" name="password" type="password">
++    </div>
++    <div>
++        <label for="password_confirmation">Confirm Password</label>
++        <input id="password_confirmation" name="password_confirmation" type="password">
++    </div>
++    <button type="submit">Save Changes</button>
++</form>
++@endsection
+ 
+diff --git a/resources/views/patient/services/index.blade.php b/resources/views/patient/services/index.blade.php
+new file mode 100644
+--- /dev/null
++++ b/resources/views/patient/services/index.blade.php
+@@
++@extends('layouts.app')
++
++@section('content')
++<h2>Health Services</h2>
++
++<table>
++    <thead>
++        <tr>
++            <th>Service</th>
++            <th>Description</th>
++            <th>Duration (mins)</th>
++        </tr>
++    </thead>
++    <tbody>
++        @forelse ($services as $service)
++            <tr>
++                <td>{{ $service->name }}</td>
++                <td>{{ $service->description }}</td>
++                <td>{{ $service->duration_minutes }}</td>
++            </tr>
++        @empty
++            <tr><td colspan="3">No active services.</td></tr>
++        @endforelse
++    </tbody>
++</table>
++@endsection
+ 
+diff --git a/resources/views/patient/appointments/index.blade.php b/resources/views/patient/appointments/index.blade.php
+new file mode 100644
+--- /dev/null
++++ b/resources/views/patient/appointments/index.blade.php
+@@
++@extends('layouts.app')
++
++@section('content')
++<h2>My Appointments</h2>
++
++<a href="{{ route('patient.appointments.create') }}">Book New Appointment</a>
++
++<table>
++    <thead>
++        <tr>
++            <th>Date</th>
++            <th>Time</th>
++            <th>Doctor</th>
++            <th>Service</th>
++            <th>Status</th>
++            <th>Actions</th>
++        </tr>
++    </thead>
++    <tbody>
++        @forelse ($appointments as $appointment)
++            <tr>
++                <td>{{ $appointment->scheduled_at->format('d M Y') }}</td>
++                <td>{{ $appointment->scheduled_at->format('h:i A') }}</td>
++                <td>{{ $appointment->doctor->name }}</td>
++                <td>{{ $appointment->service?->name ?? 'General' }}</td>
++                <td>{{ ucfirst($appointment->status) }}</td>
++                <td>
++                    <a href="{{ route('patient.appointments.show', $appointment) }}">View</a>
++                    <a href="{{ route('patient.appointments.edit', $appointment) }}">Reschedule</a>
++                    <form action="{{ route('patient.appointments.destroy', $appointment) }}" method="POST" style="display:inline;">
++                        @csrf
++                        @method('DELETE')
++                        <button type="submit">Cancel</button>
++                    </form>
++                </td>
++            </tr>
++        @empty
++            <tr><td colspan="6">No appointments found.</td></tr>
++        @endforelse
++    </tbody>
++</table>
++@endsection
+ 
+diff --git a/resources/views/patient/appointments/create.blade.php b/resources/views/patient/appointments/create.blade.php
+new file mode 100644
+--- /dev/null
++++ b/resources/views/patient/appointments/create.blade.php
+@@
++@extends('layouts.app')
++
++@section('content')
++<h2>Book Appointment</h2>
++
++<form method="POST" action="{{ route('patient.appointments.store') }}">
++    @csrf
++    <div>
++        <label for="health_service_id">Health Service</label>
++        <select id="health_service_id" name="health_service_id" required>
++            @foreach ($services as $service)
++                <option value="{{ $service->id }}">{{ $service->name }}</option>
++            @endforeach
++        </select>
++    </div>
++    <div>
++        <label for="doctor_id">Doctor</label>
++        <select id="doctor_id" name="doctor_id" required>
++            @foreach ($doctors as $doctor)
++                <option value="{{ $doctor->id }}">{{ $doctor->name }} ({{ $doctor->specialization ?? 'General' }})</option>
++            @endforeach
++        </select>
++    </div>
++    <div>
++        <label for="appointment_slot_id">Appointment Slot</label>
++        <select id="appointment_slot_id" name="appointment_slot_id" required>
++            @foreach ($slots as $slot)
++                <option value="{{ $slot->id }}">
++                    {{ $slot->slot_date->format('d M Y') }} {{ $slot->start_time }} - {{ $slot->end_time }}
++                    (Dr. {{ $slot->doctor->name }})
++                </option>
++            @endforeach
++        </select>
++    </div>
++    <div>
++        <label for="notes">Notes (optional)</label>
++        <textarea id="notes" name="notes" rows="3">{{ old('notes') }}</textarea>
++    </div>
++    <button type="submit">Submit Booking</button>
++</form>
++@endsection
+ 
+diff --git a/resources/views/patient/appointments/show.blade.php b/resources/views/patient/appointments/show.blade.php
+new file mode 100644
+--- /dev/null
++++ b/resources/views/patient/appointments/show.blade.php
+@@
++@extends('layouts.app')
++
++@section('content')
++<h2>Appointment Details</h2>
++
++<p><strong>Date:</strong> {{ $appointment->scheduled_at->format('d M Y') }}</p>
++<p><strong>Time:</strong> {{ $appointment->scheduled_at->format('h:i A') }}</p>
++<p><strong>Doctor:</strong> {{ $appointment->doctor->name }}</p>
++<p><strong>Service:</strong> {{ $appointment->service?->name ?? 'General' }}</p>
++<p><strong>Status:</strong> {{ ucfirst($appointment->status) }}</p>
++<p><strong>Notes:</strong> {{ $appointment->notes ?? 'N/A' }}</p>
++
++@if ($appointment->queue_number)
++    <p><strong>Queue Number:</strong> {{ $appointment->queue_number }}</p>
++@endif
++
++<a href="{{ route('patient.appointments.qr', $appointment) }}">Show QR Check-In</a>
++
++<h3>Medical Documents</h3>
++<ul>
++    @forelse ($appointment->documents as $document)
++        <li>
++            {{ $document->filename }}
++            <a href="{{ route('patient.documents.show', $document) }}" target="_blank">View</a>
++        </li>
++    @empty
++        <li>No documents uploaded yet.</li>
++    @endforelse
++</ul>
++@endsection
+ 
+diff --git a/resources/views/patient/appointments/edit.blade.php b/resources/views/patient/appointments/edit.blade.php
+new file mode 100644
+--- /dev/null
++++ b/resources/views/patient/appointments/edit.blade.php
+@@
++@extends('layouts.app')
++
++@section('content')
++<h2>Reschedule Appointment</h2>
++
++<form method="POST" action="{{ route('patient.appointments.update', $appointment) }}">
++    @csrf
++    @method('PUT')
++    <div>
++        <label for="appointment_slot_id">New Appointment Slot</label>
++        <select id="appointment_slot_id" name="appointment_slot_id" required>
++            @foreach ($slots as $slot)
++                <option value="{{ $slot->id }}" @selected($appointment->appointment_slot_id === $slot->id)>
++                    {{ $slot->slot_date->format('d M Y') }} {{ $slot->start_time }} - {{ $slot->end_time }}
++                    (Dr. {{ $slot->doctor->name }})
++                </option>
++            @endforeach
++        </select>
++    </div>
++    <button type="submit">Update Appointment</button>
++</form>
++@endsection
+ 
+diff --git a/resources/views/patient/bmi.blade.php b/resources/views/patient/bmi.blade.php
+new file mode 100644
+--- /dev/null
++++ b/resources/views/patient/bmi.blade.php
+@@
++@extends('layouts.app')
++
++@section('content')
++<h2>BMI Calculator</h2>
++
++<form method="POST" action="{{ route('patient.bmi.calculate') }}">
++    @csrf
++    <div>
++        <label for="height_cm">Height (cm)</label>
++        <input id="height_cm" name="height_cm" type="number" step="0.1" value="{{ old('height_cm', $height_cm ?? '') }}" required>
++    </div>
++    <div>
++        <label for="weight_kg">Weight (kg)</label>
++        <input id="weight_kg" name="weight_kg" type="number" step="0.1" value="{{ old('weight_kg', $weight_kg ?? '') }}" required>
++    </div>
++    <button type="submit">Calculate BMI</button>
++</form>
++
++@isset($bmi)
++    <div>
++        <p><strong>Your BMI:</strong> {{ $bmi }}</p>
++        <p><strong>Category:</strong> {{ $category }}</p>
++    </div>
++@endisset
++@endsection
+ 
+diff --git a/resources/views/admin/services/index.blade.php b/resources/views/admin/services/index.blade.php
+new file mode 100644
+--- /dev/null
++++ b/resources/views/admin/services/index.blade.php
+@@
++@extends('layouts.app')
++
++@section('content')
++<h2>Health Services</h2>
++<a href="{{ route('admin.services.create') }}">Add Service</a>
++
++<table>
++    <thead>
++        <tr>
++            <th>Name</th>
++            <th>Duration</th>
++            <th>Status</th>
++            <th>Actions</th>
++        </tr>
++    </thead>
++    <tbody>
++        @forelse ($services as $service)
++            <tr>
++                <td>{{ $service->name }}</td>
++                <td>{{ $service->duration_minutes }} mins</td>
++                <td>{{ $service->is_active ? 'Active' : 'Inactive' }}</td>
++                <td>
++                    <a href="{{ route('admin.services.edit', $service) }}">Edit</a>
++                    <form action="{{ route('admin.services.destroy', $service) }}" method="POST" style="display:inline;">
++                        @csrf
++                        @method('DELETE')
++                        <button type="submit">Delete</button>
++                    </form>
++                </td>
++            </tr>
++        @empty
++            <tr><td colspan="4">No services created.</td></tr>
++        @endforelse
++    </tbody>
++</table>
++@endsection
+ 
+diff --git a/resources/views/admin/services/create.blade.php b/resources/views/admin/services/create.blade.php
+new file mode 100644
+--- /dev/null
++++ b/resources/views/admin/services/create.blade.php
+@@
++@extends('layouts.app')
++
++@section('content')
++<h2>Add Health Service</h2>
++<form method="POST" action="{{ route('admin.services.store') }}">
++    @csrf
++    <div>
++        <label for="name">Service Name</label>
++        <input id="name" name="name" type="text" required>
++    </div>
++    <div>
++        <label for="description">Description</label>
++        <textarea id="description" name="description" rows="3"></textarea>
++    </div>
++    <div>
++        <label for="duration_minutes">Duration (minutes)</label>
++        <input id="duration_minutes" name="duration_minutes" type="number" min="5" max="240" value="15" required>
++    </div>
++    <div>
++        <label for="is_active">
++            <input id="is_active" name="is_active" type="checkbox" checked>
++            Active
++        </label>
++    </div>
++    <button type="submit">Create Service</button>
++</form>
++@endsection
+ 
+diff --git a/resources/views/admin/services/edit.blade.php b/resources/views/admin/services/edit.blade.php
+new file mode 100644
+--- /dev/null
++++ b/resources/views/admin/services/edit.blade.php
+@@
++@extends('layouts.app')
++
++@section('content')
++<h2>Edit Health Service</h2>
++<form method="POST" action="{{ route('admin.services.update', $service) }}">
++    @csrf
++    @method('PUT')
++    <div>
++        <label for="name">Service Name</label>
++        <input id="name" name="name" type="text" value="{{ old('name', $service->name) }}" required>
++    </div>
++    <div>
++        <label for="description">Description</label>
++        <textarea id="description" name="description" rows="3">{{ old('description', $service->description) }}</textarea>
++    </div>
++    <div>
++        <label for="duration_minutes">Duration (minutes)</label>
++        <input id="duration_minutes" name="duration_minutes" type="number" min="5" max="240" value="{{ old('duration_minutes', $service->duration_minutes) }}" required>
++    </div>
++    <div>
++        <label for="is_active">
++            <input id="is_active" name="is_active" type="checkbox" @checked($service->is_active)>
++            Active
++        </label>
++    </div>
++    <button type="submit">Update Service</button>
++</form>
++@endsection
+ 
+diff --git a/resources/views/admin/doctors/index.blade.php b/resources/views/admin/doctors/index.blade.php
+new file mode 100644
+--- /dev/null
++++ b/resources/views/admin/doctors/index.blade.php
+@@
++@extends('layouts.app')
++
++@section('content')
++<h2>Doctors</h2>
++<a href="{{ route('admin.doctors.create') }}">Add Doctor</a>
++
++<table>
++    <thead>
++        <tr>
++            <th>Name</th>
++            <th>Email</th>
++            <th>Specialization</th>
++            <th>Phone</th>
++            <th>Actions</th>
++        </tr>
++    </thead>
++    <tbody>
++        @forelse ($doctors as $doctor)
++            <tr>
++                <td>{{ $doctor->name }}</td>
++                <td>{{ $doctor->email }}</td>
++                <td>{{ $doctor->specialization ?? 'General' }}</td>
++                <td>{{ $doctor->phone_number ?? '-' }}</td>
++                <td>
++                    <a href="{{ route('admin.doctors.edit', $doctor) }}">Edit</a>
++                    <form action="{{ route('admin.doctors.destroy', $doctor) }}" method="POST" style="display:inline;">
++                        @csrf
++                        @method('DELETE')
++                        <button type="submit">Delete</button>
++                    </form>
++                </td>
++            </tr>
++        @empty
++            <tr><td colspan="5">No doctors added.</td></tr>
++        @endforelse
++    </tbody>
++</table>
++@endsection
+ 
+diff --git a/resources/views/admin/doctors/create.blade.php b/resources/views/admin/doctors/create.blade.php
+new file mode 100644
+--- /dev/null
++++ b/resources/views/admin/doctors/create.blade.php
+@@
++@extends('layouts.app')
++
++@section('content')
++<h2>Add Doctor</h2>
++<form method="POST" action="{{ route('admin.doctors.store') }}">
++    @csrf
++    <div>
++        <label for="name">Full Name</label>
++        <input id="name" name="name" type="text" required>
++    </div>
++    <div>
++        <label for="email">Email</label>
++        <input id="email" name="email" type="email" required>
++    </div>
++    <div>
++        <label for="staff_id">Staff ID</label>
++        <input id="staff_id" name="staff_id" type="text">
++    </div>
++    <div>
++        <label for="phone_number">Phone Number</label>
++        <input id="phone_number" name="phone_number" type="text">
++    </div>
++    <div>
++        <label for="specialization">Specialization</label>
++        <input id="specialization" name="specialization" type="text">
++    </div>
++    <div>
++        <label for="password">Temporary Password</label>
++        <input id="password" name="password" type="password" required>
++    </div>
++    <div>
++        <label for="password_confirmation">Confirm Password</label>
++        <input id="password_confirmation" name="password_confirmation" type="password" required>
++    </div>
++    <button type="submit">Create Doctor</button>
++</form>
++@endsection
+ 
+diff --git a/resources/views/admin/doctors/edit.blade.php b/resources/views/admin/doctors/edit.blade.php
+new file mode 100644
+--- /dev/null
++++ b/resources/views/admin/doctors/edit.blade.php
+@@
++@extends('layouts.app')
++
++@section('content')
++<h2>Edit Doctor</h2>
++<form method="POST" action="{{ route('admin.doctors.update', $doctor) }}">
++    @csrf
++    @method('PUT')
++    <div>
++        <label for="name">Full Name</label>
++        <input id="name" name="name" type="text" value="{{ old('name', $doctor->name) }}" required>
++    </div>
++    <div>
++        <label for="email">Email</label>
++        <input id="email" name="email" type="email" value="{{ old('email', $doctor->email) }}" required>
++    </div>
++    <div>
++        <label for="staff_id">Staff ID</label>
++        <input id="staff_id" name="staff_id" type="text" value="{{ old('staff_id', $doctor->staff_id) }}">
++    </div>
++    <div>
++        <label for="phone_number">Phone Number</label>
++        <input id="phone_number" name="phone_number" type="text" value="{{ old('phone_number', $doctor->phone_number) }}">
++    </div>
++    <div>
++        <label for="specialization">Specialization</label>
++        <input id="specialization" name="specialization" type="text" value="{{ old('specialization', $doctor->specialization) }}">
++    </div>
++    <div>
++        <label for="password">New Password (optional)</label>
++        <input id="password" name="password" type="password">
++    </div>
++    <div>
++        <label for="password_confirmation">Confirm Password</label>
++        <input id="password_confirmation" name="password_confirmation" type="password">
++    </div>
++    <button type="submit">Update Doctor</button>
++</form>
++@endsection
+ 
+diff --git a/resources/views/admin/slots/index.blade.php b/resources/views/admin/slots/index.blade.php
+new file mode 100644
+--- /dev/null
++++ b/resources/views/admin/slots/index.blade.php
+@@
++@extends('layouts.app')
++
++@section('content')
++<h2>Appointment Slots</h2>
++<a href="{{ route('admin.slots.create') }}">Add Slot</a>
++
++<table>
++    <thead>
++        <tr>
++            <th>Date</th>
++            <th>Time</th>
++            <th>Doctor</th>
++            <th>Capacity</th>
++            <th>Status</th>
++            <th>Actions</th>
++        </tr>
++    </thead>
++    <tbody>
++        @forelse ($slots as $slot)
++            <tr>
++                <td>{{ $slot->slot_date->format('d M Y') }}</td>
++                <td>{{ $slot->start_time }} - {{ $slot->end_time }}</td>
++                <td>{{ $slot->doctor->name }}</td>
++                <td>{{ $slot->capacity }}</td>
++                <td>{{ $slot->is_active ? 'Active' : 'Inactive' }}</td>
++                <td>
++                    <a href="{{ route('admin.slots.edit', $slot) }}">Edit</a>
++                    <form action="{{ route('admin.slots.destroy', $slot) }}" method="POST" style="display:inline;">
++                        @csrf
++                        @method('DELETE')
++                        <button type="submit">Delete</button>
++                    </form>
++                </td>
++            </tr>
++        @empty
++            <tr><td colspan="6">No appointment slots created.</td></tr>
++        @endforelse
++    </tbody>
++</table>
++@endsection
+ 
+diff --git a/resources/views/admin/slots/create.blade.php b/resources/views/admin/slots/create.blade.php
+new file mode 100644
+--- /dev/null
++++ b/resources/views/admin/slots/create.blade.php
+@@
++@extends('layouts.app')
++
++@section('content')
++<h2>Add Appointment Slot</h2>
++<form method="POST" action="{{ route('admin.slots.store') }}">
++    @csrf
++    <div>
++        <label for="doctor_id">Doctor</label>
++        <select id="doctor_id" name="doctor_id" required>
++            @foreach ($doctors as $doctor)
++                <option value="{{ $doctor->id }}">{{ $doctor->name }}</option>
++            @endforeach
++        </select>
++    </div>
++    <div>
++        <label for="slot_date">Date</label>
++        <input id="slot_date" name="slot_date" type="date" required>
++    </div>
++    <div>
++        <label for="start_time">Start Time</label>
++        <input id="start_time" name="start_time" type="time" required>
++    </div>
++    <div>
++        <label for="end_time">End Time</label>
++        <input id="end_time" name="end_time" type="time" required>
++    </div>
++    <div>
++        <label for="capacity">Capacity</label>
++        <input id="capacity" name="capacity" type="number" min="1" max="20" value="1" required>
++    </div>
++    <div>
++        <label for="location">Location</label>
++        <input id="location" name="location" type="text">
++    </div>
++    <div>
++        <label for="is_active">
++            <input id="is_active" name="is_active" type="checkbox" checked>
++            Active
++        </label>
++    </div>
++    <button type="submit">Create Slot</button>
++</form>
++@endsection
+ 
+diff --git a/resources/views/admin/slots/edit.blade.php b/resources/views/admin/slots/edit.blade.php
+new file mode 100644
+--- /dev/null
++++ b/resources/views/admin/slots/edit.blade.php
+@@
++@extends('layouts.app')
++
++@section('content')
++<h2>Edit Appointment Slot</h2>
++<form method="POST" action="{{ route('admin.slots.update', $slot) }}">
++    @csrf
++    @method('PUT')
++    <div>
++        <label for="doctor_id">Doctor</label>
++        <select id="doctor_id" name="doctor_id" required>
++            @foreach ($doctors as $doctor)
++                <option value="{{ $doctor->id }}" @selected($slot->doctor_id === $doctor->id)>{{ $doctor->name }}</option>
++            @endforeach
++        </select>
++    </div>
++    <div>
++        <label for="slot_date">Date</label>
++        <input id="slot_date" name="slot_date" type="date" value="{{ old('slot_date', $slot->slot_date->format('Y-m-d')) }}" required>
++    </div>
++    <div>
++        <label for="start_time">Start Time</label>
++        <input id="start_time" name="start_time" type="time" value="{{ old('start_time', $slot->start_time) }}" required>
++    </div>
++    <div>
++        <label for="end_time">End Time</label>
++        <input id="end_time" name="end_time" type="time" value="{{ old('end_time', $slot->end_time) }}" required>
++    </div>
++    <div>
++        <label for="capacity">Capacity</label>
++        <input id="capacity" name="capacity" type="number" min="1" max="20" value="{{ old('capacity', $slot->capacity) }}" required>
++    </div>
++    <div>
++        <label for="location">Location</label>
++        <input id="location" name="location" type="text" value="{{ old('location', $slot->location) }}">
++    </div>
++    <div>
++        <label for="is_active">
++            <input id="is_active" name="is_active" type="checkbox" @checked($slot->is_active)>
++            Active
++        </label>
++    </div>
++    <button type="submit">Update Slot</button>
++</form>
++@endsection
+ 
+diff --git a/resources/views/admin/appointments/index.blade.php b/resources/views/admin/appointments/index.blade.php
+new file mode 100644
+--- /dev/null
++++ b/resources/views/admin/appointments/index.blade.php
+@@
++@extends('layouts.app')
++
++@section('content')
++<h2>Appointments</h2>
++
++<table>
++    <thead>
++        <tr>
++            <th>Date</th>
++            <th>Time</th>
++            <th>Patient</th>
++            <th>Doctor</th>
++            <th>Service</th>
++            <th>Status</th>
++            <th>Action</th>
++        </tr>
++    </thead>
++    <tbody>
++        @forelse ($appointments as $appointment)
++            <tr>
++                <td>{{ $appointment->scheduled_at->format('d M Y') }}</td>
++                <td>{{ $appointment->scheduled_at->format('h:i A') }}</td>
++                <td>{{ $appointment->patient->name }}</td>
++                <td>{{ $appointment->doctor->name }}</td>
++                <td>{{ $appointment->service?->name ?? 'General' }}</td>
++                <td>{{ ucfirst($appointment->status) }}</td>
++                <td><a href="{{ route('admin.appointments.show', $appointment) }}">Review</a></td>
++            </tr>
++        @empty
++            <tr><td colspan="7">No appointments found.</td></tr>
++        @endforelse
++    </tbody>
++</table>
++@endsection
+ 
+diff --git a/resources/views/admin/appointments/show.blade.php b/resources/views/admin/appointments/show.blade.php
+new file mode 100644
+--- /dev/null
++++ b/resources/views/admin/appointments/show.blade.php
+@@
++@extends('layouts.app')
++
++@section('content')
++<h2>Appointment Review</h2>
++
++<div>
++    <p><strong>Patient:</strong> {{ $appointment->patient->name }}</p>
++    <p><strong>Email:</strong> {{ $appointment->patient->email }}</p>
++    <p><strong>Service:</strong> {{ $appointment->service?->name ?? 'General' }}</p>
++    <p><strong>Current Status:</strong> {{ ucfirst($appointment->status) }}</p>
++    <p><strong>Scheduled At:</strong> {{ $appointment->scheduled_at->format('d M Y, h:i A') }}</p>
++</div>
++
++<form method="POST" action="{{ route('admin.appointments.update', $appointment) }}">
++    @csrf
++    @method('PUT')
++    <div>
++        <label for="doctor_id">Doctor</label>
++        <select id="doctor_id" name="doctor_id" required>
++            @foreach ($doctors as $doctor)
++                <option value="{{ $doctor->id }}" @selected($appointment->doctor_id === $doctor->id)>
++                    {{ $doctor->name }}
++                </option>
++            @endforeach
++        </select>
++    </div>
++    <div>
++        <label for="appointment_slot_id">Slot</label>
++        <select id="appointment_slot_id" name="appointment_slot_id" required>
++            @foreach ($slots as $slot)
++                <option value="{{ $slot->id }}" @selected($appointment->appointment_slot_id === $slot->id)>
++                    {{ $slot->slot_date->format('d M Y') }} {{ $slot->start_time }} - {{ $slot->end_time }}
++                    (Dr. {{ $slot->doctor->name }})
++                </option>
++            @endforeach
++        </select>
++    </div>
++    <div>
++        <label for="status">Status</label>
++        <select id="status" name="status" required>
++            @foreach (['pending', 'approved', 'rejected', 'rescheduled', 'cancelled'] as $status)
++                <option value="{{ $status }}" @selected($appointment->status === $status)>{{ ucfirst($status) }}</option>
++            @endforeach
++        </select>
++    </div>
++    <div>
++        <label for="notes">Notes</label>
++        <textarea id="notes" name="notes" rows="3">{{ old('notes', $appointment->notes) }}</textarea>
++    </div>
++    <button type="submit">Update Appointment</button>
++</form>
++@endsection
+ 
+diff --git a/resources/views/doctor/appointments/index.blade.php b/resources/views/doctor/appointments/index.blade.php
+new file mode 100644
+--- /dev/null
++++ b/resources/views/doctor/appointments/index.blade.php
+@@
++@extends('layouts.app')
++
++@section('content')
++<h2>Daily Appointments</h2>
++
++<form method="GET" action="{{ route('doctor.appointments.index') }}">
++    <label for="date">Select Date</label>
++    <input id="date" name="date" type="date" value="{{ $date }}">
++    <button type="submit">View</button>
++</form>
++
++<table>
++    <thead>
++        <tr>
++            <th>Time</th>
++            <th>Patient</th>
++            <th>Service</th>
++            <th>Status</th>
++            <th>Actions</th>
++        </tr>
++    </thead>
++    <tbody>
++        @forelse ($appointments as $appointment)
++            <tr>
++                <td>{{ $appointment->scheduled_at->format('h:i A') }}</td>
++                <td>{{ $appointment->patient->name }}</td>
++                <td>{{ $appointment->service?->name ?? 'General' }}</td>
++                <td>{{ ucfirst($appointment->status) }}</td>
++                <td>
++                    <a href="{{ route('doctor.appointments.show', $appointment) }}">View</a>
++                    <a href="{{ route('doctor.patients.history', $appointment->patient) }}">History</a>
++                </td>
++            </tr>
++        @empty
++            <tr><td colspan="5">No appointments found.</td></tr>
++        @endforelse
++    </tbody>
++</table>
++@endsection
+ 
+diff --git a/resources/views/doctor/appointments/show.blade.php b/resources/views/doctor/appointments/show.blade.php
+new file mode 100644
+--- /dev/null
++++ b/resources/views/doctor/appointments/show.blade.php
+@@
++@extends('layouts.app')
++
++@section('content')
++<h2>Appointment Details</h2>
++
++<p><strong>Patient:</strong> {{ $appointment->patient->name }}</p>
++<p><strong>Service:</strong> {{ $appointment->service?->name ?? 'General' }}</p>
++<p><strong>Scheduled At:</strong> {{ $appointment->scheduled_at->format('d M Y, h:i A') }}</p>
++<p><strong>Status:</strong> {{ ucfirst($appointment->status) }}</p>
++
++<form method="POST" action="{{ route('doctor.appointments.update', $appointment) }}">
++    @csrf
++    @method('PATCH')
++    <label for="status">Update Status</label>
++    <select id="status" name="status">
++        <option value="completed" @selected($appointment->status === 'completed')>Completed</option>
++        <option value="no-show" @selected($appointment->status === 'no-show')>No-show</option>
++    </select>
++    <button type="submit">Update</button>
++</form>
++
++<h3>Medical Documents</h3>
++<a href="{{ route('doctor.documents.create', $appointment) }}">Upload Document</a>
++<ul>
++    @forelse ($appointment->documents as $document)
++        <li>
++            {{ $document->filename }}
++            <a href="{{ route('doctor.documents.show', $document) }}" target="_blank">View</a>
++        </li>
++    @empty
++        <li>No documents uploaded.</li>
++    @endforelse
++</ul>
++@endsection
+ 
+diff --git a/resources/views/doctor/patients/history.blade.php b/resources/views/doctor/patients/history.blade.php
+new file mode 100644
+--- /dev/null
++++ b/resources/views/doctor/patients/history.blade.php
+@@
++@extends('layouts.app')
++
++@section('content')
++<h2>Patient History: {{ $patient->name }}</h2>
++
++<table>
++    <thead>
++        <tr>
++            <th>Date</th>
++            <th>Doctor</th>
++            <th>Service</th>
++            <th>Status</th>
++        </tr>
++    </thead>
++    <tbody>
++        @forelse ($appointments as $appointment)
++            <tr>
++                <td>{{ $appointment->scheduled_at->format('d M Y') }}</td>
++                <td>{{ $appointment->doctor->name }}</td>
++                <td>{{ $appointment->service?->name ?? 'General' }}</td>
++                <td>{{ ucfirst($appointment->status) }}</td>
++            </tr>
++        @empty
++            <tr><td colspan="4">No appointment history.</td></tr>
++        @endforelse
++    </tbody>
++</table>
++@endsection
+ 
+diff --git a/resources/views/doctor/documents/create.blade.php b/resources/views/doctor/documents/create.blade.php
+new file mode 100644
+--- /dev/null
++++ b/resources/views/doctor/documents/create.blade.php
+@@
++@extends('layouts.app')
++
++@section('content')
++<h2>Upload Medical Document</h2>
++<p>Patient: {{ $appointment->patient->name }}</p>
++
++<form method="POST" action="{{ route('doctor.documents.store', $appointment) }}" enctype="multipart/form-data">
++    @csrf
++    <div>
++        <label for="document_type">Document Type</label>
++        <input id="document_type" name="document_type" type="text" placeholder="Medical certificate or referral letter">
++    </div>
++    <div>
++        <label for="document">Select File (JPG, PNG, PDF)</label>
++        <input id="document" name="document" type="file" required>
++    </div>
++    <button type="submit">Upload</button>
++</form>
++@endsection
+ 
+diff --git a/resources/views/appointments/qr.blade.php b/resources/views/appointments/qr.blade.php
+new file mode 100644
+--- /dev/null
++++ b/resources/views/appointments/qr.blade.php
+@@
++@extends('layouts.app')
++
++@section('content')
++<h2>QR Check-In</h2>
++<p>Show this QR code at Unit Kesihatan UiTM Perlis to get your queue number.</p>
++<p><strong>Appointment:</strong> {{ $appointment->scheduled_at->format('d M Y, h:i A') }}</p>
++
++<div>
++    <img src="{{ $qrImageUrl }}" alt="QR code for check-in">
++</div>
++<p>Alternatively, open this URL on the counter device:</p>
++<p><a href="{{ $checkInUrl }}">{{ $checkInUrl }}</a></p>
++@endsection
+ 
+diff --git a/resources/views/queue/checked-in.blade.php b/resources/views/queue/checked-in.blade.php
+new file mode 100644
+--- /dev/null
++++ b/resources/views/queue/checked-in.blade.php
+@@
++@extends('layouts.app')
++
++@section('content')
++<h2>Check-In Successful</h2>
++
++<p><strong>Patient:</strong> {{ $appointment->patient->name }}</p>
++<p><strong>Appointment:</strong> {{ $appointment->scheduled_at->format('d M Y, h:i A') }}</p>
++
++@if ($ticket)
++    <p><strong>Your Queue Number:</strong> {{ $ticket->number }}</p>
++@endif
++
++@if ($appointment->checked_in_at)
++    <p>Checked in at: {{ $appointment->checked_in_at->format('h:i A') }}</p>
++@endif
++@endsection
