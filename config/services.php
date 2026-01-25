@@ -35,4 +35,16 @@ return [
         ],
     ],
 
+
+    'google' => [
+        'translate_key' => env('GOOGLE_TRANSLATE_API_KEY'),
+    ],
+ 
+    'sms' => [
+        'provider' => env('SMS_PROVIDER', 'log'),
+        'twilio_sid' => env('TWILIO_SID'),
+        'twilio_token' => env('TWILIO_AUTH_TOKEN'),
+        'twilio_from' => env('TWILIO_FROM'),
+    ],
+
 ];
