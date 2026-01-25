@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('filename');
             $table->string('mime_type');
             $table->unsignedBigInteger('size_bytes');
-            $table->longBlob('document_data');
+            $table->binary('document_data');
             $table->timestamp('uploaded_at')->nullable();
             $table->timestamps();
         });
