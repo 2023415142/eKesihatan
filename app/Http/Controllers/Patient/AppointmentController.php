@@ -9,6 +9,7 @@ use App\Models\HealthService;
 use App\Models\QueueTicket;
 use App\Models\User;
 use App\Services\SmsService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -53,7 +54,11 @@ class AppointmentController extends Controller
             ->where('doctor_id', $data['doctor_id'])
             ->firstOrFail();
  
-        if (!$slot->is_active || $slot->slot_date->isPast()) {
+        $scheduledAt = Carbon::parse(
+            $slot->slot_date->format('Y-m-d') . ' ' . $slot->start_time
+        );
+ 
+        if (!$slot->is_active || $scheduledAt->isPast()) {
             return back()->withErrors(['appointment_slot_id' => 'This slot is no longer available.'])->withInput();
         }
  
@@ -65,7 +70,7 @@ class AppointmentController extends Controller
             return back()->withErrors(['appointment_slot_id' => 'This slot is fully booked.'])->withInput();
         }
  
-        $scheduledAt = $slot->slot_date->format('Y-m-d') . ' ' . $slot->start_time;
+        $scheduledAt = $scheduledAt->format('Y-m-d H:i:s');
  
         $appointment = DB::transaction(function () use ($request, $data, $slot, $scheduledAt) {
             $appointment = Appointment::create([
@@ -132,7 +137,12 @@ class AppointmentController extends Controller
         ]);
  
         $slot = AppointmentSlot::findOrFail($data['appointment_slot_id']);
-        if (!$slot->is_active || $slot->slot_date->isPast()) {
+ 
+        $scheduledAt = Carbon::parse(
+            $slot->slot_date->format('Y-m-d') . ' ' . $slot->start_time
+        );
+ 
+        if (!$slot->is_active || $scheduledAt->isPast()) {
             return back()->withErrors(['appointment_slot_id' => 'This slot is no longer available.'])->withInput();
         }
  
@@ -145,7 +155,7 @@ class AppointmentController extends Controller
             return back()->withErrors(['appointment_slot_id' => 'This slot is fully booked.'])->withInput();
         }
  
-        $scheduledAt = $slot->slot_date->format('Y-m-d') . ' ' . $slot->start_time;
+        $scheduledAt = $scheduledAt->format('Y-m-d H:i:s');
  
         DB::transaction(function () use ($appointment, $slot, $scheduledAt) {
             $appointment->update([

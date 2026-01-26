@@ -2,8 +2,6 @@
 
 @section('content')
 <h2>Doctor Dashboard</h2>
-<p>Use the left navigation panel to view daily appointments and patient history.</p>
-
 <section>
     <h3>Today's Appointments ({{ now()->format('d M Y') }})</h3>
     <table>

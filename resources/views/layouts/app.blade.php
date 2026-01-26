@@ -1,4 +1,4 @@
-]<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -41,9 +41,10 @@
             </nav>
         </div>
     </header>
-
+ 
     <div class="app-shell">
         @auth
+            @unless (request()->routeIs('landing'))
             <aside class="sidebar">
                 <div class="sidebar-title" data-i18n="Navigation">Navigation</div>
                 <nav class="sidebar-nav">
@@ -95,7 +96,7 @@
                             <span data-i18n="My Appointments">My Appointments</span>
                         </a>
                     @endif
-
+ 
                     <a href="{{ route('profile.edit') }}">
                         <span class="icon" aria-hidden="true">👤</span>
                         <span data-i18n="Profile">Profile</span>
@@ -109,24 +110,25 @@
                     </form>
                 </nav>
             </aside>
+            @endunless
         @endauth
-
+ 
         <main id="main-content" class="main-content">
             @include('partials.flash')
             @yield('content')
         </main>
     </div>
-
+ 
     <footer>
         <p data-i18n="Unit Kesihatan UiTM Perlis · eKesihatan Appointment System">Unit Kesihatan UiTM Perlis · eKesihatan Appointment System</p>
     </footer>
-
+ 
     <script>
         (function () {
             const buttons = document.querySelectorAll('[data-font-size]');
             const root = document.documentElement;
             const storageKey = 'ekesihatan-font-size';
-
+ 
             const applySize = (size) => {
                 root.style.setProperty('--base-font-size', size + 'px');
                 buttons.forEach((button) => {
@@ -135,14 +137,14 @@
                     button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
                 });
             };
-
+ 
             const stored = localStorage.getItem(storageKey);
             if (stored) {
                 applySize(stored);
             } else {
                 applySize('16');
             }
-
+ 
             buttons.forEach((button) => {
                 button.addEventListener('click', () => {
                     const size = button.dataset.fontSize;
@@ -152,7 +154,7 @@
             });
         })();
     </script>
-
+ 
     <script>
         (function () {
             const translations = {
@@ -226,7 +228,43 @@
                     'Profile': 'Profil',
                     'Logout': 'Log Keluar',
                     'Welcome to eKesihatan': 'Selamat Datang ke eKesihatan',
+                    'Your health visits, organized. Book appointments, receive queue numbers, and check in with a QR code before you arrive.': 'Lawatan kesihatan anda lebih teratur. Tempah temu janji, terima nombor giliran, dan imbas QR sebelum anda tiba.',
                     'Create Patient Account': 'Daftar Akaun Pesakit',
+                    'Live Slot Availability': 'Ketersediaan Slot Secara Langsung',
+                    'See active doctors and open slots in one view.': 'Lihat doktor aktif dan slot tersedia dalam satu paparan.',
+                    'Queue Number Ready': 'Nombor Giliran Sedia',
+                    'Receive your queue number after booking.': 'Terima nombor giliran selepas tempahan.',
+                    'QR Attendance': 'Kehadiran QR',
+                    'Scan on arrival to confirm attendance quickly.': 'Imbas semasa tiba untuk sahkan kehadiran dengan cepat.',
+                    'Clinic Flow Snapshot': 'Ringkasan Aliran Klinik',
+                    'A simple, paperless flow for patients and staff.': 'Aliran ringkas tanpa kertas untuk pesakit dan staf.',
+                    'Check your BMI instantly with basic inputs.': 'Semak BMI anda segera dengan input asas.',
+                    'Step 1': 'Langkah 1',
+                    'Step 2': 'Langkah 2',
+                    'Step 3': 'Langkah 3',
+                    'Choose a slot': 'Pilih slot',
+                    'Receive queue number': 'Terima nombor giliran',
+                    'Scan QR on arrival': 'Imbas QR semasa tiba',
+                    'Clinic Notices and Bulletins': 'Notis dan Buletin Klinik',
+                    'Operating Hours': 'Waktu Operasi',
+                    'Monday to Thursday 8:00 AM to 5:00 PM. Friday 8:00 AM to 12:00 PM.': 'Isnin hingga Khamis 8:00 pagi hingga 5:00 petang. Jumaat 8:00 pagi hingga 12:00 tengah hari.',
+                    'ID Required': 'ID Diperlukan',
+                    'Please bring your student or staff ID for verification at the counter.': 'Sila bawa ID pelajar atau staf untuk pengesahan di kaunter.',
+                    'Respiratory Care': 'Penjagaan Pernafasan',
+                    'Masks are recommended for patients with cough, flu, or fever symptoms.': 'Pelitup muka disyorkan untuk pesakit dengan gejala batuk, selesema, atau demam.',
+                    'Health Screening': 'Saringan Kesihatan',
+                    'Walk-in screening is available every Tuesday morning.': 'Saringan tanpa temu janji tersedia setiap pagi Selasa.',
+                    'Health Articles': 'Artikel Kesihatan',
+                    'Healthy Campus Habits': 'Amalan Kampus Sihat',
+                    'Simple routines to boost energy, focus, and immunity.': 'Rutin ringkas untuk meningkatkan tenaga, fokus, dan imuniti.',
+                    'Clinic Bulletin': 'Buletin Klinik',
+                    'Read Article': 'Baca Artikel',
+                    'Understanding BMI': 'Memahami BMI',
+                    'Learn how BMI helps track healthy weight goals.': 'Ketahui bagaimana BMI membantu menjejak sasaran berat badan sihat.',
+                    'Health Education': 'Pendidikan Kesihatan',
+                    'Stress and Sleep Tips': 'Tip Stres dan Tidur',
+                    'Ways to rest better during busy study weeks.': 'Cara berehat lebih baik semasa minggu pengajian yang sibuk.',
+                    'Wellbeing Guide': 'Panduan Kesejahteraan',
                     'Objectives': 'Objektif',
                     'Key Features': 'Ciri Utama',
                     'Role-based dashboards for Admin, Doctor, and Patient.': 'Papan pemuka berasaskan peranan untuk Admin, Doktor dan Pesakit.',
@@ -258,9 +296,11 @@
                     'Upload Medical Document': 'Muat Naik Dokumen Perubatan',
                     'Document Type': 'Jenis Dokumen',
                     'Select PDF File': 'Pilih Fail PDF',
+                    'Select PDF or JPG File': 'Pilih Fail PDF atau JPG',
                     'Upload': 'Muat Naik',
                     'Medical Documents': 'Dokumen Perubatan',
                     'Upload PDF Document': 'Muat Naik Dokumen PDF',
+                    'Upload Document': 'Muat Naik Dokumen',
                     'No documents uploaded.': 'Tiada dokumen dimuat naik.',
                     'Appointment': 'Temu Janji',
                     'Patient': 'Pesakit',
@@ -301,6 +341,7 @@
                     'You will receive SMS confirmation and reminders 1 day and 1 hour before your appointment.': 'Anda akan menerima pengesahan SMS dan peringatan 1 hari dan 1 jam sebelum temu janji.',
                     'Medical Documents': 'Dokumen Perubatan',
                     'View PDF': 'Lihat PDF',
+                    'View Document': 'Lihat Dokumen',
                     'No documents uploaded yet.': 'Tiada dokumen dimuat naik.',
                     'Check-In Successful': 'Daftar Masuk Berjaya',
                     'Your Queue Number:': 'Nombor Giliran Anda:',
@@ -331,15 +372,15 @@
                     'Unit Kesihatan UiTM Perlis · eKesihatan Appointment System': 'Unit Kesihatan UiTM Perlis · Sistem Temu Janji eKesihatan'
                 }
             };
-
+ 
             const languageSelect = document.getElementById('language-select');
             const translationCache = {};
-
+ 
             const translateText = async (text, target) => {
                 if (translationCache[`${target}:${text}`]) {
                     return translationCache[`${target}:${text}`];
                 }
-
+ 
                 const response = await fetch('{{ route('translate') }}', {
                     method: 'POST',
                     headers: {
@@ -348,28 +389,28 @@
                     },
                     body: JSON.stringify({ text, target }),
                 });
-
+ 
                 if (!response.ok) {
                     return text;
                 }
-
+ 
                 const data = await response.json();
                 const translated = data.translated_text || text;
                 translationCache[`${target}:${text}`] = translated;
                 return translated;
             };
-
+ 
             const applyLanguage = async (lang) => {
                 document.documentElement.lang = lang;
                 const elements = Array.from(document.querySelectorAll('[data-i18n]'));
-
+ 
                 if (lang === 'en') {
                     elements.forEach((el) => {
                         el.textContent = el.getAttribute('data-i18n');
                     });
                     return;
                 }
-
+ 
                 await Promise.all(
                     elements.map(async (el) => {
                         const key = el.getAttribute('data-i18n');
@@ -378,11 +419,11 @@
                     })
                 );
             };
-
+ 
             const storedLang = localStorage.getItem('ekesihatan-lang') || 'en';
             languageSelect.value = storedLang;
             applyLanguage(storedLang);
-
+ 
             languageSelect.addEventListener('change', () => {
                 const lang = languageSelect.value;
                 localStorage.setItem('ekesihatan-lang', lang);

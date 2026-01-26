@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+ 
 @section('content')
 <h2>Edit Appointment Slot</h2>
 <form method="POST" action="{{ route('admin.slots.update', $slot) }}">
@@ -34,8 +34,9 @@
         <input id="location" name="location" type="text" value="{{ old('location', $slot->location) }}">
     </div>
     <div>
+        <input type="hidden" name="is_active" value="0">
         <label for="is_active">
-            <input id="is_active" name="is_active" type="checkbox" @checked($slot->is_active)>
+            <input id="is_active" name="is_active" type="checkbox" value="1" @checked($slot->is_active)>
             Active
         </label>
     </div>

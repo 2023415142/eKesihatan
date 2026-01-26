@@ -27,7 +27,7 @@ class MedicalDocumentController extends Controller
         }
  
         $data = $request->validate([
-            'document' => ['required', 'file', 'max:5120', 'mimes:pdf'],
+            'document' => ['required', 'file', 'max:5120', 'mimes:pdf,jpg,jpeg'],
             'document_type' => ['nullable', 'string', 'max:255'],
         ]);
  
