@@ -35,6 +35,7 @@
             <nav class="top-nav">
                 @guest
                     <a href="{{ route('landing') }}" data-i18n="Home">Home</a>
+                    <a href="{{ route('news') }}" data-i18n="Latest News">Latest News</a>
                     <a href="{{ route('login') }}" data-i18n="Login">Login</a>
                     <a href="{{ route('register') }}" data-i18n="Register">Register</a>
                 @endguest
@@ -97,6 +98,10 @@
                         </a>
                     @endif
  
+                    <a href="{{ route('news') }}">
+                        <span class="icon" aria-hidden="true">📰</span>
+                        <span data-i18n="Latest News">Latest News</span>
+                    </a>
                     <a href="{{ route('profile.edit') }}">
                         <span class="icon" aria-hidden="true">👤</span>
                         <span data-i18n="Profile">Profile</span>
@@ -227,6 +232,47 @@
                     'History': 'Sejarah',
                     'Profile': 'Profil',
                     'Logout': 'Log Keluar',
+                    'Latest News': 'Berita Terkini',
+                    'Latest News & Information': 'Berita dan Maklumat Terkini',
+                    'Stay updated with clinic announcements, system enhancements, and health campaigns.': 'Sentiasa maklum dengan pengumuman klinik, penambahbaikan sistem, dan kempen kesihatan.',
+                    'System Update': 'Kemas Kini Sistem',
+                    'Faster appointment booking and rescheduling are now available across the app.': 'Tempahan dan penjadualan semula temu janji kini lebih pantas di seluruh aplikasi.',
+                    'Queue Check-In Reminder': 'Peringatan Daftar Masuk Giliran',
+                    'Your QR check-in screen now highlights the counter time window.': 'Skrin daftar masuk QR kini menonjolkan masa kaunter.',
+                    'Document Upload Ready': 'Muat Naik Dokumen Sedia',
+                    'Upload medical certificates directly after your appointment.': 'Muat naik sijil perubatan terus selepas temu janji anda.',
+                    'System Updates': 'Kemas Kini Sistem',
+                    'Improved Appointment Timeline': 'Garis Masa Temu Janji Dipertingkat',
+                    'Track approval, queue number, and check-in status in one timeline.': 'Jejaki kelulusan, nombor giliran, dan status daftar masuk dalam satu garis masa.',
+                    'Released January 2026': 'Dikeluarkan Januari 2026',
+                    'Smarter Slot Availability': 'Ketersediaan Slot Lebih Pintar',
+                    'View live slot capacity before booking to reduce wait time.': 'Lihat kapasiti slot secara langsung sebelum membuat tempahan untuk mengurangkan masa menunggu.',
+                    'Released December 2025': 'Dikeluarkan Disember 2025',
+                    'Profile Health Summary': 'Ringkasan Kesihatan Profil',
+                    'Update allergies, emergency contact, and medical notes in your profile.': 'Kemas kini alahan, hubungan kecemasan, dan nota perubatan dalam profil anda.',
+                    'Released November 2025': 'Dikeluarkan November 2025',
+                    'Clinic Announcements': 'Pengumuman Klinik',
+                    'Extended Counter Hours': 'Waktu Kaunter Dilanjutkan',
+                    'Counter service is open until 5:30 PM on Mondays and Wednesdays.': 'Perkhidmatan kaunter dibuka hingga 5:30 petang pada hari Isnin dan Rabu.',
+                    'Walk-In Triage': 'Triage Tanpa Temu Janji',
+                    'Walk-in triage is available daily from 8:00 AM to 9:30 AM.': 'Triage tanpa temu janji tersedia setiap hari dari 8:00 pagi hingga 9:30 pagi.',
+                    'Medication Pickup': 'Pengambilan Ubat',
+                    'Please collect prescribed medication within 7 days of approval.': 'Sila ambil ubat yang diluluskan dalam tempoh 7 hari.',
+                    'Service Improvements': 'Penambahbaikan Perkhidmatan',
+                    'We are upgrading the appointment reminder system on weekends.': 'Kami menaik taraf sistem peringatan temu janji pada hujung minggu.',
+                    'Upcoming Programs': 'Program Akan Datang',
+                    'Flu Vaccination Week': 'Minggu Vaksinasi Selesema',
+                    'Vaccination is offered every Tuesday afternoon in February.': 'Vaksinasi ditawarkan setiap petang Selasa pada bulan Februari.',
+                    'Community Care': 'Penjagaan Komuniti',
+                    'Mental Wellness Check-In': 'Semakan Kesejahteraan Mental',
+                    'Book a 15-minute wellbeing chat with the clinic counselor.': 'Tempah sesi sembang kesejahteraan 15 minit bersama kaunselor klinik.',
+                    'Counseling': 'Kaunseling',
+                    'Student Health Week': 'Minggu Kesihatan Pelajar',
+                    'Free BMI and blood pressure screening at the lobby.': 'Saringan BMI dan tekanan darah percuma di lobi.',
+                    'Wellness Screening': 'Saringan Kesejahteraan',
+                    'Need Assistance?': 'Perlukan Bantuan?',
+                    'Use the Helpdesk chat in the app or call 04-1234567 for urgent matters.': 'Gunakan chat Meja Bantuan dalam aplikasi atau hubungi 04-1234567 untuk perkara segera.',
+                    'Tip: Keep notifications on so you never miss appointment reminders.': 'Tip: Pastikan notifikasi diaktifkan supaya anda tidak terlepas peringatan temu janji.',
                     'Welcome to eKesihatan': 'Selamat Datang ke eKesihatan',
                     'Your health visits, organized. Book appointments, receive queue numbers, and check in with a QR code before you arrive.': 'Lawatan kesihatan anda lebih teratur. Tempah temu janji, terima nombor giliran, dan imbas QR sebelum anda tiba.',
                     'Create Patient Account': 'Daftar Akaun Pesakit',

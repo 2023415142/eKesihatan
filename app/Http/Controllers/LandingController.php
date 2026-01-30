@@ -10,4 +10,9 @@ class LandingController extends Controller
     {
         return view('landing');
     }
+
+    public function news(Request $request)
+    {
+        return view('news');
+    }
 }

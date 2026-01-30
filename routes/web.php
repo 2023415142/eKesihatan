@@ -19,6 +19,7 @@ use App\Http\Controllers\Patient\BmiController;
 use App\Http\Controllers\Patient\ServiceController as PatientServiceController;
  
 Route::get('/', [LandingController::class, 'index'])->name('landing');
+Route::get('/news', [LandingController::class, 'news'])->name('news');
  
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.attempt');
