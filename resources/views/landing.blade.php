@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
  
 @section('content')
@@ -8,7 +7,13 @@
         <p data-i18n="Your health visits, organized. Book appointments, receive queue numbers, and check in with a QR code before you arrive.">
             Your health visits, organized. Book appointments, receive queue numbers, and check in with a QR code before you arrive.
         </p>
+ 
+        <div class="hero-actions">
+            <a class="button-link" href="{{ route('register') }}" data-i18n="Create Patient Account">Create Patient Account</a>
+            <a class="button-link secondary" href="{{ route('login') }}" data-i18n="Login">Login</a>
+        </div>
     </div>
+ 
     <div class="landing-hero__visual">
         <div class="infographic-card">
             <h3 data-i18n="Clinic Flow Snapshot">Clinic Flow Snapshot</h3>
