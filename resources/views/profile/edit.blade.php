@@ -18,18 +18,22 @@
         <label for="phone_number" data-i18n="Phone Number">Phone Number</label>
         <input id="phone_number" name="phone_number" type="text" value="{{ old('phone_number', $user->phone_number) }}">
     </div>
-    <div>
-        <label for="student_id" data-i18n="Student ID">Student ID</label>
-        <input id="student_id" name="student_id" type="text" value="{{ old('student_id', $user->student_id) }}">
-    </div>
+    @if ($user->isPatient())
+        <div>
+            <label for="student_id" data-i18n="Student ID">Student ID</label>
+            <input id="student_id" name="student_id" type="text" value="{{ old('student_id', $user->student_id) }}">
+        </div>
+    @endif
     <div>
         <label for="staff_id" data-i18n="Staff ID">Staff ID</label>
         <input id="staff_id" name="staff_id" type="text" value="{{ old('staff_id', $user->staff_id) }}">
     </div>
-    <div>
-        <label for="specialization" data-i18n="Specialization (Doctor)">Specialization (Doctor)</label>
-        <input id="specialization" name="specialization" type="text" value="{{ old('specialization', $user->specialization) }}">
-    </div>
+    @if ($user->isDoctor())
+        <div>
+            <label for="specialization" data-i18n="Specialization (Doctor)">Specialization (Doctor)</label>
+            <input id="specialization" name="specialization" type="text" value="{{ old('specialization', $user->specialization) }}">
+        </div>
+    @endif
     <div>
         <label for="password" data-i18n="New Password (optional)">New Password (optional)</label>
         <input id="password" name="password" type="password">
