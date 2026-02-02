@@ -24,10 +24,12 @@
             <input id="student_id" name="student_id" type="text" value="{{ old('student_id', $user->student_id) }}">
         </div>
     @endif
-    <div>
-        <label for="staff_id" data-i18n="Staff ID">Staff ID</label>
-        <input id="staff_id" name="staff_id" type="text" value="{{ old('staff_id', $user->staff_id) }}">
-    </div>
+    @if (!$user->isPatient())
+        <div>
+            <label for="staff_id" data-i18n="Staff ID">Staff ID</label>
+            <input id="staff_id" name="staff_id" type="text" value="{{ old('staff_id', $user->staff_id) }}">
+        </div>
+    @endif
     @if ($user->isDoctor())
         <div>
             <label for="specialization" data-i18n="Specialization (Doctor)">Specialization (Doctor)</label>
