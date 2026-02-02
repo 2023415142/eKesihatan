@@ -9,7 +9,7 @@
 <p><strong>Appointment:</strong> {{ $appointment->scheduled_at->format('d M Y, h:i A') }}</p>
 
 <div>
-    <img src="{{ $qrImageUrl }}" alt="QR code for check-in" width="220" height="220">
+    <img src="{{ $qrImageData ?? $qrImageUrl }}" alt="QR code for check-in" width="220" height="220">
 </div>
 
 <p>Alternatively, open this URL on the counter device:</p>
