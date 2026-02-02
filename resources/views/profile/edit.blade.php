@@ -1,8 +1,8 @@
 @extends('layouts.app')
-
+ 
 @section('content')
 <h2 data-i18n="Update Profile">Update Profile</h2>
-
+ 
 <form method="POST" action="{{ route('profile.update') }}">
     @csrf
     @method('PUT')

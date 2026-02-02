@@ -7,7 +7,13 @@
         <p data-i18n="Your health visits, organized. Book appointments, receive queue numbers, and check in with a QR code before you arrive.">
             Your health visits, organized. Book appointments, receive queue numbers, and check in with a QR code before you arrive.
         </p>
+ 
+        <div class="hero-actions">
+            <a class="button-link" href="{{ route('register') }}" data-i18n="Create Patient Account">Create Patient Account</a>
+            <a class="button-link secondary" href="{{ route('login') }}" data-i18n="Login">Login</a>
+        </div>
     </div>
+ 
     <div class="landing-hero__visual">
         <div class="infographic-card">
             <h3 data-i18n="Clinic Flow Snapshot">Clinic Flow Snapshot</h3>
@@ -122,7 +128,7 @@
                 <h4 data-i18n="Healthy Campus Habits">Healthy Campus Habits</h4>
                 <p data-i18n="Simple routines to boost energy, focus, and immunity.">Simple routines to boost energy, focus, and immunity.</p>
                 <span class="article-meta" data-i18n="Clinic Bulletin">Clinic Bulletin</span>
-                <a class="card-link" href="https://blog.ohiohealth.com/college-101-getting-enough-sleep/" target="_blank" rel="noopener noreferrer" data-i18n="Read Article">Read Article</a>
+                <a class="card-link" href="#" data-i18n="Read Article">Read Article</a>
             </div>
         </article>
         <article class="article-card">
@@ -154,7 +160,7 @@
                 <h4 data-i18n="Stress and Sleep Tips">Stress and Sleep Tips</h4>
                 <p data-i18n="Ways to rest better during busy study weeks.">Ways to rest better during busy study weeks.</p>
                 <span class="article-meta" data-i18n="Wellbeing Guide">Wellbeing Guide</span>
-                <a class="card-link" href="#" data-i18n="Read Article">Read Article</a>
+                <a class="card-link" href="https://blog.ohiohealth.com/college-101-getting-enough-sleep/" target="_blank" rel="noopener noreferrer" data-i18n="Read Article">Read Article</a>
             </div>
         </article>
     </div>
