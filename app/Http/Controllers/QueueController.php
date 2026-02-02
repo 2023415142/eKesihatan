@@ -19,7 +19,7 @@ class QueueController extends Controller
         }
  
         $checkInUrl = route('queue.check-in', $appointment->check_in_token);
-        $qrImageUrl = route('patient.appointments.qr-image', $appointment);
+        $qrImageUrl = route('patient.appointments.qr-image', $appointment, false);
  
         return view('appointments.qr', [
             'appointment' => $appointment,
