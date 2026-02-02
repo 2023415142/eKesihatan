@@ -122,7 +122,7 @@
                 <h4 data-i18n="Healthy Campus Habits">Healthy Campus Habits</h4>
                 <p data-i18n="Simple routines to boost energy, focus, and immunity.">Simple routines to boost energy, focus, and immunity.</p>
                 <span class="article-meta" data-i18n="Clinic Bulletin">Clinic Bulletin</span>
-                <a class="card-link" href="#" data-i18n="Read Article">Read Article</a>
+                <a class="card-link" href="https://blog.ohiohealth.com/college-101-getting-enough-sleep/" target="_blank" rel="noopener noreferrer" data-i18n="Read Article">Read Article</a>
             </div>
         </article>
         <article class="article-card">
