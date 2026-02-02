@@ -12,7 +12,6 @@
     <img src="{{ $qrImageData ?? $qrImageUrl }}" alt="QR code for check-in" width="220" height="220">
 </div>
 
-<p>Alternatively, open this URL on the counter device:</p>
 <p>Alternatively, open this URL:</p>
 <p><a href="{{ $checkInUrl }}">{{ $checkInUrl }}</a></p>
 @endsection
