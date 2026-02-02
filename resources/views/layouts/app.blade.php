@@ -19,18 +19,20 @@
             <span class="brand-subtitle" data-i18n="Unit Kesihatan UiTM Perlis">Unit Kesihatan UiTM Perlis</span>
         </div>
         <div class="header-actions">
-            <div class="language-controls" role="group" aria-label="Language">
-                <label class="font-label" for="language-select" data-i18n="Language">Language</label>
-                <select id="language-select">
-                    <option value="en">English</option>
-                    <option value="ms">Bahasa Melayu</option>
-                </select>
-            </div>
-            <div class="font-controls" role="group" aria-label="Font size">
-                <span class="font-label" data-i18n="Font size">Font size</span>
-                <button type="button" data-font-size="14">A-</button>
-                <button type="button" data-font-size="16" class="active">A</button>
-                <button type="button" data-font-size="18">A+</button>
+            <div class="header-controls">
+                <div class="font-controls" role="group" aria-label="Font size">
+                    <span class="font-label" data-i18n="Font size">Font size</span>
+                    <button type="button" data-font-size="14">A-</button>
+                    <button type="button" data-font-size="16" class="active">A</button>
+                    <button type="button" data-font-size="18">A+</button>
+                </div>
+                <div class="language-controls" role="group" aria-label="Language">
+                    <label class="font-label" for="language-select" data-i18n="Language">Language</label>
+                    <select id="language-select">
+                        <option value="en">English</option>
+                        <option value="ms">Bahasa Melayu</option>
+                    </select>
+                </div>
             </div>
             <nav class="top-nav">
                 @guest
@@ -44,7 +46,7 @@
  
     <div class="app-shell">
         @auth
-            @unless (request()->routeIs('landing'))
+            @unless (request()->routeIs('landing', 'login', 'register'))
             <aside class="sidebar">
                 <div class="sidebar-title" data-i18n="Navigation">Navigation</div>
                 <nav class="sidebar-nav">

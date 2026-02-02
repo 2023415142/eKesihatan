@@ -80,6 +80,13 @@ header {
     align-items: center;
 }
  
+.header-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+}
+
 .top-nav,
 .sidebar-nav {
     display: flex;
