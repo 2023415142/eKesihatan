@@ -23,6 +23,31 @@
             <label for="student_id" data-i18n="Student ID">Student ID</label>
             <input id="student_id" name="student_id" type="text" value="{{ old('student_id', $user->student_id) }}">
         </div>
+        <div>
+            <label for="blood_type" data-i18n="Blood Type">Blood Type</label>
+            <select id="blood_type" name="blood_type">
+                <option value="" data-i18n="Select Blood Type">Select Blood Type</option>
+                @foreach (['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'] as $type)
+                    <option value="{{ $type }}" @selected(old('blood_type', $user->blood_type) === $type)>{{ $type }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div>
+            <label for="emergency_contact_name" data-i18n="Emergency Contact Name">Emergency Contact Name</label>
+            <input id="emergency_contact_name" name="emergency_contact_name" type="text" value="{{ old('emergency_contact_name', $user->emergency_contact_name) }}">
+        </div>
+        <div>
+            <label for="emergency_contact_phone" data-i18n="Emergency Contact Phone">Emergency Contact Phone</label>
+            <input id="emergency_contact_phone" name="emergency_contact_phone" type="text" value="{{ old('emergency_contact_phone', $user->emergency_contact_phone) }}">
+        </div>
+        <div>
+            <label for="emergency_contact_relationship" data-i18n="Emergency Contact Relationship">Emergency Contact Relationship</label>
+            <input id="emergency_contact_relationship" name="emergency_contact_relationship" type="text" value="{{ old('emergency_contact_relationship', $user->emergency_contact_relationship) }}">
+        </div>
+        <div>
+            <label for="allergies" data-i18n="Allergies or Medical Notes">Allergies or Medical Notes</label>
+            <textarea id="allergies" name="allergies" rows="3">{{ old('allergies', $user->allergies) }}</textarea>
+        </div>
     @endif
     @if (!$user->isPatient())
         <div>

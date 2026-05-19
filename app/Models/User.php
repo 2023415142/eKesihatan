@@ -18,7 +18,19 @@ class User extends Authenticatable
     public const ROLE_PATIENT = 'patient';
  
     protected $fillable = [
-        'name','email','password','role','student_id','staff_id','phone_number','specialization',
+        'name',
+        'email',
+        'password',
+        'role',
+        'student_id',
+        'blood_type',
+        'emergency_contact_name',
+        'emergency_contact_phone',
+        'emergency_contact_relationship',
+        'allergies',
+        'staff_id',
+        'phone_number',
+        'specialization',
     ];
  
     protected $hidden = ['password','remember_token'];

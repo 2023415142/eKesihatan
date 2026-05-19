@@ -71,6 +71,10 @@
                             <span class="icon" aria-hidden="true">📋</span>
                             <span data-i18n="Appointments">Appointments</span>
                         </a>
+                        <a href="{{ route('staff.patients.index') }}">
+                            <span class="icon" aria-hidden="true">🧑‍🦽</span>
+                            <span data-i18n="Patient Directory">Patient Directory</span>
+                        </a>
                     @elseif (auth()->user()->isDoctor())
                         <a href="{{ route('dashboard') }}">
                             <span class="icon" aria-hidden="true">🏠</span>
@@ -79,6 +83,10 @@
                         <a href="{{ route('doctor.appointments.index') }}">
                             <span class="icon" aria-hidden="true">📅</span>
                             <span data-i18n="Daily Appointments">Daily Appointments</span>
+                        </a>
+                        <a href="{{ route('staff.patients.index') }}">
+                            <span class="icon" aria-hidden="true">🧑‍🦽</span>
+                            <span data-i18n="Patient Directory">Patient Directory</span>
                         </a>
                     @else
                         <a href="{{ route('dashboard') }}">
@@ -168,6 +176,8 @@
                     'Home': 'Laman Utama',
                     'Login': 'Log Masuk',
                     'Register': 'Daftar',
+                    'Role': 'Peranan',
+                    'Admin': 'Admin',
                     'Navigation': 'Navigasi',
                     'Admin Dashboard': 'Papan Pemuka Admin',
                     'Doctor Dashboard': 'Papan Pemuka Doktor',
@@ -189,6 +199,20 @@
                     'Create Doctor': 'Cipta Doktor',
                     'Update Doctor': 'Kemas Kini Doktor',
                     'No doctors added.': 'Tiada doktor ditambah.',
+                    'Patient Directory': 'Direktori Pesakit',
+                    'View patient demographic and emergency details.': 'Lihat butiran demografi dan kecemasan pesakit.',
+                    'View Details': 'Lihat Butiran',
+                    'Patient Details': 'Butiran Pesakit',
+                    'Emergency information for clinical use.': 'Maklumat kecemasan untuk kegunaan klinikal.',
+                    'Back to directory': 'Kembali ke direktori',
+                    'No patients found.': 'Tiada pesakit ditemui.',
+                    'Emergency Contact': 'Kontak Kecemasan',
+                    'Emergency Contact Name': 'Nama Kontak Kecemasan',
+                    'Emergency Contact Phone': 'Telefon Kontak Kecemasan',
+                    'Emergency Contact Relationship': 'Hubungan Kontak Kecemasan',
+                    'Blood Type': 'Jenis Darah',
+                    'Select Blood Type': 'Pilih Jenis Darah',
+                    'Allergies or Medical Notes': 'Alergi atau Nota Perubatan',
                     'Temporary Password': 'Kata Laluan Sementara',
                     'Phone': 'Telefon',
                     'Specialization': 'Kepakaran',
@@ -208,9 +232,13 @@
                     'Book New Appointment': 'Tempah Temu Janji Baharu',
                     'My Appointments': 'Temu Janji Saya',
                     'Upcoming Appointments': 'Temu Janji Akan Datang',
+                    'Next Appointment': 'Temu Janji Seterusnya',
+                    'Assigned Doctor': 'Doktor Ditugaskan',
+                    'Appointment Calendar': 'Kalendar Temu Janji',
                     'Manage your appointments and health services.': 'Urus temu janji dan perkhidmatan kesihatan anda.',
                     'View Health Services': 'Lihat Perkhidmatan Kesihatan',
                     'Today\'s appointments for': 'Temu janji hari ini untuk',
+                    'Today': 'Hari Ini',
                     'Manage services, doctors, appointment slots, and approvals.': 'Urus perkhidmatan, doktor, slot temu janji dan kelulusan.',
                     'Pending Appointments:': 'Temu Janji Menunggu:',
                     'Today\'s Appointments:': 'Temu Janji Hari Ini:',
@@ -222,7 +250,10 @@
                     'Manage Appointment Slots': 'Urus Slot Temu Janji',
                     'Manage Appointments': 'Urus Temu Janji',
                     'View Daily Appointments': 'Lihat Temu Janji Harian',
+                    'Daily Schedule': 'Jadual Harian',
                     'No appointments scheduled.': 'Tiada temu janji dijadualkan.',
+                    'Completed': 'Selesai',
+                    'No-show': 'Tidak hadir',
                     'Patient History': 'Sejarah Pesakit',
                     'No appointment history.': 'Tiada sejarah temu janji.',
                     'Select Date': 'Pilih Tarikh',

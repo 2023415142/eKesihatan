@@ -67,18 +67,33 @@ class DatabaseSeeder extends Seeder
                 'email' => 'patient@ekesihatan.test',
                 'student_id' => 'STU-12345',
                 'phone_number' => '0123456791',
+                'blood_type' => 'O+',
+                'emergency_contact_name' => 'Ahmad Example',
+                'emergency_contact_phone' => '019-555 0101',
+                'emergency_contact_relationship' => 'Father',
+                'allergies' => 'No known allergies.',
             ],
             [
                 'name' => 'Nurul Safiah',
                 'email' => 'nurul@ekesihatan.com',
                 'student_id' => 'STU-56789',
                 'phone_number' => '0123456792',
+                'blood_type' => 'A-',
+                'emergency_contact_name' => 'Siti Zulaikha',
+                'emergency_contact_phone' => '019-555 0102',
+                'emergency_contact_relationship' => 'Mother',
+                'allergies' => 'Penicillin sensitivity.',
             ],
             [
                 'name' => 'Amir Nazri',
                 'email' => 'amir@ekesihatan.com',
                 'student_id' => 'STU-24680',
                 'phone_number' => '0123456793',
+                'blood_type' => 'B+',
+                'emergency_contact_name' => 'Noraini Nazri',
+                'emergency_contact_phone' => '019-555 0103',
+                'emergency_contact_relationship' => 'Sibling',
+                'allergies' => 'Asthma; avoid smoke exposure.',
             ],
         ])->map(function (array $patient) {
             return User::create([
@@ -88,6 +103,11 @@ class DatabaseSeeder extends Seeder
                 'role' => User::ROLE_PATIENT,
                 'phone_number' => $patient['phone_number'],
                 'student_id' => $patient['student_id'],
+                'blood_type' => $patient['blood_type'],
+                'emergency_contact_name' => $patient['emergency_contact_name'],
+                'emergency_contact_phone' => $patient['emergency_contact_phone'],
+                'emergency_contact_relationship' => $patient['emergency_contact_relationship'],
+                'allergies' => $patient['allergies'],
             ]);
         });
 

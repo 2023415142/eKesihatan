@@ -17,6 +17,7 @@ use App\Http\Controllers\Doctor\PatientHistoryController;
 use App\Http\Controllers\Patient\AppointmentController as PatientAppointmentController;
 use App\Http\Controllers\Patient\BmiController;
 use App\Http\Controllers\Patient\ServiceController as PatientServiceController;
+use App\Http\Controllers\Staff\PatientController as StaffPatientController;
  
 Route::get('/', [LandingController::class, 'index'])->name('landing');
  
@@ -54,6 +55,11 @@ Route::middleware(['auth', 'role:doctor'])->prefix('doctor')->name('doctor.')->g
     Route::post('appointments/{appointment}/documents', [MedicalDocumentController::class, 'store'])->name('documents.store');
     Route::get('documents/{document}', [MedicalDocumentController::class, 'show'])->name('documents.show');
     Route::get('patients/{patient}/history', [PatientHistoryController::class, 'show'])->name('patients.history');
+});
+
+Route::middleware(['auth', 'role:admin,doctor'])->prefix('staff')->name('staff.')->group(function () {
+    Route::get('patients', [StaffPatientController::class, 'index'])->name('patients.index');
+    Route::get('patients/{patient}', [StaffPatientController::class, 'show'])->name('patients.show');
 });
  
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
