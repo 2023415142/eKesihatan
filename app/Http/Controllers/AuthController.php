@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
  
 class AuthController extends Controller
 {
@@ -19,9 +20,18 @@ class AuthController extends Controller
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
+            'role' => ['required', Rule::in([User::ROLE_ADMIN, User::ROLE_DOCTOR, User::ROLE_PATIENT])],
         ]);
  
+        $role = $credentials['role'];
+        unset($credentials['role']);
+
         $user = User::where('email', $credentials['email'])->first();
+        if (!$user || $user->role !== $role) {
+            return back()->withErrors([
+                'email' => 'The provided credentials do not match our records.',
+            ])->withInput();
+        }
         if ($user && !$this->isBcryptHash($user->password)) {
             // Migrate legacy/plain passwords to bcrypt to avoid login errors.
             if ($this->matchesLegacyPassword($user->password, $credentials['password'])) {
