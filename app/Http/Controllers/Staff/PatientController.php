@@ -10,10 +10,23 @@ class PatientController extends Controller
 {
     public function index(Request $request)
     {
+        $query = trim((string) $request->input('q', ''));
+
+        $patientsQuery = User::where('role', User::ROLE_PATIENT);
+
+        if ($query !== '') {
+            $patientsQuery->where(function ($builder) use ($query) {
+                $builder
+                    ->where('name', 'like', '%' . $query . '%')
+                    ->orWhere('student_id', 'like', '%' . $query . '%');
+            });
+        }
+
         return view('staff.patients.index', [
-            'patients' => User::where('role', User::ROLE_PATIENT)
+            'patients' => $patientsQuery
                 ->orderBy('name')
                 ->get(),
+            'query' => $query,
         ]);
     }
 

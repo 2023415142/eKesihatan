@@ -8,6 +8,20 @@
     </div>
 </div>
 
+<details class="filter-panel" @if (!empty($query)) open @endif>
+    <summary data-i18n="Search patients">Search patients</summary>
+    <form method="GET" action="{{ route('staff.patients.index') }}">
+        <div>
+            <label for="patient-search" data-i18n="Search by name or student ID">Search by name or student ID</label>
+            <input id="patient-search" name="q" type="text" value="{{ $query }}" placeholder="STU-12345">
+        </div>
+        <div class="quick-actions">
+            <button type="submit" class="button-link" data-i18n="Search">Search</button>
+            <a class="button-link secondary" href="{{ route('staff.patients.index') }}" data-i18n="Reset">Reset</a>
+        </div>
+    </form>
+</details>
+
 <section class="card-grid">
     @forelse ($patients as $patient)
         <article class="info-card">

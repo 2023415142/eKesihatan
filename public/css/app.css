@@ -362,6 +362,25 @@ header {
     gap: 0.75rem;
 }
 
+.filter-panel {
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: var(--color-surface);
+    margin-bottom: 1.5rem;
+}
+
+.filter-panel summary {
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.filter-panel form {
+    margin-top: 0.75rem;
+    display: grid;
+    gap: 0.75rem;
+}
+
 section {
     background: var(--color-surface);
     border: 1px solid var(--color-border);
