@@ -1,30 +1,53 @@
 @extends('layouts.app')
 
 @section('content')
-<h2>Doctor Dashboard</h2>
+<div class="page-header">
+    <div>
+        <h2 data-i18n="Doctor Dashboard">Doctor Dashboard</h2>
+        <p data-i18n="Today's appointments for">Today's appointments for</p>
+        <strong>{{ now()->format('d M Y') }}</strong>
+    </div>
+    <a class="button-link secondary" href="{{ route('staff.patients.index') }}" data-i18n="Patient Directory">Patient Directory</a>
+</div>
+
+@php
+    $completedCount = $appointments->where('status', 'completed')->count();
+    $noShowCount = $appointments->where('status', 'no-show')->count();
+@endphp
+
+<div class="stat-grid">
+    <div class="stat-card">
+        <span data-i18n="Today's Appointments:">Today's Appointments:</span>
+        <strong>{{ $appointments->count() }}</strong>
+    </div>
+    <div class="stat-card">
+        <span data-i18n="Completed">Completed</span>
+        <strong>{{ $completedCount }}</strong>
+    </div>
+    <div class="stat-card">
+        <span data-i18n="No-show">No-show</span>
+        <strong>{{ $noShowCount }}</strong>
+    </div>
+</div>
+
 <section>
-    <h3>Today's Appointments ({{ now()->format('d M Y') }})</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>Time</th>
-                <th>Patient</th>
-                <th>Service</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
+    <h3 data-i18n="Daily Schedule">Daily Schedule</h3>
+    <div class="calendar-grid">
+        <div class="calendar-day">
+            <h4>{{ now()->format('D, d M') }}</h4>
             @forelse ($appointments as $appointment)
-                <tr>
-                    <td>{{ $appointment->scheduled_at->format('h:i A') }}</td>
-                    <td>{{ $appointment->patient->name }}</td>
-                    <td>{{ $appointment->service?->name ?? 'General' }}</td>
-                    <td>{{ ucfirst($appointment->status) }}</td>
-                </tr>
+                <div class="calendar-event">
+                    <strong>{{ $appointment->scheduled_at->format('h:i A') }}</strong>
+                    <div>{{ $appointment->patient->name }}</div>
+                    <div>{{ $appointment->service?->name ?? 'General' }}</div>
+                    <span class="status-chip {{ $appointment->status === 'completed' ? 'success' : ($appointment->status === 'no-show' ? 'danger' : 'warning') }}">
+                        {{ ucfirst($appointment->status) }}
+                    </span>
+                </div>
             @empty
-                <tr><td colspan="4">No appointments scheduled.</td></tr>
+                <p data-i18n="No appointments scheduled.">No appointments scheduled.</p>
             @endforelse
-        </tbody>
-    </table>
+        </div>
+    </div>
 </section>
 @endsection
