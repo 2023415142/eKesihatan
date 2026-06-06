@@ -14,28 +14,23 @@
         </select>
     </div>
     <div>
-        <label for="doctor_id">Doctor</label>
-        <select id="doctor_id" name="doctor_id" required>
+        <label for="doctor_id" data-i18n="Preferred Doctor (optional)">Preferred Doctor (optional)</label>
+        <select id="doctor_id" name="doctor_id">
+            <option value="" data-i18n="Any available doctor">Any available doctor</option>
             @foreach ($doctors as $doctor)
                 <option value="{{ $doctor->id }}">{{ $doctor->name }} ({{ $doctor->specialization ?? 'General' }})</option>
             @endforeach
         </select>
     </div>
     <div>
-        <label for="appointment_slot_id">Appointment Slot</label>
-        <select id="appointment_slot_id" name="appointment_slot_id" required>
-            @foreach ($slots as $slot)
-                <option value="{{ $slot->id }}">
-                    {{ $slot->slot_date->format('d M Y') }} {{ $slot->start_time }} - {{ $slot->end_time }}
-                    (Dr. {{ $slot->doctor->name }})
-                </option>
-            @endforeach
-        </select>
+        <label for="preferred_date" data-i18n="Preferred Date">Preferred Date</label>
+        <input id="preferred_date" name="preferred_date" type="date" min="{{ now()->toDateString() }}" value="{{ old('preferred_date') }}" required>
     </div>
     <div>
         <label for="notes">Notes (optional)</label>
         <textarea id="notes" name="notes" rows="3">{{ old('notes') }}</textarea>
     </div>
+    <p><strong data-i18n="Auto-assignment:">Auto-assignment:</strong> <span data-i18n="The system will pick the earliest available slot on or after your preferred date while balancing doctor workload.">The system will pick the earliest available slot on or after your preferred date while balancing doctor workload.</span></p>
     <button type="submit">Submit Booking</button>
 </form>
 
