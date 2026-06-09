@@ -50,7 +50,8 @@ class AppointmentScheduler
                 continue;
             }
 
-            if ($service->duration_minutes && $end->diffInMinutes($start) < $service->duration_minutes) {
+            $slotDuration = $start->diffInMinutes($end);
+            if ($service->duration_minutes && $slotDuration < $service->duration_minutes) {
                 continue;
             }
 
