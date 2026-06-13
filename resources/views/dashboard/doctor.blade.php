@@ -30,6 +30,23 @@
     </div>
 </div>
 
+<section class="info-panel">
+    <div class="info-panel__grid">
+        <div>
+            <strong data-i18n="Clinic Focus">Clinic Focus</strong>
+            <p data-i18n="Verify student or staff IDs before each consultation.">Verify student or staff IDs before each consultation.</p>
+        </div>
+        <div>
+            <strong data-i18n="Documentation">Documentation</strong>
+            <p data-i18n="Upload medical certificates and notes after each visit.">Upload medical certificates and notes after each visit.</p>
+        </div>
+        <div>
+            <strong data-i18n="Queue Management">Queue Management</strong>
+            <p data-i18n="Mark no-shows promptly to keep queues accurate.">Mark no-shows promptly to keep queues accurate.</p>
+        </div>
+    </div>
+</section>
+
 <section>
     <h3 data-i18n="Daily Schedule">Daily Schedule</h3>
     <div class="calendar-grid">

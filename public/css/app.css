@@ -230,6 +230,27 @@ header {
     color: var(--color-muted);
 }
 
+.page-header .subtitle {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-accent);
+}
+
+.section-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.section-header p {
+    margin: 0.25rem 0 0;
+    color: var(--color-muted);
+}
+
 .stat-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -360,6 +381,78 @@ header {
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
+}
+
+.calendar-board {
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+    background: var(--color-surface);
+    overflow: auto;
+}
+
+.calendar-board__row {
+    display: grid;
+    grid-template-columns: 220px repeat(7, minmax(140px, 1fr));
+    border-bottom: 1px solid var(--color-border);
+}
+
+.calendar-board__row:last-child {
+    border-bottom: none;
+}
+
+.calendar-board__header {
+    background: #f8fafc;
+    font-weight: 600;
+}
+
+.calendar-board__doctor {
+    padding: 0.75rem 1rem;
+    border-right: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    font-size: 0.9rem;
+}
+
+.calendar-board__doctor span {
+    color: var(--color-muted);
+    font-size: 0.8rem;
+}
+
+.calendar-board__cell {
+    padding: 0.75rem;
+    border-right: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    min-height: 90px;
+}
+
+.calendar-board__cell:last-child {
+    border-right: none;
+}
+
+.calendar-board__weekday {
+    font-size: 0.75rem;
+    color: var(--color-muted);
+    text-transform: uppercase;
+}
+
+.calendar-board__date {
+    font-size: 0.9rem;
+}
+
+.calendar-board__times {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    font-size: 0.8rem;
+    color: var(--color-muted);
+}
+
+.calendar-board__note {
+    font-size: 0.75rem;
+    color: var(--color-warning);
 }
 
 .filter-panel {

@@ -28,6 +28,23 @@
     </div>
 </div>
 
+<section class="info-panel">
+    <div class="info-panel__grid">
+        <div>
+            <strong data-i18n="Campus Health Reminder">Campus Health Reminder</strong>
+            <p data-i18n="Bring your student or staff ID for verification at the clinic.">Bring your student or staff ID for verification at the clinic.</p>
+        </div>
+        <div>
+            <strong data-i18n="Arrival Guidance">Arrival Guidance</strong>
+            <p data-i18n="Arrive 10 minutes early to complete check-in and QR scan.">Arrive 10 minutes early to complete check-in and QR scan.</p>
+        </div>
+        <div>
+            <strong data-i18n="Wellness Tip">Wellness Tip</strong>
+            <p data-i18n="Stay hydrated and rest well during exam periods.">Stay hydrated and rest well during exam periods.</p>
+        </div>
+    </div>
+</section>
+
 <section>
     <h3 data-i18n="Upcoming Appointments">Upcoming Appointments</h3>
     <div class="card-grid">
