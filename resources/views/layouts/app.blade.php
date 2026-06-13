@@ -50,67 +50,69 @@
             <aside class="sidebar">
                 <div class="sidebar-title" data-i18n="Navigation">Navigation</div>
                 <nav class="sidebar-nav">
-                    @if (auth()->user()->isAdmin())
-                        <a href="{{ route('dashboard') }}">
-                            <span class="icon" aria-hidden="true">🏠</span>
-                            <span data-i18n="Admin Dashboard">Admin Dashboard</span>
+                    <div class="sidebar-menu">
+                        @if (auth()->user()->isAdmin())
+                            <a href="{{ route('dashboard') }}">
+                                <span class="icon" aria-hidden="true">🏠</span>
+                                <span data-i18n="Admin Dashboard">Admin Dashboard</span>
+                            </a>
+                            <a href="{{ route('admin.services.index') }}">
+                                <span class="icon" aria-hidden="true">🩺</span>
+                                <span data-i18n="Health Services">Health Services</span>
+                            </a>
+                            <a href="{{ route('admin.doctors.index') }}">
+                                <span class="icon" aria-hidden="true">👩‍⚕️</span>
+                                <span data-i18n="Doctors">Doctors</span>
+                            </a>
+                            <a href="{{ route('admin.slots.index') }}">
+                                <span class="icon" aria-hidden="true">🗓️</span>
+                                <span data-i18n="Appointment Slots">Appointment Slots</span>
+                            </a>
+                            <a href="{{ route('admin.appointments.index') }}">
+                                <span class="icon" aria-hidden="true">📋</span>
+                                <span data-i18n="Appointments">Appointments</span>
+                            </a>
+                            <a href="{{ route('staff.patients.index') }}">
+                                <span class="icon" aria-hidden="true">🧑‍🦽</span>
+                                <span data-i18n="Patient Directory">Patient Directory</span>
+                            </a>
+                        @elseif (auth()->user()->isDoctor())
+                            <a href="{{ route('dashboard') }}">
+                                <span class="icon" aria-hidden="true">🏠</span>
+                                <span data-i18n="Doctor Dashboard">Doctor Dashboard</span>
+                            </a>
+                            <a href="{{ route('doctor.appointments.index') }}">
+                                <span class="icon" aria-hidden="true">📅</span>
+                                <span data-i18n="Daily Appointments">Daily Appointments</span>
+                            </a>
+                            <a href="{{ route('staff.patients.index') }}">
+                                <span class="icon" aria-hidden="true">🧑‍🦽</span>
+                                <span data-i18n="Patient Directory">Patient Directory</span>
+                            </a>
+                        @else
+                            <a href="{{ route('dashboard') }}">
+                                <span class="icon" aria-hidden="true">🏠</span>
+                                <span data-i18n="Patient Dashboard">Patient Dashboard</span>
+                            </a>
+                            <a href="{{ route('patient.services.index') }}">
+                                <span class="icon" aria-hidden="true">🧾</span>
+                                <span data-i18n="Health Services">Health Services</span>
+                            </a>
+                            <a href="{{ route('patient.appointments.create') }}">
+                                <span class="icon" aria-hidden="true">➕</span>
+                                <span data-i18n="Book Appointment">Book Appointment</span>
+                            </a>
+                            <a href="{{ route('patient.appointments.index') }}">
+                                <span class="icon" aria-hidden="true">📋</span>
+                                <span data-i18n="My Appointments">My Appointments</span>
+                            </a>
+                        @endif
+
+                        <a href="{{ route('profile.edit') }}">
+                            <span class="icon" aria-hidden="true">👤</span>
+                            <span data-i18n="Profile">Profile</span>
                         </a>
-                        <a href="{{ route('admin.services.index') }}">
-                            <span class="icon" aria-hidden="true">🩺</span>
-                            <span data-i18n="Health Services">Health Services</span>
-                        </a>
-                        <a href="{{ route('admin.doctors.index') }}">
-                            <span class="icon" aria-hidden="true">👩‍⚕️</span>
-                            <span data-i18n="Doctors">Doctors</span>
-                        </a>
-                        <a href="{{ route('admin.slots.index') }}">
-                            <span class="icon" aria-hidden="true">🗓️</span>
-                            <span data-i18n="Appointment Slots">Appointment Slots</span>
-                        </a>
-                        <a href="{{ route('admin.appointments.index') }}">
-                            <span class="icon" aria-hidden="true">📋</span>
-                            <span data-i18n="Appointments">Appointments</span>
-                        </a>
-                        <a href="{{ route('staff.patients.index') }}">
-                            <span class="icon" aria-hidden="true">🧑‍🦽</span>
-                            <span data-i18n="Patient Directory">Patient Directory</span>
-                        </a>
-                    @elseif (auth()->user()->isDoctor())
-                        <a href="{{ route('dashboard') }}">
-                            <span class="icon" aria-hidden="true">🏠</span>
-                            <span data-i18n="Doctor Dashboard">Doctor Dashboard</span>
-                        </a>
-                        <a href="{{ route('doctor.appointments.index') }}">
-                            <span class="icon" aria-hidden="true">📅</span>
-                            <span data-i18n="Daily Appointments">Daily Appointments</span>
-                        </a>
-                        <a href="{{ route('staff.patients.index') }}">
-                            <span class="icon" aria-hidden="true">🧑‍🦽</span>
-                            <span data-i18n="Patient Directory">Patient Directory</span>
-                        </a>
-                    @else
-                        <a href="{{ route('dashboard') }}">
-                            <span class="icon" aria-hidden="true">🏠</span>
-                            <span data-i18n="Patient Dashboard">Patient Dashboard</span>
-                        </a>
-                        <a href="{{ route('patient.services.index') }}">
-                            <span class="icon" aria-hidden="true">🧾</span>
-                            <span data-i18n="Health Services">Health Services</span>
-                        </a>
-                        <a href="{{ route('patient.appointments.create') }}">
-                            <span class="icon" aria-hidden="true">➕</span>
-                            <span data-i18n="Book Appointment">Book Appointment</span>
-                        </a>
-                        <a href="{{ route('patient.appointments.index') }}">
-                            <span class="icon" aria-hidden="true">📋</span>
-                            <span data-i18n="My Appointments">My Appointments</span>
-                        </a>
-                    @endif
- 
-                    <a href="{{ route('profile.edit') }}">
-                        <span class="icon" aria-hidden="true">👤</span>
-                        <span data-i18n="Profile">Profile</span>
-                    </a>
+                    </div>
                     <form action="{{ route('logout') }}" method="POST" class="sidebar-logout">
                         @csrf
                         <button type="submit">
