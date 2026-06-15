@@ -15,36 +15,57 @@
     $noShowCount = $appointments->where('status', 'no-show')->count();
 @endphp
 
-<div class="stat-grid">
-    <div class="stat-card">
-        <span data-i18n="Today's Appointments:">Today's Appointments:</span>
-        <strong>{{ $appointments->count() }}</strong>
-    </div>
-    <div class="stat-card">
-        <span data-i18n="Completed">Completed</span>
-        <strong>{{ $completedCount }}</strong>
-    </div>
-    <div class="stat-card">
-        <span data-i18n="No-show">No-show</span>
-        <strong>{{ $noShowCount }}</strong>
-    </div>
-</div>
+<section class="dashboard-grid">
+    <article class="profile-card">
+        <div class="profile-avatar" aria-hidden="true">{{ $profileInitials ?: 'DR' }}</div>
+        <h3>{{ auth()->user()->name }}</h3>
+        <p>{{ auth()->user()->email }}</p>
+        <p>{{ auth()->user()->phone_number ?? '—' }}</p>
+        <div class="profile-meta">
+            <span data-i18n="Specialization">Specialization</span>
+            <strong>{{ auth()->user()->specialization ?? 'General' }}</strong>
+        </div>
+    </article>
 
-<section class="info-panel">
-    <div class="info-panel__grid">
-        <div>
-            <strong data-i18n="Clinic Focus">Clinic Focus</strong>
-            <p data-i18n="Verify student or staff IDs before each consultation.">Verify student or staff IDs before each consultation.</p>
+    <article class="info-card detail-card">
+        <div class="detail-card__header">
+            <h4 data-i18n="Today's Summary">Today's Summary</h4>
         </div>
-        <div>
-            <strong data-i18n="Documentation">Documentation</strong>
-            <p data-i18n="Upload medical certificates and notes after each visit.">Upload medical certificates and notes after each visit.</p>
+        <div class="detail-grid">
+            <div>
+                <span data-i18n="Today's Appointments:">Today's Appointments:</span>
+                <strong>{{ $appointments->count() }}</strong>
+            </div>
+            <div>
+                <span data-i18n="Completed">Completed</span>
+                <strong>{{ $completedCount }}</strong>
+            </div>
+            <div>
+                <span data-i18n="No-show">No-show</span>
+                <strong>{{ $noShowCount }}</strong>
+            </div>
         </div>
-        <div>
-            <strong data-i18n="Queue Management">Queue Management</strong>
-            <p data-i18n="Mark no-shows promptly to keep queues accurate.">Mark no-shows promptly to keep queues accurate.</p>
+    </article>
+
+    <article class="info-card detail-card">
+        <div class="detail-card__header">
+            <h4 data-i18n="Clinic Notes">Clinic Notes</h4>
         </div>
-    </div>
+        <div class="detail-grid">
+            <div>
+                <span data-i18n="Clinic Focus">Clinic Focus</span>
+                <strong data-i18n="Verify student or staff IDs before each consultation.">Verify student or staff IDs before each consultation.</strong>
+            </div>
+            <div>
+                <span data-i18n="Documentation">Documentation</span>
+                <strong data-i18n="Upload medical certificates and notes after each visit.">Upload medical certificates and notes after each visit.</strong>
+            </div>
+            <div>
+                <span data-i18n="Queue Management">Queue Management</span>
+                <strong data-i18n="Mark no-shows promptly to keep queues accurate.">Mark no-shows promptly to keep queues accurate.</strong>
+            </div>
+        </div>
+    </article>
 </section>
 
 <section>

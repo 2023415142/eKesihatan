@@ -10,34 +10,54 @@
     <span class="status-chip" data-i18n="Today">Today</span>
 </div>
 
-<div class="stat-grid">
-    <div class="stat-card">
-        <span data-i18n="Pending Appointments:">Pending Appointments:</span>
-        <strong>{{ $pendingAppointments }}</strong>
-    </div>
-    <div class="stat-card">
-        <span data-i18n="Today's Appointments:">Today's Appointments:</span>
-        <strong>{{ $todayAppointments }}</strong>
-    </div>
-    <div class="stat-card">
-        <span data-i18n="Active Services:">Active Services:</span>
-        <strong>{{ $servicesCount }}</strong>
-    </div>
-    <div class="stat-card">
-        <span data-i18n="Doctors:">Doctors:</span>
-        <strong>{{ $doctorsCount }}</strong>
-    </div>
-</div>
+<section class="dashboard-grid">
+    <article class="profile-card admin-profile">
+        <div class="profile-avatar" aria-hidden="true">{{ $profileInitials ?: 'UK' }}</div>
+        <h3>{{ auth()->user()->name }}</h3>
+        <p>{{ auth()->user()->email }}</p>
+        <p>{{ auth()->user()->phone_number ?? '—' }}</p>
+        <div class="profile-meta">
+            <span data-i18n="Role">Role</span>
+            <strong data-i18n="Administrator">Administrator</strong>
+        </div>
+    </article>
 
-<section>
-    <h3 data-i18n="Quick Actions">Quick Actions</h3>
-    <div class="quick-actions">
-        <a class="button-link" href="{{ route('admin.services.index') }}" data-i18n="Manage Health Services">Manage Health Services</a>
-        <a class="button-link" href="{{ route('admin.doctors.index') }}" data-i18n="Manage Doctors">Manage Doctors</a>
-        <a class="button-link" href="{{ route('admin.slots.index') }}" data-i18n="Manage Appointment Slots">Manage Appointment Slots</a>
-        <a class="button-link" href="{{ route('admin.appointments.index') }}" data-i18n="Manage Appointments">Manage Appointments</a>
-        <a class="button-link secondary" href="{{ route('staff.patients.index') }}" data-i18n="Patient Directory">Patient Directory</a>
-    </div>
+    <article class="info-card detail-card">
+        <div class="detail-card__header">
+            <h4 data-i18n="Operations Summary">Operations Summary</h4>
+        </div>
+        <div class="detail-grid">
+            <div>
+                <span data-i18n="Pending Appointments:">Pending Appointments:</span>
+                <strong>{{ $pendingAppointments }}</strong>
+            </div>
+            <div>
+                <span data-i18n="Today's Appointments:">Today's Appointments:</span>
+                <strong>{{ $todayAppointments }}</strong>
+            </div>
+            <div>
+                <span data-i18n="Active Services:">Active Services:</span>
+                <strong>{{ $servicesCount }}</strong>
+            </div>
+            <div>
+                <span data-i18n="Doctors:">Doctors:</span>
+                <strong>{{ $doctorsCount }}</strong>
+            </div>
+        </div>
+    </article>
+
+    <article class="info-card detail-card">
+        <div class="detail-card__header">
+            <h4 data-i18n="Quick Actions">Quick Actions</h4>
+        </div>
+        <div class="action-grid">
+            <a class="action-link" href="{{ route('admin.services.index') }}" data-i18n="Manage Health Services">Manage Health Services</a>
+            <a class="action-link" href="{{ route('admin.doctors.index') }}" data-i18n="Manage Doctors">Manage Doctors</a>
+            <a class="action-link" href="{{ route('admin.slots.index') }}" data-i18n="Manage Appointment Slots">Manage Appointment Slots</a>
+            <a class="action-link" href="{{ route('admin.appointments.index') }}" data-i18n="Manage Appointments">Manage Appointments</a>
+            <a class="action-link secondary" href="{{ route('staff.patients.index') }}" data-i18n="Patient Directory">Patient Directory</a>
+        </div>
+    </article>
 </section>
 
 <section>

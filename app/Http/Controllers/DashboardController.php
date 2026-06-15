@@ -16,6 +16,12 @@ class DashboardController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
+        $initials = collect(preg_split('/\s+/', trim($user->name)))
+            ->filter()
+            ->map(fn ($part) => Str::upper(Str::substr($part, 0, 1)))
+            ->implode('');
+
+        $profileInitials = Str::substr($initials, 0, 2);
  
         if ($user->isAdmin()) {
             $calendarDays = Collection::times(7, function ($index) {
@@ -44,6 +50,7 @@ class DashboardController extends Controller
                 'calendarDays' => $calendarDays,
                 'calendarDoctors' => User::where('role', User::ROLE_DOCTOR)->orderBy('name')->get(),
                 'slotMap' => $slotMap,
+                'profileInitials' => $profileInitials,
             ]);
         }
  
@@ -56,6 +63,7 @@ class DashboardController extends Controller
  
             return view('dashboard.doctor', [
                 'appointments' => $todayAppointments,
+                'profileInitials' => $profileInitials,
             ]);
         }
  
@@ -79,16 +87,9 @@ class DashboardController extends Controller
             ->limit(6)
             ->get();
 
-        $initials = collect(preg_split('/\s+/', trim($user->name)))
-            ->filter()
-            ->map(fn ($part) => Str::upper(Str::substr($part, 0, 1)))
-            ->implode('');
-
-        $initials = Str::substr($initials, 0, 2);
-
         return view('dashboard.patient', [
             'patient' => $user,
-            'profileInitials' => $initials,
+            'profileInitials' => $profileInitials,
             'appointments' => $upcomingAppointments,
             'pastAppointments' => $pastAppointments,
             'documents' => $documents,
