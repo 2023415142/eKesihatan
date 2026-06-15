@@ -303,7 +303,12 @@
                     'Logout': 'Log Keluar',
                     'Welcome to eKesihatan': 'Selamat Datang ke eKesihatan',
                     'Your health visits, organized. Book appointments, receive queue numbers, and check in with a QR code before you arrive.': 'Lawatan kesihatan anda lebih teratur. Tempah temu janji, terima nombor giliran, dan imbas QR sebelum anda tiba.',
+                    'Need Help Before Your Visit?': 'Perlu bantuan sebelum lawatan anda?',
+                    'Find clinic notices, appointment booking access, and health guidance in one trusted portal.': 'Dapatkan notis klinik, akses tempahan temu janji, dan panduan kesihatan dalam satu portal yang dipercayai.',
                     'Create Patient Account': 'Daftar Akaun Pesakit',
+                    'Quick Access': 'Akses Pantas',
+                    'Clinic Support': 'Sokongan Klinik',
+                    'Digital Services': 'Perkhidmatan Digital',
                     'Live Slot Availability': 'Ketersediaan Slot Secara Langsung',
                     'See active doctors and open slots in one view.': 'Lihat doktor aktif dan slot tersedia dalam satu paparan.',
                     'Queue Number Ready': 'Nombor Giliran Sedia',
@@ -443,7 +448,8 @@
                     'QR Check-In': 'Imbasan QR',
                     'Show this QR code at the clinic to record your attendance.': 'Tunjukkan kod QR ini di klinik untuk merekod kehadiran anda.',
                     'Alternatively, open this URL on the counter device:': 'Sebagai alternatif, buka URL ini pada peranti kaunter:',
-                    'Unit Kesihatan UiTM Perlis · eKesihatan Appointment System': 'Unit Kesihatan UiTM Perlis · Sistem Temu Janji eKesihatan'
+                    'Unit Kesihatan UiTM Perlis · eKesihatan Appointment System': 'Unit Kesihatan UiTM Perlis · Sistem Temu Janji eKesihatan',
+                    'Designed for students and staff healthcare access.': 'Direka untuk akses kesihatan pelajar dan staf.'
                 }
             };
  
