@@ -900,6 +900,97 @@ section {
     font-weight: 600;
     margin-top: auto;
 }
+
+.landing-footer {
+    background: linear-gradient(145deg, #0f172a, #1e293b);
+    color: #e2e8f0;
+    border: 1px solid #1e293b;
+    border-radius: 0.9rem;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.2);
+}
+
+.landing-footer h3,
+.landing-footer h4,
+.landing-footer p {
+    margin: 0;
+}
+
+.landing-footer__top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.landing-footer__brand {
+    max-width: 640px;
+    display: grid;
+    gap: 0.5rem;
+}
+
+.landing-footer__brand p {
+    color: #cbd5e1;
+}
+
+.landing-footer__cta {
+    border-color: rgba(148, 163, 184, 0.45);
+    background: rgba(15, 23, 42, 0.5);
+    color: #e2e8f0;
+}
+
+.landing-footer__cta:hover {
+    background: rgba(30, 41, 59, 0.95);
+    color: #ffffff;
+}
+
+.landing-footer__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+.landing-footer__column {
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    border-radius: 0.75rem;
+    background: rgba(15, 23, 42, 0.45);
+    padding: 0.95rem;
+}
+
+.landing-footer__column h4 {
+    margin-bottom: 0.6rem;
+    color: #f8fafc;
+}
+
+.landing-footer__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.45rem;
+    color: #cbd5e1;
+    font-size: 0.95rem;
+}
+
+.landing-footer__list a {
+    color: #bfdbfe;
+    font-weight: 600;
+}
+
+.landing-footer__list a:hover {
+    color: #dbeafe;
+}
+
+.landing-footer__bottom {
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(148, 163, 184, 0.25);
+    display: grid;
+    gap: 0.25rem;
+    font-size: 0.9rem;
+    color: #cbd5e1;
+}
  
 .sr-only {
     position: absolute;

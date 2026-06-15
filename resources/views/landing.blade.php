@@ -160,6 +160,58 @@
         </article>
     </div>
 </section>
+
+<section class="landing-footer" aria-labelledby="landing-footer-title">
+    <div class="landing-footer__top">
+        <div class="landing-footer__brand">
+            <h3 id="landing-footer-title" data-i18n="Need Help Before Your Visit?">Need Help Before Your Visit?</h3>
+            <p data-i18n="Find clinic notices, appointment booking access, and health guidance in one trusted portal.">
+                Find clinic notices, appointment booking access, and health guidance in one trusted portal.
+            </p>
+        </div>
+        <a class="button-link secondary landing-footer__cta" href="{{ route('register') }}" data-i18n="Create Patient Account">
+            Create Patient Account
+        </a>
+    </div>
+
+    <div class="landing-footer__grid">
+        <article class="landing-footer__column">
+            <h4 data-i18n="Quick Access">Quick Access</h4>
+            <ul class="landing-footer__list">
+                <li><a href="{{ route('landing') }}" data-i18n="Home">Home</a></li>
+                <li><a href="{{ route('login') }}" data-i18n="Login">Login</a></li>
+                <li><a href="{{ route('register') }}" data-i18n="Register">Register</a></li>
+            </ul>
+        </article>
+        <article class="landing-footer__column">
+            <h4 data-i18n="Clinic Support">Clinic Support</h4>
+            <ul class="landing-footer__list">
+                <li data-i18n="Operating Hours">Operating Hours</li>
+                <li data-i18n="Monday to Thursday 8:00 AM to 5:00 PM. Friday 8:00 AM to 12:00 PM.">
+                    Monday to Thursday 8:00 AM to 5:00 PM. Friday 8:00 AM to 12:00 PM.
+                </li>
+                <li data-i18n="Please bring your student or staff ID for verification at the counter.">
+                    Please bring your student or staff ID for verification at the counter.
+                </li>
+            </ul>
+        </article>
+        <article class="landing-footer__column">
+            <h4 data-i18n="Digital Services">Digital Services</h4>
+            <ul class="landing-footer__list">
+                <li data-i18n="Book Appointment">Book Appointment</li>
+                <li data-i18n="Queue Number Ready">Queue Number Ready</li>
+                <li data-i18n="QR Attendance">QR Attendance</li>
+            </ul>
+        </article>
+    </div>
+
+    <div class="landing-footer__bottom">
+        <p data-i18n="Unit Kesihatan UiTM Perlis · eKesihatan Appointment System">
+            Unit Kesihatan UiTM Perlis · eKesihatan Appointment System
+        </p>
+        <p data-i18n="Designed for students and staff healthcare access.">Designed for students and staff healthcare access.</p>
+    </div>
+</section>
  
 <script>
     (function () {
