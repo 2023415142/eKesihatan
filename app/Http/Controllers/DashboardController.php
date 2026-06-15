@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Appointment;
 use App\Models\AppointmentSlot;
 use App\Models\HealthService;
+use App\Models\MedicalDocument;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
  
 class DashboardController extends Controller
 {
@@ -63,8 +65,33 @@ class DashboardController extends Controller
             ->orderBy('scheduled_at')
             ->get();
  
+        $pastAppointments = Appointment::with(['doctor', 'service'])
+            ->where('patient_id', $user->id)
+            ->where('scheduled_at', '<', now())
+            ->orderByDesc('scheduled_at')
+            ->limit(6)
+            ->get();
+
+        $documents = MedicalDocument::whereHas('appointment', function ($query) use ($user) {
+            $query->where('patient_id', $user->id);
+        })
+            ->orderByDesc('uploaded_at')
+            ->limit(6)
+            ->get();
+
+        $initials = collect(preg_split('/\s+/', trim($user->name)))
+            ->filter()
+            ->map(fn ($part) => Str::upper(Str::substr($part, 0, 1)))
+            ->implode('');
+
+        $initials = Str::substr($initials, 0, 2);
+
         return view('dashboard.patient', [
+            'patient' => $user,
+            'profileInitials' => $initials,
             'appointments' => $upcomingAppointments,
+            'pastAppointments' => $pastAppointments,
+            'documents' => $documents,
         ]);
     }
 }

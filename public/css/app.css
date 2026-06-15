@@ -406,6 +406,214 @@ header {
     gap: 0.75rem;
 }
 
+.patient-overview {
+    display: grid;
+    grid-template-columns: minmax(240px, 1fr) minmax(240px, 1fr) minmax(240px, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.profile-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+}
+
+.profile-avatar {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #7aa2f7, #1d4ed8);
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+}
+
+.profile-card h3 {
+    margin: 0.25rem 0;
+}
+
+.profile-card p {
+    margin: 0.15rem 0;
+    color: var(--color-muted);
+}
+
+.profile-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+}
+
+.profile-meta span {
+    color: var(--color-muted);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.detail-card {
+    padding: 1.25rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+}
+
+.detail-card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.detail-card__header h4 {
+    margin: 0;
+}
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 0.75rem;
+}
+
+.detail-grid span {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--color-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.detail-grid strong {
+    display: block;
+    margin-top: 0.2rem;
+}
+
+.patient-files {
+    grid-column: span 1;
+}
+
+.file-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.75rem;
+}
+
+.file-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.6rem 0.75rem;
+    border-radius: 0.75rem;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+}
+
+.file-list li span {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--color-muted);
+}
+
+.patient-visits {
+    margin-top: 1rem;
+}
+
+.visit-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.tab-button {
+    border: 1px solid var(--color-border);
+    background: #ffffff;
+    color: var(--color-text);
+    padding: 0.5rem 0.9rem;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+}
+
+.tab-button.active {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    background: #eef2ff;
+}
+
+.tab-count {
+    background: #e2e8f0;
+    border-radius: 999px;
+    padding: 0.15rem 0.5rem;
+    font-size: 0.75rem;
+}
+
+.tab-panel {
+    display: none;
+}
+
+.tab-panel.is-active {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.visit-card {
+    display: grid;
+    grid-template-columns: 1.2fr 1.5fr 1.5fr 1fr auto;
+    gap: 1rem;
+    align-items: center;
+    padding: 0.9rem 1rem;
+    border-radius: 0.9rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+}
+
+.visit-card span {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--color-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.visit-card strong {
+    display: block;
+    margin-top: 0.15rem;
+}
+
+.visit-date strong {
+    font-size: 1rem;
+}
+
+.visit-status {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+@media (max-width: 1100px) {
+    .patient-overview {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .visit-card {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+}
+
 .calendar-board {
     border: 1px solid var(--color-border);
     border-radius: 0.75rem;
