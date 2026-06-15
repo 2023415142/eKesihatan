@@ -176,14 +176,6 @@
 
     <div class="landing-footer__grid">
         <article class="landing-footer__column">
-            <h4 data-i18n="Quick Access">Quick Access</h4>
-            <ul class="landing-footer__list">
-                <li><a href="{{ route('landing') }}" data-i18n="Home">Home</a></li>
-                <li><a href="{{ route('login') }}" data-i18n="Login">Login</a></li>
-                <li><a href="{{ route('register') }}" data-i18n="Register">Register</a></li>
-            </ul>
-        </article>
-        <article class="landing-footer__column">
             <h4 data-i18n="Clinic Support">Clinic Support</h4>
             <ul class="landing-footer__list">
                 <li data-i18n="Operating Hours">Operating Hours</li>
@@ -192,6 +184,14 @@
                 </li>
                 <li data-i18n="Please bring your student or staff ID for verification at the counter.">
                     Please bring your student or staff ID for verification at the counter.
+                </li>
+                <li>
+                    <span data-i18n="Phone (Unit Kesihatan):">Phone (Unit Kesihatan):</span>
+                    <a href="tel:+6049881234">+60 4-988 1234</a>
+                </li>
+                <li>
+                    <span data-i18n="Email (Unit Kesihatan):">Email (Unit Kesihatan):</span>
+                    <a href="mailto:unitkesihatan@uitm.edu.my">unitkesihatan@uitm.edu.my</a>
                 </li>
             </ul>
         </article>
@@ -206,9 +206,6 @@
     </div>
 
     <div class="landing-footer__bottom">
-        <p data-i18n="Unit Kesihatan UiTM Perlis · eKesihatan Appointment System">
-            Unit Kesihatan UiTM Perlis · eKesihatan Appointment System
-        </p>
         <p data-i18n="Designed for students and staff healthcare access.">Designed for students and staff healthcare access.</p>
     </div>
 </section>

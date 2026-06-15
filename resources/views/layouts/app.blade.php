@@ -132,7 +132,7 @@
     </div>
  
     <footer>
-        <p data-i18n="Unit Kesihatan UiTM Perlis · eKesihatan Appointment System">Unit Kesihatan UiTM Perlis · eKesihatan Appointment System</p>
+        <p data-i18n="Designed for students and staff healthcare access.">Designed for students and staff healthcare access.</p>
     </footer>
  
     <script>
@@ -309,6 +309,8 @@
                     'Quick Access': 'Akses Pantas',
                     'Clinic Support': 'Sokongan Klinik',
                     'Digital Services': 'Perkhidmatan Digital',
+                    'Phone (Unit Kesihatan):': 'Telefon (Unit Kesihatan):',
+                    'Email (Unit Kesihatan):': 'E-mel (Unit Kesihatan):',
                     'Live Slot Availability': 'Ketersediaan Slot Secara Langsung',
                     'See active doctors and open slots in one view.': 'Lihat doktor aktif dan slot tersedia dalam satu paparan.',
                     'Queue Number Ready': 'Nombor Giliran Sedia',
