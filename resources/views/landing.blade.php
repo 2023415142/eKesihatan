@@ -80,68 +80,147 @@
 <section>
     <h3 data-i18n="Clinic Notices and Bulletins">Clinic Notices and Bulletins</h3>
     <div class="notice-board">
-        <article class="notice-card notice-card--program" id="program-kempen-derma-darah">
-            <h4 data-i18n="Kempen Derma Darah Perdana">Kempen Derma Darah Perdana</h4>
-            <p data-i18n="Join Unit Kesihatan UiTM Arau for a blood donation campaign and campus health engagement activities.">
-                Join Unit Kesihatan UiTM Arau for a blood donation campaign and campus health engagement activities.
-            </p>
-            <ul class="bulletin-meta">
-                <li><strong data-i18n="Date:">Date:</strong> 16 Jun 2026 (Tuesday)</li>
-                <li><strong data-i18n="Time:">Time:</strong> 10:00 AM - 5:00 PM</li>
-                <li><strong data-i18n="Location:">Location:</strong> Dewan Agung Tuanku Canselor (DATC), UiTM Shah Alam</li>
-            </ul>
-            <p data-i18n="Activities include health exhibitions, health talks, and UiTM product sales. Open to UiTM community members and public participants who meet donation requirements.">
-                Activities include health exhibitions, health talks, and UiTM product sales. Open to UiTM community members and public participants who meet donation requirements.
-            </p>
-            <div class="bulletin-actions">
-                <button
-                    type="button"
-                    class="button-link secondary"
-                    id="read-program-details-button"
-                    aria-controls="program-poster-modal"
-                    aria-expanded="false"
-                    data-i18n="Read Program Details"
-                >
-                    Read Program Details
-                </button>
-            </div>
-            <div id="program-poster-modal" class="program-poster-modal" hidden>
-                <div class="program-poster-modal__backdrop" data-poster-close="true"></div>
-                @php
-                    $programPosterPath = file_exists(public_path('images/kempen-derma-darah-poster.jpeg'))
-                        ? 'images/kempen-derma-darah-poster.jpeg'
-                        : 'images/kempen-derma-darah-poster.jpg';
-                @endphp
-                <div class="program-poster-modal__content" role="dialog" aria-modal="true" aria-labelledby="program-poster-title">
-                    <div class="program-poster-modal__header">
-                        <h5 id="program-poster-title" data-i18n="Kempen Derma Darah Poster">Kempen Derma Darah Poster</h5>
-                        <div class="program-poster-modal__actions">
-                            <a
-                                id="program-poster-open-full"
-                                class="program-poster-modal__open-full"
-                                href="{{ asset($programPosterPath) }}"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                data-i18n="Open Full Poster"
+        @if ($bulletins->isEmpty())
+            @php
+                $fallbackPosterPath = file_exists(public_path('images/kempen-derma-darah-poster.jpeg'))
+                    ? 'images/kempen-derma-darah-poster.jpeg'
+                    : 'images/kempen-derma-darah-poster.jpg';
+                $fallbackModalId = 'bulletin-poster-modal-fallback';
+            @endphp
+            <article class="notice-card notice-card--program" id="program-kempen-derma-darah">
+                <h4 data-i18n="Kempen Derma Darah Perdana">Kempen Derma Darah Perdana</h4>
+                <p data-i18n="Join Unit Kesihatan UiTM Arau for a blood donation campaign and campus health engagement activities.">
+                    Join Unit Kesihatan UiTM Arau for a blood donation campaign and campus health engagement activities.
+                </p>
+                <ul class="bulletin-meta">
+                    <li><strong data-i18n="Date:">Date:</strong> 16 Jun 2026 (Tuesday)</li>
+                    <li><strong data-i18n="Time:">Time:</strong> 10:00 AM - 5:00 PM</li>
+                    <li><strong data-i18n="Location:">Location:</strong> Dewan Agung Tuanku Canselor (DATC), UiTM Shah Alam</li>
+                </ul>
+                <p data-i18n="Activities include health exhibitions, health talks, and UiTM product sales. Open to UiTM community members and public participants who meet donation requirements.">
+                    Activities include health exhibitions, health talks, and UiTM product sales. Open to UiTM community members and public participants who meet donation requirements.
+                </p>
+                <div class="bulletin-actions">
+                    <button
+                        type="button"
+                        class="button-link secondary js-open-bulletin-modal"
+                        data-target="{{ $fallbackModalId }}"
+                        aria-controls="{{ $fallbackModalId }}"
+                        aria-expanded="false"
+                        data-i18n="Read Program Details"
+                    >
+                        Read Program Details
+                    </button>
+                </div>
+                <div id="{{ $fallbackModalId }}" class="program-poster-modal" hidden>
+                    <div class="program-poster-modal__backdrop" data-poster-close="true"></div>
+                    <div class="program-poster-modal__content" role="dialog" aria-modal="true" aria-labelledby="{{ $fallbackModalId }}-title">
+                        <div class="program-poster-modal__header">
+                            <h5 id="{{ $fallbackModalId }}-title" data-i18n="Kempen Derma Darah Poster">Kempen Derma Darah Poster</h5>
+                            <div class="program-poster-modal__actions">
+                                <a
+                                    class="program-poster-modal__open-full"
+                                    href="{{ asset($fallbackPosterPath) }}"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    data-i18n="Open Full Poster"
+                                >
+                                    Open Full Poster
+                                </a>
+                                <button type="button" class="program-poster-modal__close js-close-bulletin-modal" aria-label="Close poster modal">
+                                    <span aria-hidden="true">&times;</span>
+                                    <span class="sr-only" data-i18n="Close Poster">Close Poster</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="program-poster-modal__image-wrap">
+                            <img
+                                src="{{ asset($fallbackPosterPath) }}"
+                                alt="Poster Kempen Derma Darah Perdana UiTM"
+                                loading="lazy"
                             >
-                                Open Full Poster
-                            </a>
-                            <button type="button" class="program-poster-modal__close" id="program-poster-close" aria-label="Close poster modal">
-                                <span aria-hidden="true">&times;</span>
-                                <span class="sr-only" data-i18n="Close Poster">Close Poster</span>
-                            </button>
                         </div>
                     </div>
-                    <div class="program-poster-modal__image-wrap">
-                    <img
-                        src="{{ asset($programPosterPath) }}"
-                        alt="Poster Kempen Derma Darah Perdana UiTM"
-                        loading="lazy"
-                    >
-                    </div>
                 </div>
-            </div>
-        </article>
+            </article>
+        @else
+            @foreach ($bulletins as $bulletin)
+                @php
+                    $modalId = 'bulletin-poster-modal-' . $bulletin->id;
+                    $posterUrl = $bulletin->poster_path ? asset($bulletin->poster_path) : null;
+                @endphp
+                <article class="notice-card notice-card--program" id="bulletin-{{ $bulletin->id }}">
+                    <h4>{{ $bulletin->title }}</h4>
+                    @if ($bulletin->summary)
+                        <p>{{ $bulletin->summary }}</p>
+                    @endif
+
+                    @if ($bulletin->event_date || $bulletin->event_time || $bulletin->location)
+                        <ul class="bulletin-meta">
+                            @if ($bulletin->event_date)
+                                <li><strong data-i18n="Date:">Date:</strong> {{ $bulletin->event_date->format('d M Y (l)') }}</li>
+                            @endif
+                            @if ($bulletin->event_time)
+                                <li><strong data-i18n="Time:">Time:</strong> {{ $bulletin->event_time }}</li>
+                            @endif
+                            @if ($bulletin->location)
+                                <li><strong data-i18n="Location:">Location:</strong> {{ $bulletin->location }}</li>
+                            @endif
+                        </ul>
+                    @endif
+
+                    @if ($bulletin->details)
+                        <p>{{ $bulletin->details }}</p>
+                    @endif
+
+                    @if ($posterUrl)
+                        <div class="bulletin-actions">
+                            <button
+                                type="button"
+                                class="button-link secondary js-open-bulletin-modal"
+                                data-target="{{ $modalId }}"
+                                aria-controls="{{ $modalId }}"
+                                aria-expanded="false"
+                                data-i18n="Read Program Details"
+                            >
+                                Read Program Details
+                            </button>
+                        </div>
+
+                        <div id="{{ $modalId }}" class="program-poster-modal" hidden>
+                            <div class="program-poster-modal__backdrop" data-poster-close="true"></div>
+                            <div class="program-poster-modal__content" role="dialog" aria-modal="true" aria-labelledby="{{ $modalId }}-title">
+                                <div class="program-poster-modal__header">
+                                    <h5 id="{{ $modalId }}-title">{{ $bulletin->title }}</h5>
+                                    <div class="program-poster-modal__actions">
+                                        <a
+                                            class="program-poster-modal__open-full"
+                                            href="{{ $posterUrl }}"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            data-i18n="Open Full Poster"
+                                        >
+                                            Open Full Poster
+                                        </a>
+                                        <button type="button" class="program-poster-modal__close js-close-bulletin-modal" aria-label="Close poster modal">
+                                            <span aria-hidden="true">&times;</span>
+                                            <span class="sr-only" data-i18n="Close Poster">Close Poster</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="program-poster-modal__image-wrap">
+                                    <img
+                                        src="{{ $posterUrl }}"
+                                        alt="{{ $bulletin->title }} poster"
+                                        loading="lazy"
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                </article>
+            @endforeach
+        @endif
     </div>
 </section>
  
@@ -296,61 +375,101 @@
 
 <script>
     (function () {
-        const readButton = document.getElementById('read-program-details-button');
-        const posterModal = document.getElementById('program-poster-modal');
-        const closeButton = document.getElementById('program-poster-close');
-        const dialogContent = posterModal?.querySelector('.program-poster-modal__content');
-        let previousFocus = null;
-
-        if (!readButton || !posterModal || !closeButton || !dialogContent) {
+        const openButtons = Array.from(document.querySelectorAll('.js-open-bulletin-modal'));
+        if (!openButtons.length) {
             return;
         }
 
-        const getFocusableElements = () =>
-            Array.from(
+        let activeModal = null;
+        let activeTrigger = null;
+
+        const getFocusableElements = (modal) => {
+            const dialogContent = modal.querySelector('.program-poster-modal__content');
+            if (!dialogContent) {
+                return [];
+            }
+
+            return Array.from(
                 dialogContent.querySelectorAll(
                     'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
                 )
             );
+        };
 
-        const closeModal = () => {
-            posterModal.setAttribute('hidden', 'hidden');
-            readButton.setAttribute('aria-expanded', 'false');
+        const closeModal = (modal) => {
+            modal.setAttribute('hidden', 'hidden');
             document.body.classList.remove('poster-modal-open');
-            if (previousFocus && typeof previousFocus.focus === 'function') {
-                previousFocus.focus();
-            } else {
-                readButton.focus();
+
+            if (activeTrigger) {
+                activeTrigger.setAttribute('aria-expanded', 'false');
+                activeTrigger.focus();
             }
+
+            activeModal = null;
+            activeTrigger = null;
         };
 
-        const openModal = () => {
-            if (posterModal.hasAttribute('hidden')) {
-                previousFocus = document.activeElement;
-                posterModal.removeAttribute('hidden');
-                readButton.setAttribute('aria-expanded', 'true');
+        const openModal = (modal, triggerButton) => {
+            if (activeModal && activeModal !== modal) {
+                closeModal(activeModal);
+            }
+
+            if (modal.hasAttribute('hidden')) {
+                modal.removeAttribute('hidden');
+                triggerButton.setAttribute('aria-expanded', 'true');
                 document.body.classList.add('poster-modal-open');
-                closeButton.focus();
+                activeModal = modal;
+                activeTrigger = triggerButton;
+                const closeButton = modal.querySelector('.js-close-bulletin-modal');
+                if (closeButton instanceof HTMLElement) {
+                    closeButton.focus();
+                }
             }
         };
 
-        readButton.addEventListener('click', openModal);
+        openButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                const targetId = button.dataset.target;
+                if (!targetId) {
+                    return;
+                }
 
-        closeButton.addEventListener('click', closeModal);
+                const modal = document.getElementById(targetId);
+                if (!modal) {
+                    return;
+                }
 
-        posterModal.addEventListener('click', (event) => {
-            if (event.target instanceof HTMLElement && event.target.dataset.posterClose === 'true') {
-                closeModal();
-            }
+                openModal(modal, button);
+            });
+        });
+
+        const closeButtons = Array.from(document.querySelectorAll('.js-close-bulletin-modal'));
+        closeButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                const modal = button.closest('.program-poster-modal');
+                if (modal) {
+                    closeModal(modal);
+                }
+            });
+        });
+
+        const modalBackdrops = Array.from(document.querySelectorAll('.program-poster-modal__backdrop'));
+        modalBackdrops.forEach((backdrop) => {
+            backdrop.addEventListener('click', () => {
+                const modal = backdrop.closest('.program-poster-modal');
+                if (modal) {
+                    closeModal(modal);
+                }
+            });
         });
 
         document.addEventListener('keydown', (event) => {
-            if (posterModal.hasAttribute('hidden')) {
+            if (!activeModal) {
                 return;
             }
 
             if (event.key === 'Tab') {
-                const focusableElements = getFocusableElements();
+                const focusableElements = getFocusableElements(activeModal);
                 if (!focusableElements.length) {
                     event.preventDefault();
                     return;
@@ -372,8 +491,8 @@
                 }
             }
 
-            if (event.key === 'Escape' && !posterModal.hasAttribute('hidden')) {
-                closeModal();
+            if (event.key === 'Escape') {
+                closeModal(activeModal);
             }
         });
     })();

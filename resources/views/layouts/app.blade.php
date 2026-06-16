@@ -72,6 +72,10 @@
                                 <span class="icon" aria-hidden="true">📋</span>
                                 <span data-i18n="Appointments">Appointments</span>
                             </a>
+                            <a href="{{ route('admin.bulletins.index') }}">
+                                <span class="icon" aria-hidden="true">📣</span>
+                                <span data-i18n="Clinic Bulletins">Clinic Bulletins</span>
+                            </a>
                             <a href="{{ route('staff.patients.index') }}">
                                 <span class="icon" aria-hidden="true">🧑‍🦽</span>
                                 <span data-i18n="Patient Directory">Patient Directory</span>
@@ -231,6 +235,7 @@
                     'Update Slot': 'Kemas Kini Slot',
                     'No appointment slots created.': 'Tiada slot temu janji dicipta.',
                     'Appointments': 'Temu Janji',
+                    'Clinic Bulletins': 'Buletin Klinik',
                     'Appointment Review': 'Semakan Temu Janji',
                     'Review': 'Semak',
                     'Action': 'Tindakan',
@@ -341,6 +346,22 @@
                     'Read Program Details': 'Baca Butiran Program',
                     'Close Poster': 'Tutup Poster',
                     'Open Full Poster': 'Buka Poster Penuh',
+                    'Add Bulletin': 'Tambah Buletin',
+                    'Edit Bulletin': 'Sunting Buletin',
+                    'Bulletin Title': 'Tajuk Buletin',
+                    'Summary': 'Ringkasan',
+                    'Program Details': 'Butiran Program',
+                    'Event Date': 'Tarikh Program',
+                    'Event Time': 'Masa Program',
+                    'Poster Image (JPG, JPEG, PNG)': 'Imej Poster (JPG, JPEG, PNG)',
+                    'Current Poster': 'Poster Semasa',
+                    'Remove current poster': 'Buang poster semasa',
+                    'Publish on Landing Page': 'Paparkan di Laman Utama',
+                    'Save Bulletin': 'Simpan Buletin',
+                    'Update Bulletin': 'Kemas Kini Buletin',
+                    'No bulletins created.': 'Tiada buletin dicipta.',
+                    'Published': 'Diterbitkan',
+                    'Draft': 'Draf',
                     'Activities include health exhibitions, health talks, and UiTM product sales. Open to UiTM community members and public participants who meet donation requirements.': 'Aktiviti merangkumi pameran kesihatan, ceramah kesihatan, dan jualan produk UiTM. Terbuka kepada warga UiTM dan orang awam yang memenuhi syarat pendermaan.',
                     'View Bulletin': 'Lihat Buletin',
                     'Register for Program': 'Daftar Program',
@@ -384,6 +405,7 @@
                     'Update': 'Kemas Kini',
                     'Submit Booking': 'Hantar Tempahan',
                     'Upload Medical Document': 'Muat Naik Dokumen Perubatan',
+                    'Title': 'Tajuk',
                     'Document Type': 'Jenis Dokumen',
                     'Select PDF File': 'Pilih Fail PDF',
                     'Select PDF or JPG File': 'Pilih Fail PDF atau JPG',
