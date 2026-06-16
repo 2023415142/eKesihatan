@@ -96,22 +96,27 @@
                 <li><strong data-i18n="Time:">Time:</strong> 10:00 AM - 5:00 PM</li>
                 <li><strong data-i18n="Location:">Location:</strong> Dewan Agung Tuanku Canselor (DATC), UiTM Shah Alam</li>
             </ul>
-            <details class="bulletin-details" id="program-kempen-derma-darah-details">
-                <summary data-i18n="Read Program Details">Read Program Details</summary>
-                <p data-i18n="Activities include health exhibitions, health talks, and UiTM product sales. Open to UiTM community members and public participants who meet donation requirements.">
-                    Activities include health exhibitions, health talks, and UiTM product sales. Open to UiTM community members and public participants who meet donation requirements.
-                </p>
-            </details>
+            <p data-i18n="Activities include health exhibitions, health talks, and UiTM product sales. Open to UiTM community members and public participants who meet donation requirements.">
+                Activities include health exhibitions, health talks, and UiTM product sales. Open to UiTM community members and public participants who meet donation requirements.
+            </p>
             <div class="bulletin-actions">
-                <a class="button-link secondary" href="#program-kempen-derma-darah" data-i18n="View Bulletin">View Bulletin</a>
-                <a class="button-link secondary" href="#program-kempen-derma-darah-details" data-i18n="Read Program Details">Read Program Details</a>
-                <a
-                    class="button-link"
-                    href="mailto:unitkesihatan@uitm.edu.my?subject=Kempen%20Derma%20Darah%20Perdana%20Registration"
-                    data-i18n="Register for Program"
+                <button
+                    type="button"
+                    class="button-link secondary"
+                    id="read-program-details-button"
+                    aria-controls="program-poster-panel"
+                    aria-expanded="false"
+                    data-i18n="Read Program Details"
                 >
-                    Register for Program
-                </a>
+                    Read Program Details
+                </button>
+            </div>
+            <div id="program-poster-panel" class="program-poster" hidden>
+                <img
+                    src="{{ asset('images/kempen-derma-darah-poster.jpg') }}"
+                    alt="Poster Kempen Derma Darah Perdana UiTM"
+                    loading="lazy"
+                >
             </div>
         </article>
     </div>
@@ -262,6 +267,31 @@
             bmiValue.textContent = rounded.toFixed(1);
             bmiCategory.textContent = getCategory(rounded);
             result.hidden = false;
+        });
+    })();
+</script>
+
+<script>
+    (function () {
+        const readButton = document.getElementById('read-program-details-button');
+        const posterPanel = document.getElementById('program-poster-panel');
+
+        if (!readButton || !posterPanel) {
+            return;
+        }
+
+        readButton.addEventListener('click', () => {
+            const shouldShow = posterPanel.hasAttribute('hidden');
+
+            if (shouldShow) {
+                posterPanel.removeAttribute('hidden');
+                readButton.setAttribute('aria-expanded', 'true');
+                posterPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                return;
+            }
+
+            posterPanel.setAttribute('hidden', 'hidden');
+            readButton.setAttribute('aria-expanded', 'false');
         });
     })();
 </script>
