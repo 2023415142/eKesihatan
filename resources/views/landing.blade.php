@@ -104,24 +104,33 @@
                     type="button"
                     class="button-link secondary"
                     id="read-program-details-button"
-                    aria-controls="program-poster-panel"
+                    aria-controls="program-poster-modal"
                     aria-expanded="false"
                     data-i18n="Read Program Details"
                 >
                     Read Program Details
                 </button>
             </div>
-            <div id="program-poster-panel" class="program-poster" hidden>
+            <div id="program-poster-modal" class="program-poster-modal" hidden>
+                <div class="program-poster-modal__backdrop" data-poster-close="true"></div>
+                <div class="program-poster-modal__content" role="dialog" aria-modal="true" aria-labelledby="program-poster-title">
+                    <div class="program-poster-modal__header">
+                        <h5 id="program-poster-title" data-i18n="Kempen Derma Darah Poster">Kempen Derma Darah Poster</h5>
+                        <button type="button" class="program-poster-modal__close" id="program-poster-close" data-i18n="Close Poster">
+                            Close Poster
+                        </button>
+                    </div>
                 @php
                     $programPosterPath = file_exists(public_path('images/kempen-derma-darah-poster.jpeg'))
                         ? 'images/kempen-derma-darah-poster.jpeg'
                         : 'images/kempen-derma-darah-poster.jpg';
                 @endphp
-                <img
-                    src="{{ asset($programPosterPath) }}"
-                    alt="Poster Kempen Derma Darah Perdana UiTM"
-                    loading="lazy"
-                >
+                    <img
+                        src="{{ asset($programPosterPath) }}"
+                        alt="Poster Kempen Derma Darah Perdana UiTM"
+                        loading="lazy"
+                    >
+                </div>
             </div>
         </article>
     </div>
@@ -279,24 +288,44 @@
 <script>
     (function () {
         const readButton = document.getElementById('read-program-details-button');
-        const posterPanel = document.getElementById('program-poster-panel');
+        const posterModal = document.getElementById('program-poster-modal');
+        const closeButton = document.getElementById('program-poster-close');
 
-        if (!readButton || !posterPanel) {
+        if (!readButton || !posterModal || !closeButton) {
             return;
         }
 
-        readButton.addEventListener('click', () => {
-            const shouldShow = posterPanel.hasAttribute('hidden');
+        const closeModal = () => {
+            posterModal.setAttribute('hidden', 'hidden');
+            readButton.setAttribute('aria-expanded', 'false');
+            document.body.classList.remove('poster-modal-open');
+            readButton.focus();
+        };
 
-            if (shouldShow) {
-                posterPanel.removeAttribute('hidden');
+        const openModal = () => {
+            if (posterModal.hasAttribute('hidden')) {
+                posterModal.removeAttribute('hidden');
                 readButton.setAttribute('aria-expanded', 'true');
-                posterPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                document.body.classList.add('poster-modal-open');
+                closeButton.focus();
                 return;
             }
+        };
 
-            posterPanel.setAttribute('hidden', 'hidden');
-            readButton.setAttribute('aria-expanded', 'false');
+        readButton.addEventListener('click', openModal);
+
+        closeButton.addEventListener('click', closeModal);
+
+        posterModal.addEventListener('click', (event) => {
+            if (event.target instanceof HTMLElement && event.target.dataset.posterClose === 'true') {
+                closeModal();
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && !posterModal.hasAttribute('hidden')) {
+                closeModal();
+            }
         });
     })();
 </script>

@@ -27,6 +27,10 @@ body {
     background: var(--color-bg);
     line-height: 1.6;
 }
+
+body.poster-modal-open {
+    overflow: hidden;
+}
  
 a {
     color: var(--color-primary);
@@ -882,19 +886,72 @@ section {
     font-size: 0.9rem;
 }
 
-.program-poster {
-    margin-top: 0.9rem;
-    border: 1px solid #bfdbfe;
-    border-radius: 0.75rem;
-    background: #ffffff;
-    padding: 0.7rem;
+.program-poster-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
 }
 
-.program-poster img {
+.program-poster-modal[hidden] {
+    display: none;
+}
+
+.program-poster-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.78);
+    backdrop-filter: blur(2px);
+}
+
+.program-poster-modal__content {
+    position: relative;
+    width: min(960px, 100%);
+    max-height: calc(100vh - 2rem);
+    overflow: auto;
+    border-radius: 0.85rem;
+    background: #ffffff;
+    padding: 0.75rem;
+    box-shadow: 0 20px 45px rgba(15, 23, 42, 0.35);
+}
+
+.program-poster-modal__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.6rem;
+}
+
+.program-poster-modal__header h5 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+button.program-poster-modal__close {
+    border: 1px solid var(--color-border);
+    background: #ffffff;
+    color: var(--color-text);
+    padding: 0.4rem 0.75rem;
+    border-radius: 0.45rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+button.program-poster-modal__close:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    background: #f8fafc;
+}
+
+.program-poster-modal img {
     display: block;
     width: 100%;
-    max-width: 760px;
-    margin: 0 auto;
+    max-height: calc(100vh - 9rem);
+    object-fit: contain;
     border-radius: 0.5rem;
 }
  
@@ -1234,6 +1291,19 @@ footer {
     .landing-footer__bottom {
         font-size: 0.85rem;
     }
+
+    .program-poster-modal {
+        padding: 0.6rem;
+    }
+
+    .program-poster-modal__content {
+        max-height: calc(100vh - 1.2rem);
+        border-radius: 0.7rem;
+    }
+
+    .program-poster-modal img {
+        max-height: calc(100vh - 8.5rem);
+    }
 }
 
 @media (max-width: 480px) {
@@ -1271,5 +1341,13 @@ footer {
     .bulletin-actions .button-link {
         width: 100%;
         justify-content: center;
+    }
+
+    .program-poster-modal__header {
+        align-items: flex-start;
+    }
+
+    .program-poster-modal__close {
+        padding: 0.35rem 0.65rem;
     }
 }
