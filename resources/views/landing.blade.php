@@ -113,23 +113,38 @@
             </div>
             <div id="program-poster-modal" class="program-poster-modal" hidden>
                 <div class="program-poster-modal__backdrop" data-poster-close="true"></div>
-                <div class="program-poster-modal__content" role="dialog" aria-modal="true" aria-labelledby="program-poster-title">
-                    <div class="program-poster-modal__header">
-                        <h5 id="program-poster-title" data-i18n="Kempen Derma Darah Poster">Kempen Derma Darah Poster</h5>
-                        <button type="button" class="program-poster-modal__close" id="program-poster-close" data-i18n="Close Poster">
-                            Close Poster
-                        </button>
-                    </div>
                 @php
                     $programPosterPath = file_exists(public_path('images/kempen-derma-darah-poster.jpeg'))
                         ? 'images/kempen-derma-darah-poster.jpeg'
                         : 'images/kempen-derma-darah-poster.jpg';
                 @endphp
+                <div class="program-poster-modal__content" role="dialog" aria-modal="true" aria-labelledby="program-poster-title">
+                    <div class="program-poster-modal__header">
+                        <h5 id="program-poster-title" data-i18n="Kempen Derma Darah Poster">Kempen Derma Darah Poster</h5>
+                        <div class="program-poster-modal__actions">
+                            <a
+                                id="program-poster-open-full"
+                                class="program-poster-modal__open-full"
+                                href="{{ asset($programPosterPath) }}"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                data-i18n="Open Full Poster"
+                            >
+                                Open Full Poster
+                            </a>
+                            <button type="button" class="program-poster-modal__close" id="program-poster-close" aria-label="Close poster modal">
+                                <span aria-hidden="true">&times;</span>
+                                <span class="sr-only" data-i18n="Close Poster">Close Poster</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="program-poster-modal__image-wrap">
                     <img
                         src="{{ asset($programPosterPath) }}"
                         alt="Poster Kempen Derma Darah Perdana UiTM"
                         loading="lazy"
                     >
+                    </div>
                 </div>
             </div>
         </article>
@@ -290,25 +305,38 @@
         const readButton = document.getElementById('read-program-details-button');
         const posterModal = document.getElementById('program-poster-modal');
         const closeButton = document.getElementById('program-poster-close');
+        const dialogContent = posterModal?.querySelector('.program-poster-modal__content');
+        let previousFocus = null;
 
-        if (!readButton || !posterModal || !closeButton) {
+        if (!readButton || !posterModal || !closeButton || !dialogContent) {
             return;
         }
+
+        const getFocusableElements = () =>
+            Array.from(
+                dialogContent.querySelectorAll(
+                    'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+                )
+            );
 
         const closeModal = () => {
             posterModal.setAttribute('hidden', 'hidden');
             readButton.setAttribute('aria-expanded', 'false');
             document.body.classList.remove('poster-modal-open');
-            readButton.focus();
+            if (previousFocus && typeof previousFocus.focus === 'function') {
+                previousFocus.focus();
+            } else {
+                readButton.focus();
+            }
         };
 
         const openModal = () => {
             if (posterModal.hasAttribute('hidden')) {
+                previousFocus = document.activeElement;
                 posterModal.removeAttribute('hidden');
                 readButton.setAttribute('aria-expanded', 'true');
                 document.body.classList.add('poster-modal-open');
                 closeButton.focus();
-                return;
             }
         };
 
@@ -323,6 +351,33 @@
         });
 
         document.addEventListener('keydown', (event) => {
+            if (posterModal.hasAttribute('hidden')) {
+                return;
+            }
+
+            if (event.key === 'Tab') {
+                const focusableElements = getFocusableElements();
+                if (!focusableElements.length) {
+                    event.preventDefault();
+                    return;
+                }
+
+                const first = focusableElements[0];
+                const last = focusableElements[focusableElements.length - 1];
+
+                if (event.shiftKey && document.activeElement === first) {
+                    event.preventDefault();
+                    last.focus();
+                    return;
+                }
+
+                if (!event.shiftKey && document.activeElement === last) {
+                    event.preventDefault();
+                    first.focus();
+                    return;
+                }
+            }
+
             if (event.key === 'Escape' && !posterModal.hasAttribute('hidden')) {
                 closeModal();
             }

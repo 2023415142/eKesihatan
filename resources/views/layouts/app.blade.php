@@ -340,6 +340,7 @@
                     'Join Unit Kesihatan UiTM Arau for a blood donation campaign and campus health engagement activities.': 'Sertai Unit Kesihatan UiTM Arau untuk kempen derma darah dan aktiviti penglibatan kesihatan kampus.',
                     'Read Program Details': 'Baca Butiran Program',
                     'Close Poster': 'Tutup Poster',
+                    'Open Full Poster': 'Buka Poster Penuh',
                     'Activities include health exhibitions, health talks, and UiTM product sales. Open to UiTM community members and public participants who meet donation requirements.': 'Aktiviti merangkumi pameran kesihatan, ceramah kesihatan, dan jualan produk UiTM. Terbuka kepada warga UiTM dan orang awam yang memenuhi syarat pendermaan.',
                     'View Bulletin': 'Lihat Buletin',
                     'Register for Program': 'Daftar Program',

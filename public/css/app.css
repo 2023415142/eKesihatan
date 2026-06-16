@@ -911,10 +911,11 @@ section {
     position: relative;
     width: min(960px, 100%);
     max-height: calc(100vh - 2rem);
-    overflow: auto;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
     border-radius: 0.85rem;
     background: #ffffff;
-    padding: 0.75rem;
     box-shadow: 0 20px 45px rgba(15, 23, 42, 0.35);
 }
 
@@ -923,7 +924,12 @@ section {
     align-items: center;
     justify-content: space-between;
     gap: 0.75rem;
-    margin-bottom: 0.6rem;
+    padding: 0.75rem 0.85rem 0.65rem;
+    border-bottom: 1px solid #e2e8f0;
+    background: #ffffff;
+    position: sticky;
+    top: 0;
+    z-index: 2;
 }
 
 .program-poster-modal__header h5 {
@@ -931,26 +937,62 @@ section {
     font-size: 1rem;
 }
 
-button.program-poster-modal__close {
+.program-poster-modal__actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.program-poster-modal__open-full {
     border: 1px solid var(--color-border);
     background: #ffffff;
-    color: var(--color-text);
-    padding: 0.4rem 0.75rem;
-    border-radius: 0.45rem;
+    color: var(--color-primary);
+    padding: 0.35rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.program-poster-modal__open-full:hover {
+    border-color: var(--color-primary);
+    background: #eff6ff;
+    text-decoration: none;
+}
+
+button.program-poster-modal__close {
+    width: 2.4rem;
+    height: 2.4rem;
+    border: 1px solid #cbd5e1;
+    background: #f8fafc;
+    color: #0f172a;
+    padding: 0;
+    border-radius: 999px;
     font-size: 0.85rem;
     font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
 }
 
 button.program-poster-modal__close:hover {
-    border-color: var(--color-primary);
-    color: var(--color-primary);
-    background: #f8fafc;
+    border-color: #94a3b8;
+    color: #0f172a;
+    background: #e2e8f0;
+}
+
+.program-poster-modal__image-wrap {
+    padding: 0.75rem;
+    overflow: auto;
+    overscroll-behavior: contain;
 }
 
 .program-poster-modal img {
     display: block;
     width: 100%;
-    max-height: calc(100vh - 9rem);
+    max-height: calc(100vh - 10rem);
+    margin: 0 auto;
     object-fit: contain;
     border-radius: 0.5rem;
 }
@@ -1293,16 +1335,30 @@ footer {
     }
 
     .program-poster-modal {
-        padding: 0.6rem;
+        padding: 0;
     }
 
     .program-poster-modal__content {
-        max-height: calc(100vh - 1.2rem);
-        border-radius: 0.7rem;
+        width: 100%;
+        height: 100vh;
+        max-height: 100vh;
+        border-radius: 0;
+    }
+
+    .program-poster-modal__header {
+        padding: 0.7rem 0.75rem;
+    }
+
+    .program-poster-modal__header h5 {
+        font-size: 0.95rem;
+    }
+
+    .program-poster-modal__image-wrap {
+        padding: 0.55rem;
     }
 
     .program-poster-modal img {
-        max-height: calc(100vh - 8.5rem);
+        max-height: none;
     }
 }
 
@@ -1343,11 +1399,17 @@ footer {
         justify-content: center;
     }
 
-    .program-poster-modal__header {
-        align-items: flex-start;
+    .program-poster-modal__actions {
+        gap: 0.35rem;
+    }
+
+    .program-poster-modal__open-full {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.5rem;
     }
 
     .program-poster-modal__close {
-        padding: 0.35rem 0.65rem;
+        width: 2.15rem;
+        height: 2.15rem;
     }
 }
