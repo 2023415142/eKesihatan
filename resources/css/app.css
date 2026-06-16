@@ -862,17 +862,6 @@ section {
     background: #fffbeb;
 }
 
-.notice-card--hours {
-    border-left-color: var(--color-accent);
-    background: #f0fdfb;
-}
-
-.notice-card--hours p {
-    margin: 0;
-    font-weight: 600;
-    color: #0f172a;
-}
-
 .notice-card--program {
     border-left-color: var(--color-primary);
     background: #eff6ff;
