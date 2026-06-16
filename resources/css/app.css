@@ -856,6 +856,43 @@ section {
     padding: 0.85rem;
     background: #fffbeb;
 }
+
+.notice-card--program {
+    border-left-color: var(--color-primary);
+    background: #eff6ff;
+}
+
+.bulletin-meta {
+    list-style: none;
+    margin: 0.75rem 0;
+    padding: 0;
+    display: grid;
+    gap: 0.3rem;
+    font-size: 0.95rem;
+}
+
+.bulletin-details {
+    margin: 0.5rem 0 0.75rem;
+    border-top: 1px solid #bfdbfe;
+    padding-top: 0.6rem;
+}
+
+.bulletin-details summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--color-primary-dark);
+}
+
+.bulletin-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+}
+
+.bulletin-actions .button-link {
+    padding: 0.5rem 0.85rem;
+    font-size: 0.9rem;
+}
  
 .articles-grid {
     display: grid;
@@ -1225,5 +1262,10 @@ footer {
 
     .landing-footer__list a {
         overflow-wrap: anywhere;
+    }
+
+    .bulletin-actions .button-link {
+        width: 100%;
+        justify-content: center;
     }
 }

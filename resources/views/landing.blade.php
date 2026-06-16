@@ -86,23 +86,33 @@
                 Monday to Thursday 8:00 AM to 5:00 PM. Friday 8:00 AM to 12:00 PM.
             </p>
         </article>
-        <article class="notice-card">
-            <h4 data-i18n="ID Required">ID Required</h4>
-            <p data-i18n="Please bring your student or staff ID for verification at the counter.">
-                Please bring your student or staff ID for verification at the counter.
+        <article class="notice-card notice-card--program" id="program-kempen-derma-darah">
+            <h4 data-i18n="Kempen Derma Darah Perdana">Kempen Derma Darah Perdana</h4>
+            <p data-i18n="Join Unit Kesihatan UiTM Arau for a blood donation campaign and campus health engagement activities.">
+                Join Unit Kesihatan UiTM Arau for a blood donation campaign and campus health engagement activities.
             </p>
-        </article>
-        <article class="notice-card">
-            <h4 data-i18n="Respiratory Care">Respiratory Care</h4>
-            <p data-i18n="Masks are recommended for patients with cough, flu, or fever symptoms.">
-                Masks are recommended for patients with cough, flu, or fever symptoms.
-            </p>
-        </article>
-        <article class="notice-card">
-            <h4 data-i18n="Health Screening">Health Screening</h4>
-            <p data-i18n="Walk-in screening is available every Tuesday morning.">
-                Walk-in screening is available every Tuesday morning.
-            </p>
+            <ul class="bulletin-meta">
+                <li><strong data-i18n="Date:">Date:</strong> 16 Jun 2026 (Tuesday)</li>
+                <li><strong data-i18n="Time:">Time:</strong> 10:00 AM - 5:00 PM</li>
+                <li><strong data-i18n="Location:">Location:</strong> Dewan Agung Tuanku Canselor (DATC), UiTM Shah Alam</li>
+            </ul>
+            <details class="bulletin-details" id="program-kempen-derma-darah-details">
+                <summary data-i18n="Read Program Details">Read Program Details</summary>
+                <p data-i18n="Activities include health exhibitions, health talks, and UiTM product sales. Open to UiTM community members and public participants who meet donation requirements.">
+                    Activities include health exhibitions, health talks, and UiTM product sales. Open to UiTM community members and public participants who meet donation requirements.
+                </p>
+            </details>
+            <div class="bulletin-actions">
+                <a class="button-link secondary" href="#program-kempen-derma-darah" data-i18n="View Bulletin">View Bulletin</a>
+                <a class="button-link secondary" href="#program-kempen-derma-darah-details" data-i18n="Read Program Details">Read Program Details</a>
+                <a
+                    class="button-link"
+                    href="mailto:unitkesihatan@uitm.edu.my?subject=Kempen%20Derma%20Darah%20Perdana%20Registration"
+                    data-i18n="Register for Program"
+                >
+                    Register for Program
+                </a>
+            </div>
         </article>
     </div>
 </section>
