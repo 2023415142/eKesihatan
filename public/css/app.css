@@ -849,8 +849,9 @@ section {
  
 .notice-board {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: 1fr;
     gap: 1rem;
+    align-items: start;
 }
  
 .notice-card {
@@ -859,6 +860,17 @@ section {
     border-radius: 0.6rem;
     padding: 0.85rem;
     background: #fffbeb;
+}
+
+.notice-card--hours {
+    border-left-color: var(--color-accent);
+    background: #f0fdfb;
+}
+
+.notice-card--hours p {
+    margin: 0;
+    font-weight: 600;
+    color: #0f172a;
 }
 
 .notice-card--program {

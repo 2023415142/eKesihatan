@@ -80,7 +80,7 @@
 <section>
     <h3 data-i18n="Clinic Notices and Bulletins">Clinic Notices and Bulletins</h3>
     <div class="notice-board">
-        <article class="notice-card">
+        <article class="notice-card notice-card--hours">
             <h4 data-i18n="Operating Hours">Operating Hours</h4>
             <p data-i18n="Monday to Thursday 8:00 AM to 5:00 PM. Friday 8:00 AM to 12:00 PM.">
                 Monday to Thursday 8:00 AM to 5:00 PM. Friday 8:00 AM to 12:00 PM.
