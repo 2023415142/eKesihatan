@@ -112,8 +112,13 @@
                 </button>
             </div>
             <div id="program-poster-panel" class="program-poster" hidden>
+                @php
+                    $programPosterPath = file_exists(public_path('images/kempen-derma-darah-poster.jpeg'))
+                        ? 'images/kempen-derma-darah-poster.jpeg'
+                        : 'images/kempen-derma-darah-poster.jpg';
+                @endphp
                 <img
-                    src="{{ asset('images/kempen-derma-darah-poster.jpg') }}"
+                    src="{{ asset($programPosterPath) }}"
                     alt="Poster Kempen Derma Darah Perdana UiTM"
                     loading="lazy"
                 >
