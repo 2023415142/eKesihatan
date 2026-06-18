@@ -25,6 +25,78 @@
         </div>
     </div>
 </section>
+
+<style>
+    .landing-hero {
+        padding: 0;
+        border: 0;
+        background: transparent;
+        box-shadow: none;
+    }
+
+    .landing-hero-slider {
+        position: relative;
+        width: 100%;
+        border: 1px solid #cbd5e1;
+        border-radius: 0;
+        overflow: hidden;
+        background: #0f172a;
+    }
+
+    .landing-hero-slider__track {
+        display: flex;
+        transition: transform 700ms ease;
+        will-change: transform;
+    }
+
+    .landing-hero-slider__slide {
+        margin: 0;
+        min-width: 100%;
+        width: 100%;
+        aspect-ratio: 21 / 9;
+    }
+
+    .landing-hero-slider__slide img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+    }
+
+    .landing-hero-slider__indicators {
+        position: absolute;
+        left: 50%;
+        bottom: 0.9rem;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.45rem;
+        z-index: 1;
+    }
+
+    .landing-hero-slider__indicators span {
+        width: 0.55rem;
+        height: 0.55rem;
+        border-radius: 999px;
+        border: 1px solid rgba(15, 23, 42, 0.35);
+        background: rgba(255, 255, 255, 0.55);
+    }
+
+    .landing-hero-slider__indicators span.is-active {
+        background: #ffffff;
+    }
+
+    @media (max-width: 1024px) {
+        .landing-hero {
+            margin-bottom: 1rem;
+        }
+
+        .landing-hero-slider__slide {
+            aspect-ratio: 16 / 9;
+        }
+    }
+</style>
  
 <section class="bmi-card landing-bmi">
     <h3 data-i18n="BMI Calculator">BMI Calculator</h3>
@@ -258,60 +330,79 @@
  
 <script>
     (function () {
-        const slider = document.getElementById('landing-hero-slider');
-        if (!slider) {
-            return;
-        }
+        const initializeSlider = () => {
+            const slider = document.getElementById('landing-hero-slider');
+            if (!slider || slider.dataset.sliderReady === 'true') {
+                return;
+            }
 
-        const track = slider.querySelector('.landing-hero-slider__track');
-        if (!track) {
-            return;
-        }
+            const track = slider.querySelector('.landing-hero-slider__track');
+            if (!track) {
+                return;
+            }
 
-        const slides = Array.from(track.querySelectorAll('.landing-hero-slider__slide'));
-        const indicators = Array.from(slider.querySelectorAll('.landing-hero-slider__indicators span'));
-        if (slides.length < 2) {
-            return;
-        }
+            const slides = Array.from(track.querySelectorAll('.landing-hero-slider__slide'));
+            const indicators = Array.from(slider.querySelectorAll('.landing-hero-slider__indicators span'));
+            if (slides.length < 2) {
+                return;
+            }
 
-        const intervalMs = 4500;
-        let currentIndex = 0;
-        let intervalId = null;
+            slider.dataset.sliderReady = 'true';
 
-        const updateIndicators = () => {
-            indicators.forEach((indicator, index) => {
-                indicator.classList.toggle('is-active', index === currentIndex);
+            // Apply core layout styles in JS as a fallback
+            // when browser cache serves stale CSS.
+            slider.style.overflow = 'hidden';
+            track.style.display = 'flex';
+            track.style.transition = 'transform 700ms ease';
+            slides.forEach((slide) => {
+                slide.style.minWidth = '100%';
             });
-        };
 
-        const goToSlide = (index) => {
-            currentIndex = (index + slides.length) % slides.length;
-            track.style.transform = `translateX(-${currentIndex * 100}%)`;
-            updateIndicators();
-        };
+            const intervalMs = 4500;
+            let currentIndex = 0;
+            let intervalId = null;
 
-        const startAutoSwipe = () => {
-            if (intervalId) {
-                window.clearInterval(intervalId);
-            }
+            const updateIndicators = () => {
+                indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('is-active', index === currentIndex);
+                });
+            };
 
-            intervalId = window.setInterval(() => {
-                goToSlide(currentIndex + 1);
-            }, intervalMs);
-        };
+            const goToSlide = (index) => {
+                currentIndex = (index + slides.length) % slides.length;
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                updateIndicators();
+            };
 
-        slider.addEventListener('mouseenter', () => {
-            if (intervalId) {
-                window.clearInterval(intervalId);
-            }
-        });
+            const startAutoSwipe = () => {
+                if (intervalId) {
+                    window.clearInterval(intervalId);
+                }
 
-        slider.addEventListener('mouseleave', () => {
+                intervalId = window.setInterval(() => {
+                    goToSlide(currentIndex + 1);
+                }, intervalMs);
+            };
+
+            slider.addEventListener('mouseenter', () => {
+                if (intervalId) {
+                    window.clearInterval(intervalId);
+                }
+            });
+
+            slider.addEventListener('mouseleave', () => {
+                startAutoSwipe();
+            });
+
+            goToSlide(0);
             startAutoSwipe();
-        });
+        };
 
-        goToSlide(0);
-        startAutoSwipe();
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeSlider, { once: true });
+        } else {
+            initializeSlider();
+        }
     })();
 </script>
 
