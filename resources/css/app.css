@@ -754,45 +754,32 @@ section {
 }
  
 .landing-hero {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    align-items: stretch;
-}
- 
-.landing-hero__content {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
- 
-.landing-hero__visual {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
 }
 
 .landing-hero-slider {
-    border: 1px solid var(--color-border);
-    border-radius: 0.85rem;
-    overflow: hidden;
-    background: #ffffff;
-}
-
-.landing-hero-slider__viewport {
+    position: relative;
+    border: 1px solid #cbd5e1;
+    border-radius: 0;
     overflow: hidden;
     width: 100%;
+    background: #0f172a;
 }
 
 .landing-hero-slider__track {
     display: flex;
+    transition: transform 700ms ease;
+    will-change: transform;
 }
 
 .landing-hero-slider__slide {
     margin: 0;
     flex: 0 0 100%;
     width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 21 / 9;
 }
 
 .landing-hero-slider__slide img {
@@ -803,24 +790,27 @@ section {
 }
 
 .landing-hero-slider__indicators {
+    position: absolute;
+    left: 50%;
+    bottom: 0.9rem;
+    transform: translateX(-50%);
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.45rem;
-    padding: 0.7rem 0.75rem;
-    border-top: 1px solid #e2e8f0;
-    background: #f8fafc;
+    z-index: 1;
 }
 
 .landing-hero-slider__indicators span {
     width: 0.55rem;
     height: 0.55rem;
     border-radius: 999px;
-    background: #cbd5e1;
+    border: 1px solid rgba(15, 23, 42, 0.35);
+    background: rgba(255, 255, 255, 0.55);
 }
 
 .landing-hero-slider__indicators span.is-active {
-    background: var(--color-primary);
+    background: #ffffff;
 }
  
 .hero-actions {
@@ -1309,7 +1299,11 @@ footer {
     }
 
     .landing-hero {
-        grid-template-columns: 1fr;
+        margin-bottom: 1rem;
+    }
+
+    .landing-hero-slider__slide {
+        aspect-ratio: 16 / 9;
     }
 
     .landing-footer__top {

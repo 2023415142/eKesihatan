@@ -2,37 +2,26 @@
  
 @section('content')
 <section class="landing-hero">
-    <div class="landing-hero__content">
-        <h2 data-i18n="Welcome to eKesihatan">Welcome to eKesihatan</h2>
-        <p data-i18n="Your health visits, organized. Book appointments, receive queue numbers, and check in with a QR code before you arrive.">
-            Your health visits, organized. Book appointments, receive queue numbers, and check in with a QR code before you arrive.
-        </p>
-    </div>
- 
-    <div class="landing-hero__visual">
-        <div class="landing-hero-slider" aria-roledescription="carousel" aria-label="eKesihatan highlights">
-            <div class="landing-hero-slider__viewport" id="landing-hero-slider" aria-live="polite">
-                <div class="landing-hero-slider__track">
-                    <figure class="landing-hero-slider__slide">
-                        <img src="{{ asset('images/intern.jpg') }}" alt="Interns at Unit Kesihatan UiTM">
-                    </figure>
-                    <figure class="landing-hero-slider__slide">
-                        <img src="{{ asset('images/inside.jpg') }}" alt="Inside the clinic reception area">
-                    </figure>
-                    <figure class="landing-hero-slider__slide">
-                        <img src="{{ asset('images/1000langkah.jpg') }}" alt="1000 langkah healthy activity event">
-                    </figure>
-                    <figure class="landing-hero-slider__slide">
-                        <img src="{{ asset('images/santuniKomuniti.jpg') }}" alt="Santuni komuniti health outreach session">
-                    </figure>
-                </div>
-            </div>
-            <div class="landing-hero-slider__indicators" aria-hidden="true">
-                <span class="is-active"></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+    <div class="landing-hero-slider" id="landing-hero-slider" aria-roledescription="carousel" aria-label="eKesihatan highlights" aria-live="polite">
+        <div class="landing-hero-slider__track">
+            <figure class="landing-hero-slider__slide">
+                <img src="{{ asset('images/intern.jpg') }}" alt="Interns at Unit Kesihatan UiTM">
+            </figure>
+            <figure class="landing-hero-slider__slide">
+                <img src="{{ asset('images/inside.jpg') }}" alt="Inside the clinic reception area">
+            </figure>
+            <figure class="landing-hero-slider__slide">
+                <img src="{{ asset('images/1000langkah.jpg') }}" alt="1000 langkah healthy activity event">
+            </figure>
+            <figure class="landing-hero-slider__slide">
+                <img src="{{ asset('images/santuniKomuniti.jpg') }}" alt="Santuni komuniti health outreach session">
+            </figure>
+        </div>
+        <div class="landing-hero-slider__indicators" aria-hidden="true">
+            <span class="is-active"></span>
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
     </div>
 </section>
@@ -274,8 +263,13 @@
             return;
         }
 
-        const slides = Array.from(slider.querySelectorAll('.landing-hero-slider__slide'));
-        const indicators = Array.from(document.querySelectorAll('.landing-hero-slider__indicators span'));
+        const track = slider.querySelector('.landing-hero-slider__track');
+        if (!track) {
+            return;
+        }
+
+        const slides = Array.from(track.querySelectorAll('.landing-hero-slider__slide'));
+        const indicators = Array.from(slider.querySelectorAll('.landing-hero-slider__indicators span'));
         if (slides.length < 2) {
             return;
         }
@@ -290,12 +284,9 @@
             });
         };
 
-        const goToSlide = (index, behavior = 'smooth') => {
+        const goToSlide = (index) => {
             currentIndex = (index + slides.length) % slides.length;
-            slider.scrollTo({
-                left: slider.clientWidth * currentIndex,
-                behavior,
-            });
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
             updateIndicators();
         };
 
@@ -319,11 +310,7 @@
             startAutoSwipe();
         });
 
-        window.addEventListener('resize', () => {
-            goToSlide(currentIndex, 'auto');
-        });
-
-        goToSlide(0, 'auto');
+        goToSlide(0);
         startAutoSwipe();
     })();
 </script>
