@@ -62,14 +62,18 @@
         margin: 0;
         min-width: 100%;
         width: 100%;
-        aspect-ratio: 12 / 5;
+        height: clamp(320px, 52vw, 620px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #0f172a;
     }
 
     .landing-hero-slider__slide img {
         width: 100%;
         height: 100%;
         display: block;
-        object-fit: cover;
+        object-fit: contain;
     }
 
     .landing-hero-slider__nav {
@@ -136,7 +140,12 @@
 
     @media (max-width: 768px) {
         .landing-hero-slider__slide {
+            height: auto;
             aspect-ratio: 16 / 9;
+        }
+
+        .landing-hero-slider__slide img {
+            object-fit: cover;
         }
 
         .landing-hero-slider__nav {
