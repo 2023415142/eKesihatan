@@ -10,34 +10,28 @@
     </div>
  
     <div class="landing-hero__visual">
-        <div class="infographic-card">
-            <h3 data-i18n="Clinic Flow Snapshot">Clinic Flow Snapshot</h3>
-            <p data-i18n="A simple, paperless flow for patients and staff.">A simple, paperless flow for patients and staff.</p>
-            <svg viewBox="0 0 360 120" role="img" aria-labelledby="flow-title">
-                <title id="flow-title">Clinic flow infographic</title>
-                <rect x="0" y="0" width="360" height="120" rx="12" fill="#f8fafc"></rect>
-                <circle cx="50" cy="60" r="18" fill="#1d4ed8"></circle>
-                <circle cx="180" cy="60" r="18" fill="#0f766e"></circle>
-                <circle cx="310" cy="60" r="18" fill="#b45309"></circle>
-                <line x1="68" y1="60" x2="162" y2="60" stroke="#94a3b8" stroke-width="4"></line>
-                <line x1="198" y1="60" x2="292" y2="60" stroke="#94a3b8" stroke-width="4"></line>
-                <text x="50" y="100" text-anchor="middle" font-size="12" fill="#1b1f24">Book</text>
-                <text x="180" y="100" text-anchor="middle" font-size="12" fill="#1b1f24">Queue</text>
-                <text x="310" y="100" text-anchor="middle" font-size="12" fill="#1b1f24">Check-in</text>
-            </svg>
-            <div class="infographic-steps">
-                <div class="infographic-step">
-                    <span data-i18n="Step 1">Step 1</span>
-                    <strong data-i18n="Choose a slot">Choose a slot</strong>
+        <div class="landing-hero-slider" aria-roledescription="carousel" aria-label="eKesihatan highlights">
+            <div class="landing-hero-slider__viewport" id="landing-hero-slider" aria-live="polite">
+                <div class="landing-hero-slider__track">
+                    <figure class="landing-hero-slider__slide">
+                        <img src="{{ asset('images/intern.jpg') }}" alt="Interns at Unit Kesihatan UiTM">
+                    </figure>
+                    <figure class="landing-hero-slider__slide">
+                        <img src="{{ asset('images/inside.jpg') }}" alt="Inside the clinic reception area">
+                    </figure>
+                    <figure class="landing-hero-slider__slide">
+                        <img src="{{ asset('images/1000langkah.jpg') }}" alt="1000 langkah healthy activity event">
+                    </figure>
+                    <figure class="landing-hero-slider__slide">
+                        <img src="{{ asset('images/santuniKomuniti.jpg') }}" alt="Santuni komuniti health outreach session">
+                    </figure>
                 </div>
-                <div class="infographic-step">
-                    <span data-i18n="Step 2">Step 2</span>
-                    <strong data-i18n="Receive queue number">Receive queue number</strong>
-                </div>
-                <div class="infographic-step">
-                    <span data-i18n="Step 3">Step 3</span>
-                    <strong data-i18n="Scan QR on arrival">Scan QR on arrival</strong>
-                </div>
+            </div>
+            <div class="landing-hero-slider__indicators" aria-hidden="true">
+                <span class="is-active"></span>
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
     </div>
@@ -273,6 +267,67 @@
     </div>
 </section>
  
+<script>
+    (function () {
+        const slider = document.getElementById('landing-hero-slider');
+        if (!slider) {
+            return;
+        }
+
+        const slides = Array.from(slider.querySelectorAll('.landing-hero-slider__slide'));
+        const indicators = Array.from(document.querySelectorAll('.landing-hero-slider__indicators span'));
+        if (slides.length < 2) {
+            return;
+        }
+
+        const intervalMs = 4500;
+        let currentIndex = 0;
+        let intervalId = null;
+
+        const updateIndicators = () => {
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('is-active', index === currentIndex);
+            });
+        };
+
+        const goToSlide = (index, behavior = 'smooth') => {
+            currentIndex = (index + slides.length) % slides.length;
+            slider.scrollTo({
+                left: slider.clientWidth * currentIndex,
+                behavior,
+            });
+            updateIndicators();
+        };
+
+        const startAutoSwipe = () => {
+            if (intervalId) {
+                window.clearInterval(intervalId);
+            }
+
+            intervalId = window.setInterval(() => {
+                goToSlide(currentIndex + 1);
+            }, intervalMs);
+        };
+
+        slider.addEventListener('mouseenter', () => {
+            if (intervalId) {
+                window.clearInterval(intervalId);
+            }
+        });
+
+        slider.addEventListener('mouseleave', () => {
+            startAutoSwipe();
+        });
+
+        window.addEventListener('resize', () => {
+            goToSlide(currentIndex, 'auto');
+        });
+
+        goToSlide(0, 'auto');
+        startAutoSwipe();
+    })();
+</script>
+
 <script>
     (function () {
         const form = document.getElementById('landing-bmi-form');
