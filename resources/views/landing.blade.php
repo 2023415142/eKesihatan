@@ -53,7 +53,7 @@
         margin: 0;
         min-width: 100%;
         width: 100%;
-        aspect-ratio: 21 / 9;
+        aspect-ratio: 12 / 5;
     }
 
     .landing-hero-slider__slide img {
@@ -91,7 +91,9 @@
         .landing-hero {
             margin-bottom: 1rem;
         }
+    }
 
+    @media (max-width: 768px) {
         .landing-hero-slider__slide {
             aspect-ratio: 16 / 9;
         }

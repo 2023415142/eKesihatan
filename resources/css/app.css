@@ -779,7 +779,7 @@ section {
     margin: 0;
     flex: 0 0 100%;
     width: 100%;
-    aspect-ratio: 21 / 9;
+    aspect-ratio: 12 / 5;
 }
 
 .landing-hero-slider__slide img {
@@ -1302,10 +1302,6 @@ footer {
         margin-bottom: 1rem;
     }
 
-    .landing-hero-slider__slide {
-        aspect-ratio: 16 / 9;
-    }
-
     .landing-footer__top {
         flex-direction: column;
         align-items: stretch;
@@ -1338,6 +1334,10 @@ footer {
  
     .main-content {
         padding: 1.5rem 1rem 2rem;
+    }
+
+    .landing-hero-slider__slide {
+        aspect-ratio: 16 / 9;
     }
 
     section {
