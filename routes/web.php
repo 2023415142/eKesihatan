@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\AppointmentSlotController;
 use App\Http\Controllers\Admin\BulletinController;
 use App\Http\Controllers\Admin\DoctorController;
 use App\Http\Controllers\Admin\HealthServiceController;
+use App\Http\Controllers\Admin\DownloadableFormController;
 use App\Http\Controllers\Doctor\AppointmentController as DoctorAppointmentController;
 use App\Http\Controllers\Doctor\MedicalDocumentController;
 use App\Http\Controllers\Doctor\PatientHistoryController;
@@ -68,6 +69,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::resource('doctors', DoctorController::class)->except(['show']);
     Route::resource('slots', AppointmentSlotController::class)->except(['show']);
     Route::resource('bulletins', BulletinController::class)->except(['show']);
+    Route::resource('forms', DownloadableFormController::class)->except(['show']);
     Route::get('appointments', [AdminAppointmentController::class, 'index'])->name('appointments.index');
     Route::get('appointments/{appointment}', [AdminAppointmentController::class, 'show'])->name('appointments.show');
     Route::put('appointments/{appointment}', [AdminAppointmentController::class, 'update'])->name('appointments.update');

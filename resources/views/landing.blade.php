@@ -164,6 +164,132 @@
     }
 </style>
  
+<section>
+    <h3 data-i18n="Clinic Notices and Bulletins">Clinic Notices and Bulletins</h3>
+    <div class="notice-board">
+        @forelse ($bulletins as $bulletin)
+            @php
+                $modalId = 'bulletin-poster-modal-' . $bulletin->id;
+                $posterUrl = $bulletin->poster_path ? asset($bulletin->poster_path) : null;
+            @endphp
+            <article class="notice-card notice-card--program" id="bulletin-{{ $bulletin->id }}">
+                <h4>{{ $bulletin->title }}</h4>
+                @if ($bulletin->summary)
+                    <p>{{ $bulletin->summary }}</p>
+                @endif
+
+                @if ($bulletin->event_date || $bulletin->event_time || $bulletin->location)
+                    <ul class="bulletin-meta">
+                        @if ($bulletin->event_date)
+                            <li><strong data-i18n="Date:">Date:</strong> {{ $bulletin->event_date->format('d M Y (l)') }}</li>
+                        @endif
+                        @if ($bulletin->event_time)
+                            <li><strong data-i18n="Time:">Time:</strong> {{ $bulletin->event_time }}</li>
+                        @endif
+                        @if ($bulletin->location)
+                            <li><strong data-i18n="Location:">Location:</strong> {{ $bulletin->location }}</li>
+                        @endif
+                    </ul>
+                @endif
+
+                @if ($posterUrl)
+                    <button
+                        type="button"
+                        class="bulletin-poster-trigger js-open-bulletin-modal"
+                        data-target="{{ $modalId }}"
+                        aria-controls="{{ $modalId }}"
+                        aria-expanded="false"
+                    >
+                        <img
+                            src="{{ $posterUrl }}"
+                            alt="{{ $bulletin->title }} poster"
+                            loading="lazy"
+                            class="bulletin-poster-thumb"
+                        >
+                        <span class="bulletin-poster-trigger__label" data-i18n="View Poster">View Poster</span>
+                    </button>
+                @endif
+
+                @if ($bulletin->details)
+                    <p>{{ $bulletin->details }}</p>
+                @endif
+
+                @if ($posterUrl)
+                    <div class="bulletin-actions">
+                        <button
+                            type="button"
+                            class="button-link secondary js-open-bulletin-modal"
+                            data-target="{{ $modalId }}"
+                            aria-controls="{{ $modalId }}"
+                            aria-expanded="false"
+                            data-i18n="Read Program Details"
+                        >
+                            Read Program Details
+                        </button>
+                    </div>
+
+                    <div id="{{ $modalId }}" class="program-poster-modal" hidden>
+                        <div class="program-poster-modal__backdrop" data-poster-close="true"></div>
+                        <div class="program-poster-modal__content" role="dialog" aria-modal="true" aria-labelledby="{{ $modalId }}-title">
+                            <div class="program-poster-modal__header">
+                                <h5 id="{{ $modalId }}-title">{{ $bulletin->title }}</h5>
+                                <div class="program-poster-modal__actions">
+                                    <a
+                                        class="program-poster-modal__open-full"
+                                        href="{{ $posterUrl }}"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        data-i18n="Open Full Poster"
+                                    >
+                                        Open Full Poster
+                                    </a>
+                                    <button type="button" class="program-poster-modal__close js-close-bulletin-modal" aria-label="Close poster modal">
+                                        <span aria-hidden="true">&times;</span>
+                                        <span class="sr-only" data-i18n="Close Poster">Close Poster</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="program-poster-modal__image-wrap">
+                                <img
+                                    src="{{ $posterUrl }}"
+                                    alt="{{ $bulletin->title }} poster"
+                                    loading="lazy"
+                                >
+                            </div>
+                        </div>
+                    </div>
+                @endif
+            </article>
+        @empty
+            <p class="notice-empty" data-i18n="No clinic bulletins available right now.">No clinic bulletins available right now.</p>
+        @endforelse
+    </div>
+</section>
+
+<section class="landing-downloads">
+    <h3 data-i18n="Forms and Downloads">Forms and Downloads</h3>
+    <div class="downloads-grid">
+        @forelse ($downloadableForms as $downloadableForm)
+            <article class="download-card">
+                <h4>{{ $downloadableForm->title }}</h4>
+                @if ($downloadableForm->description)
+                    <p>{{ $downloadableForm->description }}</p>
+                @endif
+                <a
+                    class="button-link secondary"
+                    href="{{ asset($downloadableForm->file_path) }}"
+                    download="{{ basename($downloadableForm->file_path) }}"
+                    data-i18n="Download Form"
+                >
+                    Download Form
+                </a>
+            </article>
+        @empty
+            <p class="download-empty" data-i18n="No forms available for download right now.">No forms available for download right now.</p>
+        @endforelse
+    </div>
+</section>
+
 <section class="bmi-card landing-bmi">
     <h3 data-i18n="BMI Calculator">BMI Calculator</h3>
     <p data-i18n="Check your BMI instantly with basic inputs.">Check your BMI instantly with basic inputs.</p>
@@ -195,153 +321,6 @@
     <div id="landing-bmi-result" class="bmi-result" hidden>
         <p><strong data-i18n="Your BMI:">Your BMI:</strong> <span id="landing-bmi-value">-</span></p>
         <p><strong data-i18n="Category:">Category:</strong> <span id="landing-bmi-category">-</span></p>
-    </div>
-</section>
- 
-<section>
-    <h3 data-i18n="Clinic Notices and Bulletins">Clinic Notices and Bulletins</h3>
-    <div class="notice-board">
-        @if ($bulletins->isEmpty())
-            @php
-                $fallbackPosterPath = file_exists(public_path('images/kempen-derma-darah-poster.jpeg'))
-                    ? 'images/kempen-derma-darah-poster.jpeg'
-                    : 'images/kempen-derma-darah-poster.jpg';
-                $fallbackModalId = 'bulletin-poster-modal-fallback';
-            @endphp
-            <article class="notice-card notice-card--program" id="program-kempen-derma-darah">
-                <h4 data-i18n="Kempen Derma Darah Perdana">Kempen Derma Darah Perdana</h4>
-                <p data-i18n="Join Unit Kesihatan UiTM Arau for a blood donation campaign and campus health engagement activities.">
-                    Join Unit Kesihatan UiTM Arau for a blood donation campaign and campus health engagement activities.
-                </p>
-                <ul class="bulletin-meta">
-                    <li><strong data-i18n="Date:">Date:</strong> 16 Jun 2026 (Tuesday)</li>
-                    <li><strong data-i18n="Time:">Time:</strong> 10:00 AM - 5:00 PM</li>
-                    <li><strong data-i18n="Location:">Location:</strong> Dewan Agung Tuanku Canselor (DATC), UiTM Shah Alam</li>
-                </ul>
-                <p data-i18n="Activities include health exhibitions, health talks, and UiTM product sales. Open to UiTM community members and public participants who meet donation requirements.">
-                    Activities include health exhibitions, health talks, and UiTM product sales. Open to UiTM community members and public participants who meet donation requirements.
-                </p>
-                <div class="bulletin-actions">
-                    <button
-                        type="button"
-                        class="button-link secondary js-open-bulletin-modal"
-                        data-target="{{ $fallbackModalId }}"
-                        aria-controls="{{ $fallbackModalId }}"
-                        aria-expanded="false"
-                        data-i18n="Read Program Details"
-                    >
-                        Read Program Details
-                    </button>
-                </div>
-                <div id="{{ $fallbackModalId }}" class="program-poster-modal" hidden>
-                    <div class="program-poster-modal__backdrop" data-poster-close="true"></div>
-                    <div class="program-poster-modal__content" role="dialog" aria-modal="true" aria-labelledby="{{ $fallbackModalId }}-title">
-                        <div class="program-poster-modal__header">
-                            <h5 id="{{ $fallbackModalId }}-title" data-i18n="Kempen Derma Darah Poster">Kempen Derma Darah Poster</h5>
-                            <div class="program-poster-modal__actions">
-                                <a
-                                    class="program-poster-modal__open-full"
-                                    href="{{ asset($fallbackPosterPath) }}"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    data-i18n="Open Full Poster"
-                                >
-                                    Open Full Poster
-                                </a>
-                                <button type="button" class="program-poster-modal__close js-close-bulletin-modal" aria-label="Close poster modal">
-                                    <span aria-hidden="true">&times;</span>
-                                    <span class="sr-only" data-i18n="Close Poster">Close Poster</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="program-poster-modal__image-wrap">
-                            <img
-                                src="{{ asset($fallbackPosterPath) }}"
-                                alt="Poster Kempen Derma Darah Perdana UiTM"
-                                loading="lazy"
-                            >
-                        </div>
-                    </div>
-                </div>
-            </article>
-        @else
-            @foreach ($bulletins as $bulletin)
-                @php
-                    $modalId = 'bulletin-poster-modal-' . $bulletin->id;
-                    $posterUrl = $bulletin->poster_path ? asset($bulletin->poster_path) : null;
-                @endphp
-                <article class="notice-card notice-card--program" id="bulletin-{{ $bulletin->id }}">
-                    <h4>{{ $bulletin->title }}</h4>
-                    @if ($bulletin->summary)
-                        <p>{{ $bulletin->summary }}</p>
-                    @endif
-
-                    @if ($bulletin->event_date || $bulletin->event_time || $bulletin->location)
-                        <ul class="bulletin-meta">
-                            @if ($bulletin->event_date)
-                                <li><strong data-i18n="Date:">Date:</strong> {{ $bulletin->event_date->format('d M Y (l)') }}</li>
-                            @endif
-                            @if ($bulletin->event_time)
-                                <li><strong data-i18n="Time:">Time:</strong> {{ $bulletin->event_time }}</li>
-                            @endif
-                            @if ($bulletin->location)
-                                <li><strong data-i18n="Location:">Location:</strong> {{ $bulletin->location }}</li>
-                            @endif
-                        </ul>
-                    @endif
-
-                    @if ($bulletin->details)
-                        <p>{{ $bulletin->details }}</p>
-                    @endif
-
-                    @if ($posterUrl)
-                        <div class="bulletin-actions">
-                            <button
-                                type="button"
-                                class="button-link secondary js-open-bulletin-modal"
-                                data-target="{{ $modalId }}"
-                                aria-controls="{{ $modalId }}"
-                                aria-expanded="false"
-                                data-i18n="Read Program Details"
-                            >
-                                Read Program Details
-                            </button>
-                        </div>
-
-                        <div id="{{ $modalId }}" class="program-poster-modal" hidden>
-                            <div class="program-poster-modal__backdrop" data-poster-close="true"></div>
-                            <div class="program-poster-modal__content" role="dialog" aria-modal="true" aria-labelledby="{{ $modalId }}-title">
-                                <div class="program-poster-modal__header">
-                                    <h5 id="{{ $modalId }}-title">{{ $bulletin->title }}</h5>
-                                    <div class="program-poster-modal__actions">
-                                        <a
-                                            class="program-poster-modal__open-full"
-                                            href="{{ $posterUrl }}"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            data-i18n="Open Full Poster"
-                                        >
-                                            Open Full Poster
-                                        </a>
-                                        <button type="button" class="program-poster-modal__close js-close-bulletin-modal" aria-label="Close poster modal">
-                                            <span aria-hidden="true">&times;</span>
-                                            <span class="sr-only" data-i18n="Close Poster">Close Poster</span>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="program-poster-modal__image-wrap">
-                                    <img
-                                        src="{{ $posterUrl }}"
-                                        alt="{{ $bulletin->title }} poster"
-                                        loading="lazy"
-                                    >
-                                </div>
-                            </div>
-                        </div>
-                    @endif
-                </article>
-            @endforeach
-        @endif
     </div>
 </section>
  

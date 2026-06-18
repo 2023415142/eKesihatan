@@ -918,6 +918,76 @@ section {
 .notice-card--program {
     border-left-color: var(--color-primary);
     background: #eff6ff;
+    display: grid;
+    gap: 0.75rem;
+}
+
+.notice-empty {
+    margin: 0;
+    color: var(--color-muted);
+}
+
+button.bulletin-poster-trigger {
+    width: min(340px, 100%);
+    border: 1px solid #bfdbfe;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    padding: 0;
+    background: #ffffff;
+    text-align: left;
+}
+
+button.bulletin-poster-trigger:hover {
+    border-color: #60a5fa;
+    background: #f8fbff;
+}
+
+.bulletin-poster-thumb {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    display: block;
+}
+
+.bulletin-poster-trigger__label {
+    display: block;
+    padding: 0.45rem 0.6rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+.landing-downloads h3 {
+    margin-top: 0;
+}
+
+.downloads-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 0.85rem;
+}
+
+.download-card {
+    border: 1px solid var(--color-border);
+    border-radius: 0.65rem;
+    background: #ffffff;
+    padding: 0.9rem;
+    display: grid;
+    gap: 0.55rem;
+}
+
+.download-card h4,
+.download-card p {
+    margin: 0;
+}
+
+.download-card p {
+    color: var(--color-muted);
+}
+
+.download-empty {
+    margin: 0;
+    color: var(--color-muted);
 }
 
 .bulletin-meta {
@@ -1405,6 +1475,7 @@ footer {
     .notice-board,
     .articles-grid,
     .bmi-grid,
+    .downloads-grid,
     .landing-footer__grid {
         grid-template-columns: 1fr;
     }

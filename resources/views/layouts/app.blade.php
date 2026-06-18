@@ -76,6 +76,10 @@
                                 <span class="icon" aria-hidden="true">📣</span>
                                 <span data-i18n="Clinic Bulletins">Clinic Bulletins</span>
                             </a>
+                            <a href="{{ route('admin.forms.index') }}">
+                                <span class="icon" aria-hidden="true">📄</span>
+                                <span data-i18n="Forms & Downloads">Forms & Downloads</span>
+                            </a>
                             <a href="{{ route('staff.patients.index') }}">
                                 <span class="icon" aria-hidden="true">🧑‍🦽</span>
                                 <span data-i18n="Patient Directory">Patient Directory</span>
@@ -236,6 +240,7 @@
                     'No appointment slots created.': 'Tiada slot temu janji dicipta.',
                     'Appointments': 'Temu Janji',
                     'Clinic Bulletins': 'Buletin Klinik',
+                    'Forms & Downloads': 'Borang & Muat Turun',
                     'Appointment Review': 'Semakan Temu Janji',
                     'Review': 'Semak',
                     'Action': 'Tindakan',
@@ -332,6 +337,7 @@
                     'Receive queue number': 'Terima nombor giliran',
                     'Scan QR on arrival': 'Imbas QR semasa tiba',
                     'Clinic Notices and Bulletins': 'Notis dan Buletin Klinik',
+                    'No clinic bulletins available right now.': 'Tiada notis atau buletin klinik buat masa ini.',
                     'Operating Hours': 'Waktu Operasi',
                     'Monday to Thursday 8:00 AM to 5:00 PM. Friday 8:00 AM to 12:00 PM.': 'Isnin hingga Khamis 8:00 pagi hingga 5:00 petang. Jumaat 8:00 pagi hingga 12:00 tengah hari.',
                     'ID Required': 'ID Diperlukan',
@@ -344,6 +350,7 @@
                     'Kempen Derma Darah Poster': 'Poster Kempen Derma Darah',
                     'Join Unit Kesihatan UiTM Arau for a blood donation campaign and campus health engagement activities.': 'Sertai Unit Kesihatan UiTM Arau untuk kempen derma darah dan aktiviti penglibatan kesihatan kampus.',
                     'Read Program Details': 'Baca Butiran Program',
+                    'View Poster': 'Lihat Poster',
                     'Close Poster': 'Tutup Poster',
                     'Open Full Poster': 'Buka Poster Penuh',
                     'Add Bulletin': 'Tambah Buletin',
@@ -360,6 +367,23 @@
                     'Save Bulletin': 'Simpan Buletin',
                     'Update Bulletin': 'Kemas Kini Buletin',
                     'No bulletins created.': 'Tiada buletin dicipta.',
+                    'Add Form': 'Tambah Borang',
+                    'Edit Form': 'Sunting Borang',
+                    'Form Title': 'Tajuk Borang',
+                    'Display Order': 'Turutan Paparan',
+                    'Form File (PDF, DOC, DOCX, XLS, XLSX, PPT, PPTX)': 'Fail Borang (PDF, DOC, DOCX, XLS, XLSX, PPT, PPTX)',
+                    'Current File': 'Fail Semasa',
+                    'Replace current file': 'Ganti fail semasa',
+                    'Upload a new file when replacing the current one.': 'Muat naik fail baharu apabila menggantikan fail semasa.',
+                    'Upload a new file to replace the current one.': 'Muat naik fail baharu untuk menggantikan fail semasa.',
+                    'Publish for Download': 'Paparkan untuk Muat Turun',
+                    'Save Form': 'Simpan Borang',
+                    'Update Form': 'Kemas Kini Borang',
+                    'No forms created.': 'Tiada borang dicipta.',
+                    'Open File': 'Buka Fail',
+                    'Forms and Downloads': 'Borang dan Muat Turun',
+                    'Download Form': 'Muat Turun Borang',
+                    'No forms available for download right now.': 'Tiada borang untuk dimuat turun buat masa ini.',
                     'Published': 'Diterbitkan',
                     'Draft': 'Draf',
                     'Activities include health exhibitions, health talks, and UiTM product sales. Open to UiTM community members and public participants who meet donation requirements.': 'Aktiviti merangkumi pameran kesihatan, ceramah kesihatan, dan jualan produk UiTM. Terbuka kepada warga UiTM dan orang awam yang memenuhi syarat pendermaan.',
