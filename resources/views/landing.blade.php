@@ -224,60 +224,6 @@
     </div>
 </section>
  
-<section>
-    <h3 data-i18n="Health Articles">Health Articles</h3>
-    <div class="articles-grid">
-        <article class="article-card">
-            <div class="article-media" aria-hidden="true">
-                <svg viewBox="0 0 240 120" role="presentation">
-                    <rect width="240" height="120" rx="12" fill="#e0f2fe"></rect>
-                    <circle cx="60" cy="60" r="22" fill="#1d4ed8"></circle>
-                    <rect x="100" y="45" width="110" height="12" fill="#94a3b8"></rect>
-                    <rect x="100" y="65" width="80" height="10" fill="#cbd5f5"></rect>
-                </svg>
-            </div>
-            <div class="article-content">
-                <h4 data-i18n="Healthy Campus Habits">Healthy Campus Habits</h4>
-                <p data-i18n="Simple routines to boost energy, focus, and immunity.">Simple routines to boost energy, focus, and immunity.</p>
-                <span class="article-meta" data-i18n="Clinic Bulletin">Clinic Bulletin</span>
-                <a class="card-link" href="#" data-i18n="Read Article">Read Article</a>
-            </div>
-        </article>
-        <article class="article-card">
-            <div class="article-media" aria-hidden="true">
-                <svg viewBox="0 0 240 120" role="presentation">
-                    <rect width="240" height="120" rx="12" fill="#f0fdf4"></rect>
-                    <rect x="20" y="30" width="80" height="60" rx="10" fill="#0f766e"></rect>
-                    <rect x="120" y="40" width="90" height="12" fill="#94a3b8"></rect>
-                    <rect x="120" y="60" width="70" height="10" fill="#bbf7d0"></rect>
-                </svg>
-            </div>
-            <div class="article-content">
-                <h4 data-i18n="Understanding BMI">Understanding BMI</h4>
-                <p data-i18n="Learn how BMI helps track healthy weight goals.">Learn how BMI helps track healthy weight goals.</p>
-                <span class="article-meta" data-i18n="Health Education">Health Education</span>
-                <a class="card-link" href="#" data-i18n="Read Article">Read Article</a>
-            </div>
-        </article>
-        <article class="article-card">
-            <div class="article-media" aria-hidden="true">
-                <svg viewBox="0 0 240 120" role="presentation">
-                    <rect width="240" height="120" rx="12" fill="#fff7ed"></rect>
-                    <circle cx="50" cy="60" r="20" fill="#b45309"></circle>
-                    <rect x="90" y="38" width="120" height="12" fill="#94a3b8"></rect>
-                    <rect x="90" y="60" width="90" height="10" fill="#fed7aa"></rect>
-                </svg>
-            </div>
-            <div class="article-content">
-                <h4 data-i18n="Stress and Sleep Tips">Stress and Sleep Tips</h4>
-                <p data-i18n="Ways to rest better during busy study weeks.">Ways to rest better during busy study weeks.</p>
-                <span class="article-meta" data-i18n="Wellbeing Guide">Wellbeing Guide</span>
-                <a class="card-link" href="https://blog.ohiohealth.com/college-101-getting-enough-sleep/" target="_blank" rel="noopener noreferrer" data-i18n="Read Article">Read Article</a>
-            </div>
-        </article>
-    </div>
-</section>
-
 <section class="landing-footer" aria-labelledby="landing-footer-title">
     <div class="landing-footer__top">
         <div class="landing-footer__brand">
