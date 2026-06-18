@@ -17,11 +17,17 @@
                 <img src="{{ asset('images/santuniKomuniti.jpg') }}" alt="Santuni komuniti health outreach session">
             </figure>
         </div>
-        <div class="landing-hero-slider__indicators" aria-hidden="true">
-            <span class="is-active"></span>
-            <span></span>
-            <span></span>
-            <span></span>
+        <button type="button" class="landing-hero-slider__nav landing-hero-slider__nav--prev" aria-label="Previous slide">
+            <span aria-hidden="true">&#10094;</span>
+        </button>
+        <button type="button" class="landing-hero-slider__nav landing-hero-slider__nav--next" aria-label="Next slide">
+            <span aria-hidden="true">&#10095;</span>
+        </button>
+        <div class="landing-hero-slider__indicators">
+            <button type="button" class="landing-hero-slider__dot is-active" data-slide-index="0" aria-label="Go to slide 1" aria-current="true"></button>
+            <button type="button" class="landing-hero-slider__dot" data-slide-index="1" aria-label="Go to slide 2"></button>
+            <button type="button" class="landing-hero-slider__dot" data-slide-index="2" aria-label="Go to slide 3"></button>
+            <button type="button" class="landing-hero-slider__dot" data-slide-index="3" aria-label="Go to slide 4"></button>
         </div>
     </div>
 </section>
@@ -32,12 +38,15 @@
         border: 0;
         background: transparent;
         box-shadow: none;
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
     }
 
     .landing-hero-slider {
         position: relative;
         width: 100%;
-        border: 1px solid #cbd5e1;
+        border: 0;
         border-radius: 0;
         overflow: hidden;
         background: #0f172a;
@@ -63,6 +72,37 @@
         object-fit: cover;
     }
 
+    .landing-hero-slider__nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 2;
+        width: 2.2rem;
+        height: 2.2rem;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        background: rgba(15, 23, 42, 0.45);
+        color: #ffffff;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        font-size: 1.1rem;
+        line-height: 1;
+    }
+
+    .landing-hero-slider__nav:hover {
+        background: rgba(15, 23, 42, 0.72);
+    }
+
+    .landing-hero-slider__nav--prev {
+        left: 0.9rem;
+    }
+
+    .landing-hero-slider__nav--next {
+        right: 0.9rem;
+    }
+
     .landing-hero-slider__indicators {
         position: absolute;
         left: 50%;
@@ -75,15 +115,16 @@
         z-index: 1;
     }
 
-    .landing-hero-slider__indicators span {
+    .landing-hero-slider__dot {
         width: 0.55rem;
         height: 0.55rem;
         border-radius: 999px;
         border: 1px solid rgba(15, 23, 42, 0.35);
         background: rgba(255, 255, 255, 0.55);
+        padding: 0;
     }
 
-    .landing-hero-slider__indicators span.is-active {
+    .landing-hero-slider__dot.is-active {
         background: #ffffff;
     }
 
@@ -96,6 +137,20 @@
     @media (max-width: 768px) {
         .landing-hero-slider__slide {
             aspect-ratio: 16 / 9;
+        }
+
+        .landing-hero-slider__nav {
+            width: 1.9rem;
+            height: 1.9rem;
+            font-size: 0.95rem;
+        }
+
+        .landing-hero-slider__nav--prev {
+            left: 0.55rem;
+        }
+
+        .landing-hero-slider__nav--next {
+            right: 0.55rem;
         }
     }
 </style>
@@ -344,7 +399,9 @@
             }
 
             const slides = Array.from(track.querySelectorAll('.landing-hero-slider__slide'));
-            const indicators = Array.from(slider.querySelectorAll('.landing-hero-slider__indicators span'));
+            const indicators = Array.from(slider.querySelectorAll('.landing-hero-slider__dot'));
+            const previousButton = slider.querySelector('.landing-hero-slider__nav--prev');
+            const nextButton = slider.querySelector('.landing-hero-slider__nav--next');
             if (slides.length < 2) {
                 return;
             }
@@ -367,6 +424,7 @@
             const updateIndicators = () => {
                 indicators.forEach((indicator, index) => {
                     indicator.classList.toggle('is-active', index === currentIndex);
+                    indicator.setAttribute('aria-current', index === currentIndex ? 'true' : 'false');
                 });
             };
 
@@ -386,6 +444,14 @@
                 }, intervalMs);
             };
 
+            const showNextSlide = () => {
+                goToSlide(currentIndex + 1);
+            };
+
+            const showPreviousSlide = () => {
+                goToSlide(currentIndex - 1);
+            };
+
             slider.addEventListener('mouseenter', () => {
                 if (intervalId) {
                     window.clearInterval(intervalId);
@@ -395,6 +461,32 @@
             slider.addEventListener('mouseleave', () => {
                 startAutoSwipe();
             });
+
+            indicators.forEach((indicator) => {
+                indicator.addEventListener('click', () => {
+                    const index = Number(indicator.dataset.slideIndex);
+                    if (Number.isNaN(index)) {
+                        return;
+                    }
+
+                    goToSlide(index);
+                    startAutoSwipe();
+                });
+            });
+
+            if (previousButton) {
+                previousButton.addEventListener('click', () => {
+                    showPreviousSlide();
+                    startAutoSwipe();
+                });
+            }
+
+            if (nextButton) {
+                nextButton.addEventListener('click', () => {
+                    showNextSlide();
+                    startAutoSwipe();
+                });
+            }
 
             goToSlide(0);
             startAutoSwipe();
