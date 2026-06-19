@@ -145,6 +145,78 @@
         letter-spacing: 0.02em;
     }
 
+    .landing-connect {
+        border: 0;
+        box-shadow: none;
+        background: transparent;
+    }
+
+    .landing-section-title--social {
+        margin-bottom: 0.55rem;
+        font-size: clamp(1.8rem, 3vw, 2.65rem);
+        font-weight: 900;
+        color: #111827;
+    }
+
+    .landing-connect__intro {
+        margin: 0 auto 1rem;
+        max-width: 680px;
+        text-align: center;
+        color: var(--color-muted);
+    }
+
+    .landing-connect__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 156px));
+        justify-content: center;
+        gap: 1rem;
+        max-width: 760px;
+        margin: 0 auto;
+    }
+
+    .connect-card {
+        display: flex;
+        flex-direction: column;
+        text-decoration: none;
+        border: none;
+        border-radius: 0;
+        overflow: visible;
+        background: transparent;
+        box-shadow: none;
+        transition: transform 150ms ease;
+    }
+
+    .connect-card:hover {
+        text-decoration: none;
+        transform: translateY(-2px);
+    }
+
+    .connect-card__media {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        background: #f8fafc;
+        border: 2px solid #8b8f98;
+        border-radius: 1.6rem;
+        overflow: hidden;
+    }
+
+    .connect-card__media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .connect-card__label {
+        background: #3f3f46;
+        color: #ffffff;
+        text-align: left;
+        margin-top: 0.35rem;
+        padding: 0.38rem 0.62rem;
+        font-size: 1rem;
+        font-weight: 700;
+    }
+
     .program-poster-modal {
         position: fixed !important;
         inset: 0 !important;
@@ -261,6 +333,11 @@
 
         .landing-hero-slider__nav--next {
             right: 0.55rem;
+        }
+
+        .landing-connect__grid {
+            grid-template-columns: 1fr;
+            max-width: 400px;
         }
 
         .program-poster-modal {
@@ -468,9 +545,23 @@
 </section>
 
 <section class="landing-connect">
-    <h3 class="landing-section-title" data-i18n="Connect With Us">CONNECT WITH US</h3>
-    <p class="landing-connect__intro" data-i18n="Stay connected with Unit Kesihatan UiTM Perlis on social media.">
-        Stay connected with Unit Kesihatan UiTM Perlis on social media.
+    @php
+        $facebookPreview = file_exists(public_path('images/facebook.png'))
+            ? 'images/facebook.png'
+            : 'images/inside.jpg';
+        $instagramPreview = file_exists(public_path('images/instagram.png'))
+            ? 'images/instagram.png'
+            : 'images/intern.jpg';
+        $tiktokPreview = file_exists(public_path('images/tiktok.jpg'))
+            ? 'images/tiktok.jpg'
+            : 'images/1000langkah.jpg';
+        $youtubePreview = file_exists(public_path('images/youtube.png'))
+            ? 'images/youtube.png'
+            : $facebookPreview;
+    @endphp
+    <h3 class="landing-section-title landing-section-title--social" data-i18n="Explore More!">EXPLORE MORE!</h3>
+    <p class="landing-connect__intro" data-i18n="Keep updated with #KeluargaUiTM on our social media.">
+        Keep updated with #KeluargaUiTM on our social media.
     </p>
     <div class="landing-connect__grid">
         <a
@@ -481,7 +572,7 @@
             aria-label="Facebook Unit Kesihatan UiTM Perlis"
         >
             <div class="connect-card__media">
-                <img src="{{ asset('images/facebook.png') }}" alt="Facebook page preview for Unit Kesihatan UiTM Perlis" loading="lazy">
+                <img src="{{ asset($facebookPreview) }}" alt="Facebook page preview for Unit Kesihatan UiTM Perlis" loading="lazy">
             </div>
             <div class="connect-card__label" data-i18n="Facebook">Facebook</div>
         </a>
@@ -493,7 +584,7 @@
             aria-label="Instagram Unit Kesihatan UiTM Perlis"
         >
             <div class="connect-card__media">
-                <img src="{{ asset('images/instagram.png') }}" alt="Instagram page preview for Unit Kesihatan UiTM Perlis" loading="lazy">
+                <img src="{{ asset($instagramPreview) }}" alt="Instagram page preview for Unit Kesihatan UiTM Perlis" loading="lazy">
             </div>
             <div class="connect-card__label" data-i18n="Instagram">Instagram</div>
         </a>
@@ -505,9 +596,21 @@
             aria-label="Tiktok New Health UiTM Perlis"
         >
             <div class="connect-card__media">
-                <img src="{{ asset('images/tiktok.jpg') }}" alt="Tiktok page preview for New Health UiTM Perlis" loading="lazy">
+                <img src="{{ asset($tiktokPreview) }}" alt="Tiktok page preview for New Health UiTM Perlis" loading="lazy">
             </div>
             <div class="connect-card__label" data-i18n="Tiktok">Tiktok</div>
+        </a>
+        <a
+            class="connect-card"
+            href="https://www.youtube.com/results?search_query=Unit+Kesihatan+UiTM+Perlis"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Youtube Unit Kesihatan UiTM Perlis"
+        >
+            <div class="connect-card__media">
+                <img src="{{ asset($youtubePreview) }}" alt="Youtube page preview for Unit Kesihatan UiTM Perlis" loading="lazy">
+            </div>
+            <div class="connect-card__label" data-i18n="Youtube">Youtube</div>
         </a>
     </div>
 </section>
