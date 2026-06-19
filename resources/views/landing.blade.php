@@ -167,15 +167,15 @@
 
     .landing-connect__grid {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 156px));
+        grid-template-columns: repeat(3, minmax(0, 180px));
         justify-content: center;
-        gap: 1rem;
-        max-width: 560px;
+        gap: 1.15rem;
+        max-width: 620px;
         margin: 0 auto;
     }
 
     .connect-card {
-        width: 156px;
+        width: 180px;
         display: flex;
         flex-direction: column;
         text-decoration: none;
@@ -213,8 +213,8 @@
         color: #ffffff;
         text-align: left;
         margin-top: 0.35rem;
-        padding: 0.38rem 0.62rem;
-        font-size: 1rem;
+        padding: 0.48rem 0.72rem;
+        font-size: 1.03rem;
         font-weight: 700;
     }
 
@@ -338,7 +338,13 @@
 
         .landing-connect__grid {
             grid-template-columns: 1fr;
-            max-width: 400px;
+            max-width: 320px;
+        }
+
+        .connect-card {
+            width: 100%;
+            max-width: 280px;
+            margin: 0 auto;
         }
 
         .program-poster-modal {
