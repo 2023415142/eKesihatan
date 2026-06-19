@@ -927,36 +927,6 @@ section {
     color: var(--color-muted);
 }
 
-button.bulletin-poster-trigger {
-    width: min(340px, 100%);
-    border: 1px solid #bfdbfe;
-    border-radius: 0.75rem;
-    overflow: hidden;
-    padding: 0;
-    background: #ffffff;
-    text-align: left;
-}
-
-button.bulletin-poster-trigger:hover {
-    border-color: #60a5fa;
-    background: #f8fbff;
-}
-
-.bulletin-poster-thumb {
-    width: 100%;
-    aspect-ratio: 3 / 4;
-    object-fit: cover;
-    display: block;
-}
-
-.bulletin-poster-trigger__label {
-    display: block;
-    padding: 0.45rem 0.6rem;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--color-primary);
-}
-
 .landing-downloads h3 {
     margin-top: 0;
 }
@@ -1017,7 +987,7 @@ button.bulletin-poster-trigger:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
+    padding: clamp(0.5rem, 1.8vw, 1rem);
 }
 
 .program-poster-modal[hidden] {
@@ -1033,7 +1003,7 @@ button.bulletin-poster-trigger:hover {
 
 .program-poster-modal__content {
     position: relative;
-    width: min(960px, 100%);
+    width: min(860px, 100%);
     max-height: calc(100vh - 2rem);
     overflow: hidden;
     display: flex;
@@ -1110,15 +1080,30 @@ button.program-poster-modal__close:hover {
     padding: 0.75rem;
     overflow: auto;
     overscroll-behavior: contain;
+    background: #f8fafc;
+    display: flex;
+    justify-content: center;
+}
+
+.program-poster-modal__image-frame {
+    width: min(560px, 100%);
+    max-height: calc(100vh - 12rem);
+    aspect-ratio: 3 / 4;
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
+    border-radius: 0.5rem;
+    padding: 0.45rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .program-poster-modal img {
     display: block;
     width: 100%;
-    max-height: calc(100vh - 10rem);
+    height: 100%;
     margin: 0 auto;
     object-fit: contain;
-    border-radius: 0.5rem;
 }
  
 .articles-grid {
@@ -1511,8 +1496,9 @@ footer {
         padding: 0.55rem;
     }
 
-    .program-poster-modal img {
-        max-height: none;
+    .program-poster-modal__image-frame {
+        width: min(100%, 380px);
+        max-height: calc(100vh - 9rem);
     }
 }
 

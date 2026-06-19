@@ -192,24 +192,6 @@
                     </ul>
                 @endif
 
-                @if ($posterUrl)
-                    <button
-                        type="button"
-                        class="bulletin-poster-trigger js-open-bulletin-modal"
-                        data-target="{{ $modalId }}"
-                        aria-controls="{{ $modalId }}"
-                        aria-expanded="false"
-                    >
-                        <img
-                            src="{{ $posterUrl }}"
-                            alt="{{ $bulletin->title }} poster"
-                            loading="lazy"
-                            class="bulletin-poster-thumb"
-                        >
-                        <span class="bulletin-poster-trigger__label" data-i18n="View Poster">View Poster</span>
-                    </button>
-                @endif
-
                 @if ($bulletin->details)
                     <p>{{ $bulletin->details }}</p>
                 @endif
@@ -250,11 +232,13 @@
                                 </div>
                             </div>
                             <div class="program-poster-modal__image-wrap">
-                                <img
-                                    src="{{ $posterUrl }}"
-                                    alt="{{ $bulletin->title }} poster"
-                                    loading="lazy"
-                                >
+                                <div class="program-poster-modal__image-frame">
+                                    <img
+                                        src="{{ $posterUrl }}"
+                                        alt="{{ $bulletin->title }} poster"
+                                        loading="lazy"
+                                    >
+                                </div>
                             </div>
                         </div>
                     </div>
