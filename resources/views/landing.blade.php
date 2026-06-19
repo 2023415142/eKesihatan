@@ -132,6 +132,19 @@
         background: #ffffff;
     }
 
+    .landing-section-title {
+        margin: 0 0 1.1rem;
+        width: 100%;
+        text-align: center !important;
+        font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+        font-size: clamp(2rem, 3.8vw, 3.25rem);
+        font-weight: 900;
+        line-height: 1.05;
+        color: #111827;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+    }
+
     .program-poster-modal {
         position: fixed !important;
         inset: 0 !important;
