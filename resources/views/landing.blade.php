@@ -165,6 +165,13 @@
         color: var(--color-muted);
     }
 
+    .landing-bmi__intro {
+        margin: 0 auto 1rem;
+        max-width: 680px;
+        text-align: center;
+        color: var(--color-muted);
+    }
+
     .landing-connect__grid {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 180px));
@@ -519,7 +526,7 @@
 
 <section class="bmi-card landing-bmi">
     <h3 class="landing-section-title" data-i18n="BMI Calculator">BMI Calculator</h3>
-    <p data-i18n="Check your BMI instantly with basic inputs.">Check your BMI instantly with basic inputs.</p>
+    <p class="landing-bmi__intro" data-i18n="Check your BMI instantly with basic inputs.">Check your BMI instantly with basic inputs.</p>
     <form id="landing-bmi-form" class="bmi-form">
         <div class="bmi-grid">
             <div>

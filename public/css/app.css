@@ -951,6 +951,13 @@ section {
     color: var(--color-muted);
 }
 
+.landing-bmi__intro {
+    margin: 0 auto 1rem;
+    max-width: 680px;
+    text-align: center;
+    color: var(--color-muted);
+}
+
 .landing-connect {
     border: 0;
     box-shadow: none;
