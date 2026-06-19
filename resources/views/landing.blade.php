@@ -480,10 +480,16 @@
             rel="noopener noreferrer"
             aria-label="Facebook Unit Kesihatan UiTM Perlis"
         >
-            <div class="connect-card__preview connect-card__preview--facebook">
-                <span class="connect-card__handle">@UKesUiTMPerlis</span>
+            <div class="connect-card__media">
+                <img src="{{ asset('images/inside.jpg') }}" alt="Facebook page preview for Unit Kesihatan UiTM Perlis" loading="lazy">
             </div>
-            <div class="connect-card__label" data-i18n="Facebook">Facebook</div>
+            <div class="connect-card__body">
+                <div class="connect-card__meta">
+                    <strong data-i18n="Facebook">Facebook</strong>
+                    <span>@UKesUiTMPerlis</span>
+                </div>
+                <span class="connect-card__cta" data-i18n="Visit Page">Visit Page</span>
+            </div>
         </a>
         <a
             class="connect-card"
@@ -492,10 +498,16 @@
             rel="noopener noreferrer"
             aria-label="Instagram Unit Kesihatan UiTM Perlis"
         >
-            <div class="connect-card__preview connect-card__preview--instagram">
-                <span class="connect-card__handle">@unitkesihatanuitmperlis</span>
+            <div class="connect-card__media">
+                <img src="{{ asset('images/intern.jpg') }}" alt="Instagram page preview for Unit Kesihatan UiTM Perlis" loading="lazy">
             </div>
-            <div class="connect-card__label" data-i18n="Instagram">Instagram</div>
+            <div class="connect-card__body">
+                <div class="connect-card__meta">
+                    <strong data-i18n="Instagram">Instagram</strong>
+                    <span>@unitkesihatanuitmperlis</span>
+                </div>
+                <span class="connect-card__cta" data-i18n="Visit Page">Visit Page</span>
+            </div>
         </a>
         <a
             class="connect-card"
@@ -504,10 +516,16 @@
             rel="noopener noreferrer"
             aria-label="Tiktok New Health UiTM Perlis"
         >
-            <div class="connect-card__preview connect-card__preview--tiktok">
-                <span class="connect-card__handle">@newhealthuitmperlis</span>
+            <div class="connect-card__media">
+                <img src="{{ asset('images/1000langkah.jpg') }}" alt="Tiktok page preview for New Health UiTM Perlis" loading="lazy">
             </div>
-            <div class="connect-card__label" data-i18n="Tiktok">Tiktok</div>
+            <div class="connect-card__body">
+                <div class="connect-card__meta">
+                    <strong data-i18n="Tiktok">Tiktok</strong>
+                    <span>@newhealthuitmperlis</span>
+                </div>
+                <span class="connect-card__cta" data-i18n="Visit Page">Visit Page</span>
+            </div>
         </a>
     </div>
 </section>
