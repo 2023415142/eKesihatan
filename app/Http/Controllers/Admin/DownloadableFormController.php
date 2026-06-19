@@ -6,27 +6,45 @@ use App\Http\Controllers\Controller;
 use App\Models\DownloadableForm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 
 class DownloadableFormController extends Controller
 {
     public function index()
     {
+        $isTableMissing = $this->isDownloadableFormsTableMissing();
+
         return view('admin.forms.index', [
-            'forms' => DownloadableForm::query()
-                ->orderBy('sort_order')
-                ->latest()
-                ->get(),
+            'forms' => $isTableMissing
+                ? collect()
+                : DownloadableForm::query()
+                    ->orderBy('sort_order')
+                    ->latest()
+                    ->get(),
+            'downloadableFormsTableMissing' => $isTableMissing,
         ]);
     }
 
     public function create()
     {
+        if ($this->isDownloadableFormsTableMissing()) {
+            return redirect()
+                ->route('admin.forms.index')
+                ->with('status', 'Forms table is missing. Run php artisan migrate first.');
+        }
+
         return view('admin.forms.create');
     }
 
     public function store(Request $request)
     {
+        if ($this->isDownloadableFormsTableMissing()) {
+            return redirect()
+                ->route('admin.forms.index')
+                ->with('status', 'Forms table is missing. Run php artisan migrate first.');
+        }
+
         $data = $this->validateForm($request, false);
         $data['is_published'] = $request->boolean('is_published');
         $data['created_by'] = $request->user()->id;
@@ -39,6 +57,12 @@ class DownloadableFormController extends Controller
 
     public function edit(DownloadableForm $form)
     {
+        if ($this->isDownloadableFormsTableMissing()) {
+            return redirect()
+                ->route('admin.forms.index')
+                ->with('status', 'Forms table is missing. Run php artisan migrate first.');
+        }
+
         return view('admin.forms.edit', [
             'form' => $form,
         ]);
@@ -46,6 +70,12 @@ class DownloadableFormController extends Controller
 
     public function update(Request $request, DownloadableForm $form)
     {
+        if ($this->isDownloadableFormsTableMissing()) {
+            return redirect()
+                ->route('admin.forms.index')
+                ->with('status', 'Forms table is missing. Run php artisan migrate first.');
+        }
+
         $data = $this->validateForm($request, true);
         $data['is_published'] = $request->boolean('is_published');
 
@@ -63,6 +93,12 @@ class DownloadableFormController extends Controller
 
     public function destroy(DownloadableForm $form)
     {
+        if ($this->isDownloadableFormsTableMissing()) {
+            return redirect()
+                ->route('admin.forms.index')
+                ->with('status', 'Forms table is missing. Run php artisan migrate first.');
+        }
+
         $this->deleteFormFile($form->file_path);
         $form->delete();
 
@@ -104,5 +140,10 @@ class DownloadableFormController extends Controller
         if (File::exists($absolutePath)) {
             File::delete($absolutePath);
         }
+    }
+
+    private function isDownloadableFormsTableMissing(): bool
+    {
+        return !Schema::hasTable('downloadable_forms');
     }
 }

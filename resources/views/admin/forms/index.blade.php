@@ -4,6 +4,12 @@
 <h2 data-i18n="Forms & Downloads">Forms & Downloads</h2>
 <a href="{{ route('admin.forms.create') }}" data-i18n="Add Form">Add Form</a>
 
+@if (!empty($downloadableFormsTableMissing))
+    <div class="alert alert-danger" data-i18n="Forms table is missing. Run php artisan migrate first.">
+        Forms table is missing. Run php artisan migrate first.
+    </div>
+@endif
+
 <table>
     <thead>
         <tr>

@@ -384,6 +384,7 @@
                     'Forms and Downloads': 'Borang dan Muat Turun',
                     'Download Form': 'Muat Turun Borang',
                     'No forms available for download right now.': 'Tiada borang untuk dimuat turun buat masa ini.',
+                    'Forms table is missing. Run php artisan migrate first.': 'Jadual borang belum wujud. Jalankan php artisan migrate dahulu.',
                     'Published': 'Diterbitkan',
                     'Draft': 'Draf',
                     'Activities include health exhibitions, health talks, and UiTM product sales. Open to UiTM community members and public participants who meet donation requirements.': 'Aktiviti merangkumi pameran kesihatan, ceramah kesihatan, dan jualan produk UiTM. Terbuka kepada warga UiTM dan orang awam yang memenuhi syarat pendermaan.',
