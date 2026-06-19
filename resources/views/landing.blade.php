@@ -132,6 +132,14 @@
         background: #ffffff;
     }
 
+    .landing-section-title {
+        margin: 0 0 1rem;
+        width: 100%;
+        text-align: center !important;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+    }
+
     .program-poster-modal {
         position: fixed !important;
         inset: 0 !important;
