@@ -927,8 +927,83 @@ section {
     color: var(--color-muted);
 }
 
+.landing-section-title {
+    margin: 0 0 1rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
 .landing-downloads h3 {
     margin-top: 0;
+}
+
+.landing-connect__intro {
+    margin: 0 auto 1rem;
+    max-width: 680px;
+    text-align: center;
+    color: var(--color-muted);
+}
+
+.landing-connect__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 0.95rem;
+    max-width: 920px;
+    margin: 0 auto;
+}
+
+.connect-card {
+    display: block;
+    text-decoration: none;
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    overflow: hidden;
+    background: #ffffff;
+}
+
+.connect-card:hover {
+    text-decoration: none;
+    border-color: #818cf8;
+}
+
+.connect-card__preview {
+    min-height: 210px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 1rem 0.75rem;
+    background: linear-gradient(160deg, #4c1d95, #312e81);
+    color: #ffffff;
+}
+
+.connect-card__preview--facebook {
+    background: linear-gradient(165deg, #1d4ed8, #1e3a8a);
+}
+
+.connect-card__preview--instagram {
+    background: linear-gradient(165deg, #c026d3, #db2777);
+}
+
+.connect-card__preview--tiktok {
+    background: linear-gradient(165deg, #111827, #1f2937);
+}
+
+.connect-card__handle {
+    font-size: 0.86rem;
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.34);
+    border-radius: 999px;
+    padding: 0.25rem 0.65rem;
+}
+
+.connect-card__label {
+    background: #374151;
+    color: #ffffff;
+    text-align: center;
+    padding: 0.55rem 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
 }
 
 .downloads-table-wrap {
@@ -1507,6 +1582,11 @@ footer {
     .bmi-grid,
     .landing-footer__grid {
         grid-template-columns: 1fr;
+    }
+
+    .landing-connect__grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
     }
 
     .landing-footer__column {

@@ -273,7 +273,7 @@
 </style>
  
 <section>
-    <h3 data-i18n="Clinic Notices and Bulletins">Clinic Notices and Bulletins</h3>
+    <h3 class="landing-section-title" data-i18n="Clinic Notices and Bulletins">Clinic Notices and Bulletins</h3>
     <div class="notice-board">
         @forelse ($bulletins as $bulletin)
             @php
@@ -359,7 +359,7 @@
 </section>
 
 <section class="landing-downloads">
-    <h3 data-i18n="Forms and Downloads">Forms and Downloads</h3>
+    <h3 class="landing-section-title" data-i18n="Forms and Downloads">Forms and Downloads</h3>
     <div class="downloads-table-wrap">
         <table class="downloads-table">
             <thead>
@@ -421,7 +421,7 @@
 </section>
 
 <section class="bmi-card landing-bmi">
-    <h3 data-i18n="BMI Calculator">BMI Calculator</h3>
+    <h3 class="landing-section-title" data-i18n="BMI Calculator">BMI Calculator</h3>
     <p data-i18n="Check your BMI instantly with basic inputs.">Check your BMI instantly with basic inputs.</p>
     <form id="landing-bmi-form" class="bmi-form">
         <div class="bmi-grid">
@@ -451,6 +451,51 @@
     <div id="landing-bmi-result" class="bmi-result" hidden>
         <p><strong data-i18n="Your BMI:">Your BMI:</strong> <span id="landing-bmi-value">-</span></p>
         <p><strong data-i18n="Category:">Category:</strong> <span id="landing-bmi-category">-</span></p>
+    </div>
+</section>
+
+<section class="landing-connect">
+    <h3 class="landing-section-title" data-i18n="Connect With Us">CONNECT WITH US</h3>
+    <p class="landing-connect__intro" data-i18n="Stay connected with Unit Kesihatan UiTM Perlis on social media.">
+        Stay connected with Unit Kesihatan UiTM Perlis on social media.
+    </p>
+    <div class="landing-connect__grid">
+        <a
+            class="connect-card"
+            href="https://www.facebook.com/UKesUiTMPerlis/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook Unit Kesihatan UiTM Perlis"
+        >
+            <div class="connect-card__preview connect-card__preview--facebook">
+                <span class="connect-card__handle">@UKesUiTMPerlis</span>
+            </div>
+            <div class="connect-card__label" data-i18n="Facebook">Facebook</div>
+        </a>
+        <a
+            class="connect-card"
+            href="https://www.instagram.com/unitkesihatanuitmperlis/?hl=en"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram Unit Kesihatan UiTM Perlis"
+        >
+            <div class="connect-card__preview connect-card__preview--instagram">
+                <span class="connect-card__handle">@unitkesihatanuitmperlis</span>
+            </div>
+            <div class="connect-card__label" data-i18n="Instagram">Instagram</div>
+        </a>
+        <a
+            class="connect-card"
+            href="https://www.tiktok.com/@newhealthuitmperlis"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Tiktok New Health UiTM Perlis"
+        >
+            <div class="connect-card__preview connect-card__preview--tiktok">
+                <span class="connect-card__handle">@newhealthuitmperlis</span>
+            </div>
+            <div class="connect-card__label" data-i18n="Tiktok">Tiktok</div>
+        </a>
     </div>
 </section>
  
