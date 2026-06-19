@@ -932,9 +932,9 @@ section {
     width: 100%;
     text-align: center !important;
     font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-    font-size: clamp(2rem, 3.8vw, 3.25rem);
-    font-weight: 900;
-    line-height: 1.05;
+    font-size: clamp(1.35rem, 2.35vw, 2rem);
+    font-weight: 800;
+    line-height: 1.2;
     color: #111827;
     text-transform: uppercase;
     letter-spacing: 0.02em;
