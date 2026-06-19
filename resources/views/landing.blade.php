@@ -360,25 +360,63 @@
 
 <section class="landing-downloads">
     <h3 data-i18n="Forms and Downloads">Forms and Downloads</h3>
-    <div class="downloads-grid">
-        @forelse ($downloadableForms as $downloadableForm)
-            <article class="download-card">
-                <h4>{{ $downloadableForm->title }}</h4>
-                @if ($downloadableForm->description)
-                    <p>{{ $downloadableForm->description }}</p>
-                @endif
-                <a
-                    class="button-link secondary"
-                    href="{{ asset($downloadableForm->file_path) }}"
-                    download="{{ basename($downloadableForm->file_path) }}"
-                    data-i18n="Download Form"
-                >
-                    Download Form
-                </a>
-            </article>
-        @empty
-            <p class="download-empty" data-i18n="No forms available for download right now.">No forms available for download right now.</p>
-        @endforelse
+    <div class="downloads-table-wrap">
+        <table class="downloads-table">
+            <thead>
+                <tr>
+                    <th class="downloads-table__number" data-i18n="No">No</th>
+                    <th data-i18n="Document Name">Document Name</th>
+                    <th data-i18n="Format">Format</th>
+                    <th data-i18n="Size">Size</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($downloadableForms as $index => $downloadableForm)
+                    @php
+                        $absoluteFilePath = public_path($downloadableForm->file_path);
+                        $fileExists = is_file($absoluteFilePath);
+                        $fileSize = $fileExists ? filesize($absoluteFilePath) : null;
+
+                        if ($fileSize === null) {
+                            $fileSizeLabel = '-';
+                        } elseif ($fileSize >= 1024 * 1024) {
+                            $fileSizeLabel = number_format($fileSize / (1024 * 1024), 1) . ' MB';
+                        } else {
+                            $fileSizeLabel = number_format($fileSize / 1024, 1) . ' KB';
+                        }
+
+                        $fileExtension = strtoupper(pathinfo($downloadableForm->file_path, PATHINFO_EXTENSION));
+                    @endphp
+                    <tr>
+                        <td class="downloads-table__number">{{ $index + 1 }}</td>
+                        <td>
+                            <strong>{{ $downloadableForm->title }}</strong>
+                            @if ($downloadableForm->description)
+                                <p class="downloads-table__description">{{ $downloadableForm->description }}</p>
+                            @endif
+                        </td>
+                        <td>
+                            @if ($fileExists)
+                                <a
+                                    class="downloads-format-badge"
+                                    href="{{ asset($downloadableForm->file_path) }}"
+                                    download="{{ basename($downloadableForm->file_path) }}"
+                                >
+                                    {{ $fileExtension ?: 'FILE' }}
+                                </a>
+                            @else
+                                <span class="downloads-format-badge is-disabled" data-i18n="Not Available">Not Available</span>
+                            @endif
+                        </td>
+                        <td>{{ $fileSizeLabel }}</td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="4" class="downloads-table__empty" data-i18n="No forms available for download right now.">No forms available for download right now.</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
     </div>
 </section>
 
