@@ -953,9 +953,10 @@ section {
 
 .landing-connect__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px, 190px));
+    justify-content: center;
     gap: 1rem;
-    max-width: 920px;
+    max-width: 760px;
     margin: 0 auto;
 }
 
@@ -963,71 +964,41 @@ section {
     display: flex;
     flex-direction: column;
     text-decoration: none;
-    border: 1px solid var(--color-border);
+    border: 1px solid #9ca3af;
     border-radius: 1.05rem;
     overflow: hidden;
     background: #ffffff;
-    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+    box-shadow: 0 5px 12px rgba(15, 23, 42, 0.1);
     transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
 }
 
 .connect-card:hover {
     text-decoration: none;
-    border-color: #6366f1;
+    border-color: #4b5563;
     transform: translateY(-2px);
-    box-shadow: 0 14px 26px rgba(15, 23, 42, 0.14);
+    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.16);
 }
 
 .connect-card__media {
     width: 100%;
-    aspect-ratio: 4 / 5;
-    background: #e2e8f0;
+    aspect-ratio: 4 / 3;
+    background: #f8fafc;
     overflow: hidden;
 }
 
 .connect-card__media img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
 }
 
-.connect-card__body {
-    background: #1f2937;
-    color: #e5e7eb;
-    padding: 0.7rem 0.75rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.65rem;
-}
-
-.connect-card__meta {
-    display: grid;
-    gap: 0.1rem;
-}
-
-.connect-card__meta strong {
+.connect-card__label {
+    background: #3f3f46;
     color: #ffffff;
+    text-align: left;
+    padding: 0.45rem 0.65rem;
     font-size: 1rem;
-}
-
-.connect-card__meta span {
-    font-size: 0.82rem;
-    color: #cbd5e1;
-}
-
-.connect-card__cta {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    white-space: nowrap;
-    padding: 0.25rem 0.55rem;
-    border-radius: 999px;
-    border: 1px solid rgba(148, 163, 184, 0.45);
-    background: rgba(15, 23, 42, 0.35);
-    color: #f8fafc;
-    font-size: 0.76rem;
     font-weight: 700;
 }
 
