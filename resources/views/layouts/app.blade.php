@@ -385,7 +385,7 @@
                     'Connect With Us': 'Hubungi Kami',
                     'Stay connected with Unit Kesihatan UiTM Perlis on social media.': 'Kekal berhubung dengan Unit Kesihatan UiTM Perlis melalui media sosial.',
                     'Explore More!': 'Terokai Lagi!',
-                    'Keep updated with #KeluargaUiTM on our social media.': 'Ikuti kemas kini #KeluargaUiTM di media sosial kami.',
+                    'Keep updated with us on our social media.': 'Kekal berhubung dengan kami di media sosial kami.',
                     'Facebook': 'Facebook',
                     'Instagram': 'Instagram',
                     'Tiktok': 'Tiktok',

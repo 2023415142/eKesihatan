@@ -564,8 +564,8 @@
             : 'images/1000langkah.jpg';
     @endphp
     <h3 class="landing-section-title landing-section-title--social" data-i18n="Explore More!">EXPLORE MORE!</h3>
-    <p class="landing-connect__intro" data-i18n="Keep updated with #KeluargaUiTM on our social media.">
-        Keep updated with #KeluargaUiTM on our social media.
+    <p class="landing-connect__intro" data-i18n="Keep updated with us on our social media.">
+        Keep updated with us on our social media.
     </p>
     <div class="landing-connect__grid">
         <a
