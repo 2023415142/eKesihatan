@@ -167,14 +167,15 @@
 
     .landing-connect__grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 156px));
+        grid-template-columns: repeat(3, minmax(0, 156px));
         justify-content: center;
         gap: 1rem;
-        max-width: 760px;
+        max-width: 560px;
         margin: 0 auto;
     }
 
     .connect-card {
+        width: 156px;
         display: flex;
         flex-direction: column;
         text-decoration: none;
@@ -555,9 +556,6 @@
         $tiktokPreview = file_exists(public_path('images/tiktok.jpg'))
             ? 'images/tiktok.jpg'
             : 'images/1000langkah.jpg';
-        $youtubePreview = file_exists(public_path('images/youtube.png'))
-            ? 'images/youtube.png'
-            : $facebookPreview;
     @endphp
     <h3 class="landing-section-title landing-section-title--social" data-i18n="Explore More!">EXPLORE MORE!</h3>
     <p class="landing-connect__intro" data-i18n="Keep updated with #KeluargaUiTM on our social media.">
@@ -599,18 +597,6 @@
                 <img src="{{ asset($tiktokPreview) }}" alt="Tiktok page preview for New Health UiTM Perlis" loading="lazy">
             </div>
             <div class="connect-card__label" data-i18n="Tiktok">Tiktok</div>
-        </a>
-        <a
-            class="connect-card"
-            href="https://www.youtube.com/results?search_query=Unit+Kesihatan+UiTM+Perlis"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Youtube Unit Kesihatan UiTM Perlis"
-        >
-            <div class="connect-card__media">
-                <img src="{{ asset($youtubePreview) }}" alt="Youtube page preview for Unit Kesihatan UiTM Perlis" loading="lazy">
-            </div>
-            <div class="connect-card__label" data-i18n="Youtube">Youtube</div>
         </a>
     </div>
 </section>
