@@ -1334,6 +1334,15 @@ footer {
     color: var(--color-muted);
     padding: 2rem 1rem;
 }
+
+.page-copyright {
+    text-align: center;
+    color: var(--color-muted);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 1rem 1rem 1.25rem;
+}
  
 *:focus-visible {
     outline: 3px solid var(--color-focus);
