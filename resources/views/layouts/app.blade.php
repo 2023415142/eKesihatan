@@ -255,6 +255,25 @@
     </div>
  
     <style>
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.1rem;
+        }
+
+        .brand-logo {
+            width: 160px;
+            height: 160px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
         /* Footer fallback styles to match UiTM Perlis layout even with stale asset cache */
         #site-footer {
             margin-top: 1rem;

@@ -74,8 +74,8 @@ header {
 }
 
 .brand-logo {
-    width: 44px;
-    height: 44px;
+    width: 160px;
+    height: 160px;
     object-fit: contain;
     flex-shrink: 0;
 }
@@ -1846,8 +1846,8 @@ button:disabled {
     }
 
     .brand-logo {
-        width: 38px;
-        height: 38px;
+        width: 160px;
+        height: 160px;
     }
 
     .uitm-footer__links,
