@@ -146,7 +146,7 @@
                     <h3 id="uitm-footer-tender">IKLAN SEBUTHARGA RASMI/TENDER</h3>
                     <ul class="uitm-footer__news">
                         <li>
-                            <time datetime="2026-06-16">16 June 2026</time>
+                            <time datetime="2026-06-16"><span aria-hidden="true">◷</span> 16 June 2026</time>
                             <a href="https://perlis.uitm.edu.my/index.php/component/content/article/333-perkhidmatan-pemotongan-rumput-dan-pembersihan-kawasan-di-universiti-teknologi-mara-cawangan-perlis-kampus-arau-bagi-tempoh-enam-6-bulan?catid=48&amp;Itemid=209" target="_blank" rel="noopener noreferrer">
                                 Perkhidmatan Pemotongan Rumput Dan Pembersihan Kawasan Di Universiti Teknologi MARA Cawangan Perlis Kampus Arau Bagi Tempoh Enam (6) Bulan.
                             </a>
@@ -158,13 +158,13 @@
                     <h3 id="uitm-footer-student-info">INFORMASI PELAJAR</h3>
                     <ul class="uitm-footer__news">
                         <li>
-                            <time datetime="2026-01-18">18 January 2026</time>
+                            <time datetime="2026-01-18"><span aria-hidden="true">◷</span> 18 January 2026</time>
                             <a href="https://perlis.uitm.edu.my/index.php/component/content/article/298-jadual-waktu-peperiksaan-akhir-julai-2025?catid=47&amp;Itemid=209" target="_blank" rel="noopener noreferrer">
                                 Maklumat Peperiksaan Khas Mac 2026 (MyExamHub)
                             </a>
                         </li>
                         <li>
-                            <time datetime="2025-09-18">18 September 2025</time>
+                            <time datetime="2025-09-18"><span aria-hidden="true">◷</span> 18 September 2025</time>
                             <a href="https://perlis.uitm.edu.my/index.php/component/content/article/305-maklumat-peperiksaan-khas?catid=47&amp;Itemid=209" target="_blank" rel="noopener noreferrer">
                                 Maklumat Peperiksaan Khas September 2025
                             </a>
@@ -196,14 +196,23 @@
                         <p>02600 Arau, Perlis.</p>
                     </div>
                     <ul class="uitm-footer__contact-list">
-                        <li><a href="tel:+6049882000">+604-9882000</a></li>
-                        <li><a href="tel:+6049882019">+604-9882019</a></li>
+                        <li><span aria-hidden="true">☎</span><a href="tel:+6049882000">+604-9882000</a></li>
+                        <li><span aria-hidden="true">📠</span><a href="tel:+6049882019">+604-9882019</a></li>
                         <li><a href="mailto:korporatperlis@uitm.edu.my">korporatperlis@uitm.edu.my</a></li>
                     </ul>
+                    <a class="uitm-footer__brand-logo" href="https://www.uitm.edu.my/" target="_blank" rel="noopener noreferrer" aria-label="UiTM official website">
+                        <img src="https://perlis.uitm.edu.my/images/logo/uitmdihatiku-footer.png" alt="UiTM dihatiku footer logo" loading="lazy">
+                    </a>
                     <div class="uitm-footer__socials">
-                        <a href="https://www.facebook.com/Uitm-Cawangan-Perlis-541555815901744" target="_blank" rel="noopener noreferrer" aria-label="UiTM Perlis Facebook">f</a>
-                        <a href="https://www.google.com/maps/place/UiTM+Cawangan+Perlis+Kampus+Arau/@6.4456154,100.2727978,17z/data=!3m1!4b1!4m5!3m4!1s0x304ca293e55f5bb9:0x5d96f84b4708cc7!8m2!3d6.4456101!4d100.2749865?hl=en-US" target="_blank" rel="noopener noreferrer" aria-label="UiTM Perlis location on Google Maps">G</a>
-                        <a href="https://www.waze.com/en-GB/livemap/directions/malaysia/perlis/arau/uitm-cawangan-perlis-kampus-arau?dir_first=routing_only&amp;navigate=yes&amp;place=ChIJuVtf5ZOiTDARx4xwtIRv2QU&amp;utm_expid=.z332TkT-TdGeMi_l_4XUWA.1&amp;utm_referrer=" target="_blank" rel="noopener noreferrer" aria-label="UiTM Perlis location on Waze">W</a>
+                        <a href="https://www.facebook.com/Uitm-Cawangan-Perlis-541555815901744" target="_blank" rel="noopener noreferrer" aria-label="UiTM Perlis Facebook">
+                            <img src="https://perlis.uitm.edu.my/images/gambar/facebook.png" alt="" loading="lazy">
+                        </a>
+                        <a href="https://www.google.com/maps/place/UiTM+Cawangan+Perlis+Kampus+Arau/@6.4456154,100.2727978,17z/data=!3m1!4b1!4m5!3m4!1s0x304ca293e55f5bb9:0x5d96f84b4708cc7!8m2!3d6.4456101!4d100.2749865?hl=en-US" target="_blank" rel="noopener noreferrer" aria-label="UiTM Perlis location on Google Maps">
+                            <img src="https://perlis.uitm.edu.my/images/gambar/google-maps-uitm.png" alt="" loading="lazy">
+                        </a>
+                        <a href="https://www.waze.com/en-GB/livemap/directions/malaysia/perlis/arau/uitm-cawangan-perlis-kampus-arau?dir_first=routing_only&amp;navigate=yes&amp;place=ChIJuVtf5ZOiTDARx4xwtIRv2QU&amp;utm_expid=.z332TkT-TdGeMi_l_4XUWA.1&amp;utm_referrer=" target="_blank" rel="noopener noreferrer" aria-label="UiTM Perlis location on Waze">
+                            <img src="https://perlis.uitm.edu.my/images/gambar/waze.png" alt="" loading="lazy">
+                        </a>
                     </div>
                 </div>
             </div>
