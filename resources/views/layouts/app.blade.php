@@ -136,7 +136,7 @@
     </div>
  
     @unless (request()->routeIs('landing'))
-        <div class="page-copyright">
+        <div class="page-copyright" style="width: 100%; text-align: center; display: block; margin: 0 auto;">
             © COPYRIGHT UNIT KESIHATAN UiTM CAWANGAN PERLIS 2026. ALL RIGHTS RESERVED.
         </div>
     @endunless
