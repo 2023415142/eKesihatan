@@ -16,11 +16,89 @@
                 $faviconPath = 'favicon.ico';
             }
         }
+        $faviconAbsolutePath = public_path($faviconPath);
+        $faviconVersion = file_exists($faviconAbsolutePath) ? (string) filemtime($faviconAbsolutePath) : '1';
+        $faviconUrl = asset($faviconPath) . '?v=' . $faviconVersion;
         $faviconType = str_ends_with($faviconPath, '.ico') ? 'image/x-icon' : 'image/png';
     @endphp
-    <link rel="icon" type="{{ $faviconType }}" href="{{ asset($faviconPath) }}">
-    <link rel="shortcut icon" href="{{ asset($faviconPath) }}">
-    <link rel="apple-touch-icon" href="{{ asset($faviconPath) }}">
+    <link rel="icon" type="{{ $faviconType }}" href="{{ $faviconUrl }}" sizes="32x32">
+    <link rel="icon" type="{{ $faviconType }}" href="{{ $faviconUrl }}" sizes="192x192">
+    <link rel="shortcut icon" href="{{ $faviconUrl }}">
+    <link rel="apple-touch-icon" href="{{ $faviconUrl }}">
+    <script>
+        (function () {
+            const source = @json($faviconUrl);
+            const links = Array.from(document.querySelectorAll('link[rel="icon"], link[rel="shortcut icon"], link[rel="apple-touch-icon"]'));
+            if (!source || links.length === 0) {
+                return;
+            }
+
+            const img = new Image();
+            img.decoding = 'async';
+            img.onload = function () {
+                try {
+                    const scanCanvas = document.createElement('canvas');
+                    scanCanvas.width = img.naturalWidth;
+                    scanCanvas.height = img.naturalHeight;
+                    const scanContext = scanCanvas.getContext('2d');
+                    if (!scanContext) {
+                        return;
+                    }
+
+                    scanContext.drawImage(img, 0, 0);
+                    const { data, width, height } = scanContext.getImageData(0, 0, scanCanvas.width, scanCanvas.height);
+
+                    let minX = width;
+                    let minY = height;
+                    let maxX = -1;
+                    let maxY = -1;
+
+                    for (let y = 0; y < height; y += 1) {
+                        for (let x = 0; x < width; x += 1) {
+                            const alpha = data[(y * width + x) * 4 + 3];
+                            if (alpha > 14) {
+                                if (x < minX) minX = x;
+                                if (y < minY) minY = y;
+                                if (x > maxX) maxX = x;
+                                if (y > maxY) maxY = y;
+                            }
+                        }
+                    }
+
+                    if (maxX < minX || maxY < minY) {
+                        return;
+                    }
+
+                    const cropWidth = maxX - minX + 1;
+                    const cropHeight = maxY - minY + 1;
+                    const padX = Math.max(2, Math.round(cropWidth * 0.06));
+                    const padY = Math.max(2, Math.round(cropHeight * 0.06));
+                    const sx = Math.max(0, minX - padX);
+                    const sy = Math.max(0, minY - padY);
+                    const sw = Math.min(width - sx, cropWidth + (padX * 2));
+                    const sh = Math.min(height - sy, cropHeight + (padY * 2));
+
+                    const outputCanvas = document.createElement('canvas');
+                    outputCanvas.width = 64;
+                    outputCanvas.height = 64;
+                    const outputContext = outputCanvas.getContext('2d');
+                    if (!outputContext) {
+                        return;
+                    }
+
+                    outputContext.clearRect(0, 0, 64, 64);
+                    outputContext.drawImage(img, sx, sy, sw, sh, 0, 0, 64, 64);
+                    const enhancedIcon = outputCanvas.toDataURL('image/png');
+                    links.forEach((link) => {
+                        link.href = enhancedIcon;
+                    });
+                } catch (error) {
+                    // Keep original favicon when optimization fails.
+                }
+            };
+            img.src = source;
+        })();
+    </script>
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     @else
