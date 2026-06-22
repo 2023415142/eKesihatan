@@ -1336,6 +1336,10 @@ footer {
 }
 
 .page-copyright {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
     text-align: center;
     color: var(--color-muted);
     font-size: 0.82rem;
