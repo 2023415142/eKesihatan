@@ -166,7 +166,7 @@
             width: min(1200px, calc(100% - 2.8rem));
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
+            grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 1.75rem;
             align-items: start;
         }
@@ -271,11 +271,17 @@
             gap: 0.45rem;
         }
 
-        #site-footer .uitm-footer__contact-list li span {
+        #site-footer .uitm-footer__contact-list li span,
+        #site-footer .uitm-footer__contact-list li img {
             color: #f0effa;
             width: 1rem;
             text-align: center;
             font-size: 0.88rem;
+        }
+
+        #site-footer .uitm-footer__contact-list li img {
+            height: 1rem;
+            object-fit: contain;
         }
 
         #site-footer .uitm-footer__brand-logo {
@@ -285,6 +291,17 @@
 
         #site-footer .uitm-footer__brand-logo img {
             width: min(235px, 100%);
+            height: auto;
+            display: block;
+        }
+
+        #site-footer .uitm-footer__ukes-logo {
+            display: inline-flex;
+            margin: 0 0 0.6rem;
+        }
+
+        #site-footer .uitm-footer__ukes-logo img {
+            width: min(110px, 100%);
             height: auto;
             display: block;
         }
@@ -411,18 +428,6 @@
     <footer class="uitm-footer" id="site-footer">
         <div class="uitm-footer__top">
             <div class="uitm-footer__inner">
-                <div class="uitm-footer__column" aria-labelledby="uitm-footer-tender">
-                    <h3 id="uitm-footer-tender">IKLAN SEBUTHARGA RASMI/TENDER</h3>
-                    <ul class="uitm-footer__news">
-                        <li>
-                            <time datetime="2026-06-16"><span aria-hidden="true">◷</span> 16 June 2026</time>
-                            <a href="https://perlis.uitm.edu.my/index.php/component/content/article/333-perkhidmatan-pemotongan-rumput-dan-pembersihan-kawasan-di-universiti-teknologi-mara-cawangan-perlis-kampus-arau-bagi-tempoh-enam-6-bulan?catid=48&amp;Itemid=209" target="_blank" rel="noopener noreferrer">
-                                Perkhidmatan Pemotongan Rumput Dan Pembersihan Kawasan Di Universiti Teknologi MARA Cawangan Perlis Kampus Arau Bagi Tempoh Enam (6) Bulan.
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
                 <div class="uitm-footer__column" aria-labelledby="uitm-footer-student-info">
                     <h3 id="uitm-footer-student-info">INFORMASI PELAJAR</h3>
                     <ul class="uitm-footer__news">
@@ -460,17 +465,26 @@
                 <div class="uitm-footer__column" aria-labelledby="uitm-footer-contact">
                     <h3 id="uitm-footer-contact">CONTACT US</h3>
                     <div class="uitm-footer__contact-block">
-                        <p class="uitm-footer__org">Universiti Teknologi MARA</p>
-                        <p class="uitm-footer__org">Cawangan Perlis, Kampus Arau,</p>
-                        <p>02600 Arau, Perlis.</p>
+                        <p class="uitm-footer__org">Unit Kesihatan,</p>
+                        <p>(Kompleks Kolej Beringin),</p>
+                        <p>Bahagian Hal Ehwal Pelajar,</p>
+                        <p>Universiti Teknologi MARA Cawangan Perlis,</p>
+                        <p>Kampus Arau,</p>
+                        <p>02600 Arau,</p>
+                        <p>Perlis.</p>
                     </div>
                     <ul class="uitm-footer__contact-list">
-                        <li><span aria-hidden="true">☎</span><a href="tel:+6049882000">+604-9882000</a></li>
-                        <li><span aria-hidden="true">📠</span><a href="tel:+6049882019">+604-9882019</a></li>
-                        <li><a href="mailto:korporatperlis@uitm.edu.my">korporatperlis@uitm.edu.my</a></li>
+                        <li><span aria-hidden="true">☎</span><a href="tel:+6049882075">+604-9882075</a></li>
+                        <li>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="" aria-hidden="true" loading="lazy">
+                            <a href="https://wa.me/6049882075" target="_blank" rel="noopener noreferrer">+6049882075</a>
+                        </li>
                     </ul>
                     <a class="uitm-footer__brand-logo" href="https://www.uitm.edu.my/" target="_blank" rel="noopener noreferrer" aria-label="UiTM official website">
                         <img src="https://perlis.uitm.edu.my/images/logo/uitmdihatiku-footer.png" alt="UiTM dihatiku footer logo" loading="lazy">
+                    </a>
+                    <a class="uitm-footer__ukes-logo" href="https://sites.google.com/view/ukuitmperlis/utama" target="_blank" rel="noopener noreferrer" aria-label="Unit Kesihatan UiTM Perlis">
+                        <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUAbtkQwAXFvWbdAlG8UnP-2hgDMxAILoRdt4mxNqcdvoSGS79Oz54ZtglU4cDgzTSE7qhSDwBjTy3YvM-VqvkgXcNZEwYnHVuDggbwm56QrJwBIpXWEfQ1jWs9Z4O4gky95eChtepm3uOOuJqNVIl5GLfZ8c3qyF2MdhbCp8f9cEHVVC0pAbMJzpbcYluE=w16383" alt="Unit Kesihatan UiTM Perlis logo" loading="lazy">
                     </a>
                     <div class="uitm-footer__socials">
                         <a href="https://www.facebook.com/Uitm-Cawangan-Perlis-541555815901744" target="_blank" rel="noopener noreferrer" aria-label="UiTM Perlis Facebook">

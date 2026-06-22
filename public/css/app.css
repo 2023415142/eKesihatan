@@ -1318,7 +1318,7 @@ button.program-poster-modal__close:hover {
     width: min(1200px, calc(100% - 2.8rem));
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1.75rem;
 }
 
@@ -1421,11 +1421,17 @@ button.program-poster-modal__close:hover {
     gap: 0.45rem;
 }
 
-.uitm-footer__contact-list li span {
+.uitm-footer__contact-list li span,
+.uitm-footer__contact-list li img {
     color: #f0effa;
     width: 1rem;
     text-align: center;
     font-size: 0.88rem;
+}
+
+.uitm-footer__contact-list li img {
+    height: 1rem;
+    object-fit: contain;
 }
 
 .uitm-footer__brand-logo {
@@ -1438,6 +1444,17 @@ button.program-poster-modal__close:hover {
     height: auto;
     display: block;
     filter: saturate(1.02);
+}
+
+.uitm-footer__ukes-logo {
+    display: inline-flex;
+    margin: 0 0 0.6rem;
+}
+
+.uitm-footer__ukes-logo img {
+    width: min(110px, 100%);
+    height: auto;
+    display: block;
 }
 
 .uitm-footer__socials {
