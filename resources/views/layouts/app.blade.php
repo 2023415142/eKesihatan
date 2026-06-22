@@ -139,6 +139,275 @@
         </main>
     </div>
  
+    <style>
+        /* Footer fallback styles to match UiTM Perlis layout even with stale asset cache */
+        #site-footer {
+            margin-top: 1rem;
+            color: #e8e8e8;
+            background: #24155a;
+            text-align: left !important;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        #site-footer * {
+            box-sizing: border-box;
+        }
+
+        #site-footer .uitm-footer__top {
+            padding: 2.55rem 0 2.35rem;
+            background-image:
+                linear-gradient(rgba(38, 22, 95, 0.9), rgba(28, 16, 72, 0.94)),
+                url("https://perlis.uitm.edu.my/images/gambar/BottomBackground.jpg");
+            background-size: cover;
+            background-position: center;
+        }
+
+        #site-footer .uitm-footer__inner {
+            width: min(1200px, calc(100% - 2.8rem));
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 1.75rem;
+            align-items: start;
+        }
+
+        #site-footer .uitm-footer__column h3 {
+            margin: 0 0 0.95rem;
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.01em;
+        }
+
+        #site-footer .uitm-footer__news,
+        #site-footer .uitm-footer__links,
+        #site-footer .uitm-footer__contact-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #site-footer .uitm-footer__news {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        #site-footer .uitm-footer__news li {
+            border-bottom: 1px solid rgba(225, 223, 250, 0.36);
+            padding-bottom: 0.74rem;
+        }
+
+        #site-footer .uitm-footer__news li:last-child {
+            border-bottom: none;
+        }
+
+        #site-footer .uitm-footer__news time {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            margin-bottom: 0.35rem;
+            color: #e4e3f2;
+            font-size: 0.92rem;
+        }
+
+        #site-footer .uitm-footer__news time span {
+            font-size: 0.86rem;
+            line-height: 1;
+            opacity: 0.95;
+        }
+
+        #site-footer .uitm-footer__news a,
+        #site-footer .uitm-footer__links a,
+        #site-footer .uitm-footer__contact-list a,
+        #site-footer .uitm-footer__policy-links a {
+            color: #a1a1a1;
+            text-decoration: none;
+            transition: color 160ms ease, opacity 160ms ease, background-color 160ms ease;
+        }
+
+        #site-footer .uitm-footer__news a:hover,
+        #site-footer .uitm-footer__links a:hover,
+        #site-footer .uitm-footer__contact-list a:hover,
+        #site-footer .uitm-footer__policy-links a:hover {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        #site-footer .uitm-footer__news a {
+            display: inline-block;
+            line-height: 1.5;
+        }
+
+        #site-footer .uitm-footer__links {
+            display: grid;
+            gap: 0.4rem;
+        }
+
+        #site-footer .uitm-footer__contact-block {
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #ececf7;
+        }
+
+        #site-footer .uitm-footer__contact-block p {
+            margin: 0;
+        }
+
+        #site-footer .uitm-footer__contact-block .uitm-footer__org {
+            font-weight: 700;
+        }
+
+        #site-footer .uitm-footer__contact-list {
+            display: grid;
+            gap: 0.3rem;
+            margin-bottom: 0.85rem;
+        }
+
+        #site-footer .uitm-footer__contact-list li {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+        }
+
+        #site-footer .uitm-footer__contact-list li span {
+            color: #f0effa;
+            width: 1rem;
+            text-align: center;
+            font-size: 0.88rem;
+        }
+
+        #site-footer .uitm-footer__brand-logo {
+            display: inline-flex;
+            margin-bottom: 0.7rem;
+        }
+
+        #site-footer .uitm-footer__brand-logo img {
+            width: min(235px, 100%);
+            height: auto;
+            display: block;
+        }
+
+        #site-footer .uitm-footer__socials {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        #site-footer .uitm-footer__socials a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.96;
+        }
+
+        #site-footer .uitm-footer__socials a img {
+            width: 1.85rem;
+            height: 1.85rem;
+            display: block;
+        }
+
+        #site-footer .uitm-footer__socials a:hover {
+            opacity: 1;
+        }
+
+        #site-footer .uitm-footer__bottom {
+            background-image:
+                linear-gradient(rgba(23, 12, 56, 0.92), rgba(23, 12, 56, 0.92)),
+                url("https://perlis.uitm.edu.my/images/gambar/FooterBackground.jpg");
+            background-position: center;
+            background-repeat: no-repeat;
+            border-top: 1px solid #b68c2f;
+            padding: 0.92rem 0;
+        }
+
+        #site-footer .uitm-footer__inner--bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.9rem;
+        }
+
+        #site-footer .uitm-footer__inner--bottom p {
+            margin: 0;
+            color: #f2f1fa;
+            font-size: 0.82rem;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+        }
+
+        #site-footer .uitm-footer__policy-links {
+            display: inline-flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.01em;
+        }
+
+        #site-footer .uitm-footer__policy-links span {
+            color: #dad8eb;
+        }
+
+        #site-footer .uitm-footer__to-top {
+            width: 1.85rem;
+            height: 1.85rem;
+            border-radius: 0.25rem;
+            border: 1px solid rgba(255, 255, 255, 0.38);
+            color: #ffffff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.05);
+            font-size: 0.95rem;
+        }
+
+        #site-footer .uitm-footer__to-top:hover {
+            background: rgba(255, 255, 255, 0.18);
+            text-decoration: none;
+        }
+
+        @media (max-width: 1024px) {
+            #site-footer .uitm-footer__inner {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 1.35rem;
+            }
+
+            #site-footer .uitm-footer__inner--bottom {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #site-footer .uitm-footer__top {
+                padding: 2rem 0 1.75rem;
+            }
+
+            #site-footer .uitm-footer__inner {
+                width: min(1200px, calc(100% - 1.75rem));
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+
+            #site-footer .uitm-footer__column h3 {
+                margin-bottom: 0.75rem;
+            }
+
+            #site-footer .uitm-footer__policy-links {
+                font-size: 0.82rem;
+                line-height: 1.5;
+            }
+
+            #site-footer .uitm-footer__to-top {
+                align-self: flex-end;
+            }
+        }
+    </style>
+
     <footer class="uitm-footer" id="site-footer">
         <div class="uitm-footer__top">
             <div class="uitm-footer__inner">
