@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     @endif
 </head>
-<body>
+<body id="top">
     <a class="skip-link" href="#main-content" data-i18n="Skip to content">Skip to content</a>
     <header>
         <div class="brand">
@@ -139,8 +139,88 @@
         </main>
     </div>
  
-    <footer>
-        <p data-i18n="Designed for students and staff healthcare access.">Designed for students and staff healthcare access.</p>
+    <footer class="uitm-footer" id="site-footer">
+        <div class="uitm-footer__top">
+            <div class="uitm-footer__inner">
+                <div class="uitm-footer__column" aria-labelledby="uitm-footer-tender">
+                    <h3 id="uitm-footer-tender">IKLAN SEBUTHARGA RASMI/TENDER</h3>
+                    <ul class="uitm-footer__news">
+                        <li>
+                            <time datetime="2026-06-16">16 June 2026</time>
+                            <a href="https://perlis.uitm.edu.my/index.php/component/content/article/333-perkhidmatan-pemotongan-rumput-dan-pembersihan-kawasan-di-universiti-teknologi-mara-cawangan-perlis-kampus-arau-bagi-tempoh-enam-6-bulan?catid=48&amp;Itemid=209" target="_blank" rel="noopener noreferrer">
+                                Perkhidmatan Pemotongan Rumput Dan Pembersihan Kawasan Di Universiti Teknologi MARA Cawangan Perlis Kampus Arau Bagi Tempoh Enam (6) Bulan.
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="uitm-footer__column" aria-labelledby="uitm-footer-student-info">
+                    <h3 id="uitm-footer-student-info">INFORMASI PELAJAR</h3>
+                    <ul class="uitm-footer__news">
+                        <li>
+                            <time datetime="2026-01-18">18 January 2026</time>
+                            <a href="https://perlis.uitm.edu.my/index.php/component/content/article/298-jadual-waktu-peperiksaan-akhir-julai-2025?catid=47&amp;Itemid=209" target="_blank" rel="noopener noreferrer">
+                                Maklumat Peperiksaan Khas Mac 2026 (MyExamHub)
+                            </a>
+                        </li>
+                        <li>
+                            <time datetime="2025-09-18">18 September 2025</time>
+                            <a href="https://perlis.uitm.edu.my/index.php/component/content/article/305-maklumat-peperiksaan-khas?catid=47&amp;Itemid=209" target="_blank" rel="noopener noreferrer">
+                                Maklumat Peperiksaan Khas September 2025
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="uitm-footer__column" aria-labelledby="uitm-footer-quick-links">
+                    <h3 id="uitm-footer-quick-links">QUICK LINKS</h3>
+                    <ul class="uitm-footer__links">
+                        <li><a href="https://hea.uitm.edu.my/v4/index.php/calendars/academic-calendar" target="_blank" rel="noopener noreferrer">Academic Calendar</a></li>
+                        <li><a href="https://pengambilan.uitm.edu.my/kalendar-pengambilan" target="_blank" rel="noopener noreferrer">Intake Calendar</a></li>
+                        <li><a href="https://simsweb.uitm.edu.my/sportal_app/graduat/" target="_blank" rel="noopener noreferrer">Graduate Quick Search</a></li>
+                        <li><a href="https://news.uitm.edu.my/" target="_blank" rel="noopener noreferrer">News</a></li>
+                        <li><a href="https://uitmholdings.com/" target="_blank" rel="noopener noreferrer">UiTM Holding</a></li>
+                        <li><a href="https://hoteluitm.com/" target="_blank" rel="noopener noreferrer">Hotel UiTM</a></li>
+                        <li><a href="https://www.facebook.com/uitmfclions/" target="_blank" rel="noopener noreferrer">UiTM FC</a></li>
+                        <li><a href="https://aduan.uitm.edu.my" target="_blank" rel="noopener noreferrer">e-Aduan</a></li>
+                        <li><a href="https://www.uitm.edu.my/index.php/en/frequently-asked-questions" target="_blank" rel="noopener noreferrer">FAQ</a></li>
+                        <li><a href="https://wifi.uitm.edu.my/wifi/" target="_blank" rel="noopener noreferrer">UiTM WiFi</a></li>
+                    </ul>
+                </div>
+
+                <div class="uitm-footer__column" aria-labelledby="uitm-footer-contact">
+                    <h3 id="uitm-footer-contact">CONTACT US</h3>
+                    <div class="uitm-footer__contact-block">
+                        <p class="uitm-footer__org">Universiti Teknologi MARA</p>
+                        <p class="uitm-footer__org">Cawangan Perlis, Kampus Arau,</p>
+                        <p>02600 Arau, Perlis.</p>
+                    </div>
+                    <ul class="uitm-footer__contact-list">
+                        <li><a href="tel:+6049882000">+604-9882000</a></li>
+                        <li><a href="tel:+6049882019">+604-9882019</a></li>
+                        <li><a href="mailto:korporatperlis@uitm.edu.my">korporatperlis@uitm.edu.my</a></li>
+                    </ul>
+                    <div class="uitm-footer__socials">
+                        <a href="https://www.facebook.com/Uitm-Cawangan-Perlis-541555815901744" target="_blank" rel="noopener noreferrer" aria-label="UiTM Perlis Facebook">f</a>
+                        <a href="https://www.google.com/maps/place/UiTM+Cawangan+Perlis+Kampus+Arau/@6.4456154,100.2727978,17z/data=!3m1!4b1!4m5!3m4!1s0x304ca293e55f5bb9:0x5d96f84b4708cc7!8m2!3d6.4456101!4d100.2749865?hl=en-US" target="_blank" rel="noopener noreferrer" aria-label="UiTM Perlis location on Google Maps">G</a>
+                        <a href="https://www.waze.com/en-GB/livemap/directions/malaysia/perlis/arau/uitm-cawangan-perlis-kampus-arau?dir_first=routing_only&amp;navigate=yes&amp;place=ChIJuVtf5ZOiTDARx4xwtIRv2QU&amp;utm_expid=.z332TkT-TdGeMi_l_4XUWA.1&amp;utm_referrer=" target="_blank" rel="noopener noreferrer" aria-label="UiTM Perlis location on Waze">W</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="uitm-footer__bottom">
+            <div class="uitm-footer__inner uitm-footer__inner--bottom">
+                <p>© COPYRIGHT UiTM CAWANGAN PERLIS 2026. ALL RIGHTS RESERVED.</p>
+                <nav class="uitm-footer__policy-links" aria-label="Footer policy links">
+                    <a href="https://www.uitm.edu.my/index.php/en/disclaimer-copyright" target="_blank" rel="noopener noreferrer">DISCLAIMER &amp; COPYRIGHT</a>
+                    <span>|</span>
+                    <a href="https://www.uitm.edu.my/index.php/en/privacy-statement" target="_blank" rel="noopener noreferrer">PRIVACY STATEMENT</a>
+                    <span>|</span>
+                    <a href="https://ppii.uitm.edu.my/images/pekeliling/universiti/Dasar/DasarKeselamatanICTv2.pdf" target="_blank" rel="noopener noreferrer">ICT SECURITY POLICY</a>
+                </nav>
+                <a class="uitm-footer__to-top" href="#top" aria-label="Back to top">↑</a>
+            </div>
+        </div>
     </footer>
  
     <script>
