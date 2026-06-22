@@ -483,19 +483,14 @@
                     <a class="uitm-footer__brand-logo" href="https://www.uitm.edu.my/" target="_blank" rel="noopener noreferrer" aria-label="UiTM official website">
                         <img src="https://perlis.uitm.edu.my/images/logo/uitmdihatiku-footer.png" alt="UiTM dihatiku footer logo" loading="lazy">
                     </a>
-                    @php
-                        $ukesLogoPath = null;
-                        if (file_exists(public_path('image/eksa.png'))) {
-                            $ukesLogoPath = 'image/eksa.png';
-                        } elseif (file_exists(public_path('images/eksa.png'))) {
-                            $ukesLogoPath = 'images/eksa.png';
-                        }
-                    @endphp
-                    @if ($ukesLogoPath)
-                        <div class="uitm-footer__ukes-logo" aria-label="Unit Kesihatan UiTM Perlis">
-                            <img src="{{ asset($ukesLogoPath) }}" alt="Unit Kesihatan UiTM Perlis logo" loading="lazy">
-                        </div>
-                    @endif
+                    <div class="uitm-footer__ukes-logo" aria-label="Unit Kesihatan UiTM Perlis">
+                        <img
+                            src="{{ asset('images/eksalogo.png') }}"
+                            alt="Unit Kesihatan UiTM Perlis logo"
+                            loading="lazy"
+                            onerror="this.onerror=null;this.src='{{ asset('images/eksa.png') }}';"
+                        >
+                    </div>
                     <div class="uitm-footer__socials">
                         <a href="https://www.facebook.com/Uitm-Cawangan-Perlis-541555815901744" target="_blank" rel="noopener noreferrer" aria-label="UiTM Perlis Facebook">
                             <img src="https://perlis.uitm.edu.my/images/gambar/facebook.png" alt="" loading="lazy">
