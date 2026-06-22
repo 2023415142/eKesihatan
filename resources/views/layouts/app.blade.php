@@ -135,15 +135,11 @@
         </main>
     </div>
  
-    @if (request()->routeIs('landing'))
-        <footer>
-            <p data-i18n="Designed for students and staff healthcare access.">Designed for students and staff healthcare access.</p>
-        </footer>
-    @else
+    @unless (request()->routeIs('landing'))
         <div class="page-copyright">
             © COPYRIGHT UNIT KESIHATAN UiTM CAWANGAN PERLIS 2026. ALL RIGHTS RESERVED.
         </div>
-    @endif
+    @endunless
  
     <script>
         (function () {
