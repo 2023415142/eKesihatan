@@ -492,13 +492,10 @@
                         >
                     </div>
                     <div class="uitm-footer__socials">
-                        <a href="https://www.facebook.com/Uitm-Cawangan-Perlis-541555815901744" target="_blank" rel="noopener noreferrer" aria-label="UiTM Perlis Facebook">
-                            <img src="https://perlis.uitm.edu.my/images/gambar/facebook.png" alt="" loading="lazy">
-                        </a>
-                        <a href="https://www.google.com/maps/place/UiTM+Cawangan+Perlis+Kampus+Arau/@6.4456154,100.2727978,17z/data=!3m1!4b1!4m5!3m4!1s0x304ca293e55f5bb9:0x5d96f84b4708cc7!8m2!3d6.4456101!4d100.2749865?hl=en-US" target="_blank" rel="noopener noreferrer" aria-label="UiTM Perlis location on Google Maps">
+                        <a href="https://www.google.com/maps/dir/6.4421888,100.2831872/Unit+Kesihatan+Klinik+UiTM,+UiTM+Cawangan+Perlis,+Uit" target="_blank" rel="noopener noreferrer" aria-label="Unit Kesihatan UiTM Arau direction on Google Maps">
                             <img src="https://perlis.uitm.edu.my/images/gambar/google-maps-uitm.png" alt="" loading="lazy">
                         </a>
-                        <a href="https://www.waze.com/en-GB/livemap/directions/malaysia/perlis/arau/uitm-cawangan-perlis-kampus-arau?dir_first=routing_only&amp;navigate=yes&amp;place=ChIJuVtf5ZOiTDARx4xwtIRv2QU&amp;utm_expid=.z332TkT-TdGeMi_l_4XUWA.1&amp;utm_referrer=" target="_blank" rel="noopener noreferrer" aria-label="UiTM Perlis location on Waze">
+                        <a href="https://www.waze.com/ul?q=Unit%20Kesihatan%20UiTM%20Arau&amp;navigate=yes" target="_blank" rel="noopener noreferrer" aria-label="Unit Kesihatan UiTM Arau location on Waze">
                             <img src="https://perlis.uitm.edu.my/images/gambar/waze.png" alt="" loading="lazy">
                         </a>
                     </div>
