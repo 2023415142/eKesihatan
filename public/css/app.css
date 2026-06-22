@@ -67,6 +67,25 @@ header {
     border-bottom: 1px solid var(--color-border);
 }
  
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+}
+
+.brand-logo {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
 .brand h1 {
     margin: 0;
     font-size: 1.4rem;
@@ -1446,17 +1465,6 @@ button.program-poster-modal__close:hover {
     filter: saturate(1.02);
 }
 
-.uitm-footer__ukes-logo {
-    display: inline-flex;
-    margin: 0 0 0.6rem;
-}
-
-.uitm-footer__ukes-logo img {
-    width: min(140px, 100%);
-    height: auto;
-    display: block;
-}
-
 .uitm-footer__socials {
     display: flex;
     align-items: center;
@@ -1835,6 +1843,11 @@ button:disabled {
     .font-controls {
         width: 100%;
         justify-content: space-between;
+    }
+
+    .brand-logo {
+        width: 38px;
+        height: 38px;
     }
 
     .uitm-footer__links,

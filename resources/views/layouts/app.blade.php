@@ -107,10 +107,31 @@
 </head>
 <body id="top">
     <a class="skip-link" href="#main-content" data-i18n="Skip to content">Skip to content</a>
+    @php
+        $headerLogoPath = null;
+        if (file_exists(public_path('images/eksalogo.png'))) {
+            $headerLogoPath = 'images/eksalogo.png';
+        } elseif (file_exists(public_path('images/eksa.png'))) {
+            $headerLogoPath = 'images/eksa.png';
+        } elseif (file_exists(public_path('image/eksa.png'))) {
+            $headerLogoPath = 'image/eksa.png';
+        }
+    @endphp
     <header>
         <div class="brand">
-            <h1><a href="{{ route('landing') }}">eKesihatan</a></h1>
-            <span class="brand-subtitle" data-i18n="Unit Kesihatan UiTM Perlis">Unit Kesihatan UiTM Perlis</span>
+            @if ($headerLogoPath)
+                <img
+                    class="brand-logo"
+                    src="{{ asset($headerLogoPath) }}"
+                    alt="Unit Kesihatan UiTM Perlis logo"
+                    loading="lazy"
+                    onerror="this.onerror=null;this.src='{{ asset('images/eksa.png') }}';"
+                >
+            @endif
+            <div class="brand-text">
+                <h1><a href="{{ route('landing') }}">eKesihatan</a></h1>
+                <span class="brand-subtitle" data-i18n="Unit Kesihatan UiTM Perlis">Unit Kesihatan UiTM Perlis</span>
+            </div>
         </div>
         <div class="header-actions">
             <div class="header-controls">
@@ -389,17 +410,6 @@
             display: block;
         }
 
-        #site-footer .uitm-footer__ukes-logo {
-            display: inline-flex;
-            margin: 0 0 0.6rem;
-        }
-
-        #site-footer .uitm-footer__ukes-logo img {
-            width: min(140px, 100%);
-            height: auto;
-            display: block;
-        }
-
         #site-footer .uitm-footer__socials {
             display: flex;
             align-items: center;
@@ -577,14 +587,6 @@
                     <a class="uitm-footer__brand-logo" href="https://www.uitm.edu.my/" target="_blank" rel="noopener noreferrer" aria-label="UiTM official website">
                         <img src="https://perlis.uitm.edu.my/images/logo/uitmdihatiku-footer.png" alt="UiTM dihatiku footer logo" loading="lazy">
                     </a>
-                    <div class="uitm-footer__ukes-logo" aria-label="Unit Kesihatan UiTM Perlis">
-                        <img
-                            src="{{ asset('images/eksalogo.png') }}"
-                            alt="Unit Kesihatan UiTM Perlis logo"
-                            loading="lazy"
-                            onerror="this.onerror=null;this.src='{{ asset('images/eksa.png') }}';"
-                        >
-                    </div>
                     <div class="uitm-footer__socials">
                         <a href="https://www.google.com/maps/dir/6.4421888,100.2831872/Unit+Kesihatan+Klinik+UiTM,+UiTM+Cawangan+Perlis,+Uit" target="_blank" rel="noopener noreferrer" aria-label="Unit Kesihatan UiTM Arau direction on Google Maps">
                             <img src="https://perlis.uitm.edu.my/images/gambar/google-maps-uitm.png" alt="" loading="lazy">
