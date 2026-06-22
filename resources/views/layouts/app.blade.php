@@ -504,7 +504,7 @@
         </div>
         <div class="uitm-footer__bottom">
             <div class="uitm-footer__inner uitm-footer__inner--bottom">
-                <p>© COPYRIGHT UiTM CAWANGAN PERLIS 2026. ALL RIGHTS RESERVED.</p>
+                <p>© COPYRIGHT UNIT KESIHATAN UiTM CAWANGAN PERLIS 2026. ALL RIGHTS RESERVED.</p>
                 <nav class="uitm-footer__policy-links" aria-label="Footer policy links">
                     <a href="https://www.uitm.edu.my/index.php/en/disclaimer-copyright" target="_blank" rel="noopener noreferrer">DISCLAIMER &amp; COPYRIGHT</a>
                     <span>|</span>
