@@ -5,6 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>eKesihatan</title>
+    @php
+        $faviconPath = 'images/eksalogo.png';
+        if (!file_exists(public_path($faviconPath))) {
+            if (file_exists(public_path('images/eksa.png'))) {
+                $faviconPath = 'images/eksa.png';
+            } elseif (file_exists(public_path('image/eksa.png'))) {
+                $faviconPath = 'image/eksa.png';
+            } elseif (file_exists(public_path('favicon.ico'))) {
+                $faviconPath = 'favicon.ico';
+            }
+        }
+        $faviconType = str_ends_with($faviconPath, '.ico') ? 'image/x-icon' : 'image/png';
+    @endphp
+    <link rel="icon" type="{{ $faviconType }}" href="{{ asset($faviconPath) }}">
+    <link rel="shortcut icon" href="{{ asset($faviconPath) }}">
+    <link rel="apple-touch-icon" href="{{ asset($faviconPath) }}">
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     @else
