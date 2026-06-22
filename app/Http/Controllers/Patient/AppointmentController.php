@@ -8,6 +8,7 @@ use App\Models\HealthService;
 use App\Models\QueueTicket;
 use App\Models\User;
 use App\Services\AppointmentScheduler;
+use App\Services\EmailNotificationService;
 use App\Services\SmsService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -35,7 +36,12 @@ class AppointmentController extends Controller
         ]);
     }
  
-    public function store(Request $request, SmsService $smsService, AppointmentScheduler $scheduler)
+    public function store(
+        Request $request,
+        SmsService $smsService,
+        AppointmentScheduler $scheduler,
+        EmailNotificationService $emailNotificationService
+    )
     {
         $data = $request->validate([
             'health_service_id' => ['required', Rule::exists('health_services', 'id')->where('is_active', true)],
@@ -85,6 +91,7 @@ class AppointmentController extends Controller
         });
  
         $smsService->sendAppointmentConfirmation($appointment->patient, $appointment);
+        $emailNotificationService->sendBookingSuccess($appointment);
  
         return redirect()->route('patient.appointments.show', $appointment)
             ->with('status', 'Appointment booked successfully. Confirmation SMS sent.');

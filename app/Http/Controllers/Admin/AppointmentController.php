@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Appointment;
 use App\Models\AppointmentSlot;
 use App\Models\User;
+use App\Services\EmailNotificationService;
 use App\Services\SmsService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -32,7 +33,12 @@ class AppointmentController extends Controller
         ]);
     }
  
-    public function update(Request $request, Appointment $appointment, SmsService $smsService): RedirectResponse
+    public function update(
+        Request $request,
+        Appointment $appointment,
+        SmsService $smsService,
+        EmailNotificationService $emailNotificationService
+    ): RedirectResponse
     {
         $data = $request->validate([
             'status' => ['required', 'in:pending,approved,rejected,rescheduled,cancelled,checked-in'],
@@ -66,6 +72,10 @@ class AppointmentController extends Controller
                 $appointment,
                 $data['status']
             );
+
+            if ($data['status'] === 'rescheduled') {
+                $emailNotificationService->sendRescheduleNotice($appointment);
+            }
         }
  
         return redirect()

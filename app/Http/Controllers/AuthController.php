@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
  
 use App\Models\User;
+use App\Services\EmailNotificationService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -65,7 +66,7 @@ class AuthController extends Controller
         return view('auth.register');
     }
  
-    public function register(Request $request)
+    public function register(Request $request, EmailNotificationService $emailNotificationService)
     {
         $data = $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -85,6 +86,7 @@ class AuthController extends Controller
         ]);
  
         Auth::login($user);
+        $emailNotificationService->sendRegistrationSuccess($user);
  
         return redirect()->route('dashboard');
     }
