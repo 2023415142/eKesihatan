@@ -254,383 +254,389 @@
         </main>
     </div>
  
-    <style>
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 0.7rem;
-        }
-
-        .brand-text {
-            display: flex;
-            flex-direction: column;
-            gap: 0.1rem;
-        }
-
-        .brand-logo {
-            width: 160px;
-            height: 160px;
-            object-fit: contain;
-            flex-shrink: 0;
-        }
-
-        /* Footer fallback styles to match UiTM Perlis layout even with stale asset cache */
-        #site-footer {
-            margin-top: 1rem;
-            color: #e8e8e8;
-            background: #24155a;
-            text-align: left !important;
-            font-family: "Segoe UI", Arial, sans-serif;
-        }
-
-        #site-footer * {
-            box-sizing: border-box;
-        }
-
-        #site-footer .uitm-footer__top {
-            padding: 2.55rem 0 2.35rem;
-            background-image:
-                linear-gradient(rgba(38, 22, 95, 0.9), rgba(28, 16, 72, 0.94)),
-                url("https://perlis.uitm.edu.my/images/gambar/BottomBackground.jpg");
-            background-size: cover;
-            background-position: center;
-        }
-
-        #site-footer .uitm-footer__inner {
-            width: min(1200px, calc(100% - 2.8rem));
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 1.75rem;
-            align-items: start;
-        }
-
-        #site-footer .uitm-footer__column h3 {
-            margin: 0 0 0.95rem;
-            color: #ffffff;
-            font-size: 1rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.01em;
-        }
-
-        #site-footer .uitm-footer__news,
-        #site-footer .uitm-footer__links,
-        #site-footer .uitm-footer__contact-list {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        #site-footer .uitm-footer__news {
-            display: grid;
-            gap: 0.75rem;
-        }
-
-        #site-footer .uitm-footer__news li {
-            border-bottom: 1px solid rgba(225, 223, 250, 0.36);
-            padding-bottom: 0.74rem;
-        }
-
-        #site-footer .uitm-footer__news li:last-child {
-            border-bottom: none;
-        }
-
-        #site-footer .uitm-footer__news time {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-            margin-bottom: 0.35rem;
-            color: #e4e3f2;
-            font-size: 0.92rem;
-        }
-
-        #site-footer .uitm-footer__news time span {
-            font-size: 0.86rem;
-            line-height: 1;
-            opacity: 0.95;
-        }
-
-        #site-footer .uitm-footer__news a,
-        #site-footer .uitm-footer__links a,
-        #site-footer .uitm-footer__contact-list a,
-        #site-footer .uitm-footer__policy-links a {
-            color: #a1a1a1;
-            text-decoration: none;
-            transition: color 160ms ease, opacity 160ms ease, background-color 160ms ease;
-        }
-
-        #site-footer .uitm-footer__news a:hover,
-        #site-footer .uitm-footer__links a:hover,
-        #site-footer .uitm-footer__contact-list a:hover,
-        #site-footer .uitm-footer__policy-links a:hover {
-            color: #ffffff;
-            text-decoration: none;
-        }
-
-        #site-footer .uitm-footer__news a {
-            display: inline-block;
-            line-height: 1.5;
-        }
-
-        #site-footer .uitm-footer__links {
-            display: grid;
-            gap: 0.4rem;
-        }
-
-        #site-footer .uitm-footer__contact-block {
-            margin-bottom: 0.75rem;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            color: #ececf7;
-        }
-
-        #site-footer .uitm-footer__contact-block p {
-            margin: 0;
-        }
-
-        #site-footer .uitm-footer__contact-block .uitm-footer__org {
-            font-weight: 700;
-        }
-
-        #site-footer .uitm-footer__contact-list {
-            display: grid;
-            gap: 0.3rem;
-            margin-bottom: 0.85rem;
-        }
-
-        #site-footer .uitm-footer__contact-list li {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.45rem;
-        }
-
-        #site-footer .uitm-footer__contact-list li span,
-        #site-footer .uitm-footer__contact-list li img {
-            color: #f0effa;
-            width: 1rem;
-            text-align: center;
-            font-size: 0.88rem;
-        }
-
-        #site-footer .uitm-footer__contact-list li img {
-            height: 1rem;
-            object-fit: contain;
-        }
-
-        #site-footer .uitm-footer__brand-logo {
-            display: inline-flex;
-            margin-bottom: 0.7rem;
-        }
-
-        #site-footer .uitm-footer__brand-logo img {
-            width: min(235px, 100%);
-            height: auto;
-            display: block;
-        }
-
-        #site-footer .uitm-footer__socials {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-
-        #site-footer .uitm-footer__socials a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0.96;
-        }
-
-        #site-footer .uitm-footer__socials a img {
-            width: 1.85rem;
-            height: 1.85rem;
-            display: block;
-        }
-
-        #site-footer .uitm-footer__socials a:hover {
-            opacity: 1;
-        }
-
-        #site-footer .uitm-footer__bottom {
-            background-image:
-                linear-gradient(rgba(23, 12, 56, 0.92), rgba(23, 12, 56, 0.92)),
-                url("https://perlis.uitm.edu.my/images/gambar/FooterBackground.jpg");
-            background-position: center;
-            background-repeat: no-repeat;
-            border-top: 1px solid #b68c2f;
-            padding: 0.92rem 0;
-        }
-
-        #site-footer .uitm-footer__inner--bottom {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 0.9rem;
-        }
-
-        #site-footer .uitm-footer__inner--bottom p {
-            margin: 0;
-            color: #f2f1fa;
-            font-size: 0.82rem;
-            letter-spacing: 0.02em;
-            text-transform: uppercase;
-        }
-
-        #site-footer .uitm-footer__policy-links {
-            display: inline-flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-            font-size: 0.82rem;
-            text-transform: uppercase;
-            letter-spacing: 0.01em;
-        }
-
-        #site-footer .uitm-footer__policy-links span {
-            color: #dad8eb;
-        }
-
-        #site-footer .uitm-footer__to-top {
-            width: 1.85rem;
-            height: 1.85rem;
-            border-radius: 0.25rem;
-            border: 1px solid rgba(255, 255, 255, 0.38);
-            color: #ffffff;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            background: rgba(255, 255, 255, 0.05);
-            font-size: 0.95rem;
-        }
-
-        #site-footer .uitm-footer__to-top:hover {
-            background: rgba(255, 255, 255, 0.18);
-            text-decoration: none;
-        }
-
-        @media (max-width: 1024px) {
-            #site-footer .uitm-footer__inner {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 1.35rem;
+    @if (request()->routeIs('landing'))
+        <style>
+            .brand {
+                display: flex;
+                align-items: center;
+                gap: 0.7rem;
             }
 
-            #site-footer .uitm-footer__inner--bottom {
+            .brand-text {
+                display: flex;
                 flex-direction: column;
-                align-items: flex-start;
+                gap: 0.1rem;
             }
-        }
 
-        @media (max-width: 768px) {
+            .brand-logo {
+                width: 160px;
+                height: 160px;
+                object-fit: contain;
+                flex-shrink: 0;
+            }
+
+            /* Footer fallback styles to match UiTM Perlis layout even with stale asset cache */
+            #site-footer {
+                margin-top: 1rem;
+                color: #e8e8e8;
+                background: #24155a;
+                text-align: left !important;
+                font-family: "Segoe UI", Arial, sans-serif;
+            }
+
+            #site-footer * {
+                box-sizing: border-box;
+            }
+
             #site-footer .uitm-footer__top {
-                padding: 2rem 0 1.75rem;
+                padding: 2.55rem 0 2.35rem;
+                background-image:
+                    linear-gradient(rgba(38, 22, 95, 0.9), rgba(28, 16, 72, 0.94)),
+                    url("https://perlis.uitm.edu.my/images/gambar/BottomBackground.jpg");
+                background-size: cover;
+                background-position: center;
             }
 
             #site-footer .uitm-footer__inner {
-                width: min(1200px, calc(100% - 1.75rem));
-                grid-template-columns: 1fr;
-                gap: 1.2rem;
+                width: min(1200px, calc(100% - 2.8rem));
+                margin: 0 auto;
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 1.75rem;
+                align-items: start;
             }
 
             #site-footer .uitm-footer__column h3 {
-                margin-bottom: 0.75rem;
+                margin: 0 0 0.95rem;
+                color: #ffffff;
+                font-size: 1rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.01em;
             }
 
-            #site-footer .uitm-footer__policy-links {
-                font-size: 0.82rem;
+            #site-footer .uitm-footer__news,
+            #site-footer .uitm-footer__links,
+            #site-footer .uitm-footer__contact-list {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            #site-footer .uitm-footer__news {
+                display: grid;
+                gap: 0.75rem;
+            }
+
+            #site-footer .uitm-footer__news li {
+                border-bottom: 1px solid rgba(225, 223, 250, 0.36);
+                padding-bottom: 0.74rem;
+            }
+
+            #site-footer .uitm-footer__news li:last-child {
+                border-bottom: none;
+            }
+
+            #site-footer .uitm-footer__news time {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.3rem;
+                margin-bottom: 0.35rem;
+                color: #e4e3f2;
+                font-size: 0.92rem;
+            }
+
+            #site-footer .uitm-footer__news time span {
+                font-size: 0.86rem;
+                line-height: 1;
+                opacity: 0.95;
+            }
+
+            #site-footer .uitm-footer__news a,
+            #site-footer .uitm-footer__links a,
+            #site-footer .uitm-footer__contact-list a,
+            #site-footer .uitm-footer__policy-links a {
+                color: #a1a1a1;
+                text-decoration: none;
+                transition: color 160ms ease, opacity 160ms ease, background-color 160ms ease;
+            }
+
+            #site-footer .uitm-footer__news a:hover,
+            #site-footer .uitm-footer__links a:hover,
+            #site-footer .uitm-footer__contact-list a:hover,
+            #site-footer .uitm-footer__policy-links a:hover {
+                color: #ffffff;
+                text-decoration: none;
+            }
+
+            #site-footer .uitm-footer__news a {
+                display: inline-block;
                 line-height: 1.5;
             }
 
-            #site-footer .uitm-footer__to-top {
-                align-self: flex-end;
+            #site-footer .uitm-footer__links {
+                display: grid;
+                gap: 0.4rem;
             }
-        }
-    </style>
 
-    <footer class="uitm-footer" id="site-footer">
-        <div class="uitm-footer__top">
-            <div class="uitm-footer__inner">
-                <div class="uitm-footer__column" aria-labelledby="uitm-footer-student-info">
-                    <h3 id="uitm-footer-student-info">INFORMASI PELAJAR</h3>
-                    <ul class="uitm-footer__news">
-                        <li>
-                            <time datetime="2026-01-18"><span aria-hidden="true">◷</span> 18 January 2026</time>
-                            <a href="https://perlis.uitm.edu.my/index.php/component/content/article/298-jadual-waktu-peperiksaan-akhir-julai-2025?catid=47&amp;Itemid=209" target="_blank" rel="noopener noreferrer">
-                                Maklumat Peperiksaan Khas Mac 2026 (MyExamHub)
-                            </a>
-                        </li>
-                        <li>
-                            <time datetime="2025-09-18"><span aria-hidden="true">◷</span> 18 September 2025</time>
-                            <a href="https://perlis.uitm.edu.my/index.php/component/content/article/305-maklumat-peperiksaan-khas?catid=47&amp;Itemid=209" target="_blank" rel="noopener noreferrer">
-                                Maklumat Peperiksaan Khas September 2025
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+            #site-footer .uitm-footer__contact-block {
+                margin-bottom: 0.75rem;
+                font-size: 0.95rem;
+                line-height: 1.5;
+                color: #ececf7;
+            }
 
-                <div class="uitm-footer__column" aria-labelledby="uitm-footer-quick-links">
-                    <h3 id="uitm-footer-quick-links">QUICK LINKS</h3>
-                    <ul class="uitm-footer__links">
-                        <li><a href="https://hea.uitm.edu.my/v4/index.php/calendars/academic-calendar" target="_blank" rel="noopener noreferrer">Academic Calendar</a></li>
-                        <li><a href="https://pengambilan.uitm.edu.my/kalendar-pengambilan" target="_blank" rel="noopener noreferrer">Intake Calendar</a></li>
-                        <li><a href="https://simsweb.uitm.edu.my/sportal_app/graduat/" target="_blank" rel="noopener noreferrer">Graduate Quick Search</a></li>
-                        <li><a href="https://news.uitm.edu.my/" target="_blank" rel="noopener noreferrer">News</a></li>
-                        <li><a href="https://uitmholdings.com/" target="_blank" rel="noopener noreferrer">UiTM Holding</a></li>
-                        <li><a href="https://hoteluitm.com/" target="_blank" rel="noopener noreferrer">Hotel UiTM</a></li>
-                        <li><a href="https://www.facebook.com/uitmfclions/" target="_blank" rel="noopener noreferrer">UiTM FC</a></li>
-                        <li><a href="https://aduan.uitm.edu.my" target="_blank" rel="noopener noreferrer">e-Aduan</a></li>
-                        <li><a href="https://www.uitm.edu.my/index.php/en/frequently-asked-questions" target="_blank" rel="noopener noreferrer">FAQ</a></li>
-                        <li><a href="https://wifi.uitm.edu.my/wifi/" target="_blank" rel="noopener noreferrer">UiTM WiFi</a></li>
-                    </ul>
-                </div>
+            #site-footer .uitm-footer__contact-block p {
+                margin: 0;
+            }
 
-                <div class="uitm-footer__column" aria-labelledby="uitm-footer-contact">
-                    <h3 id="uitm-footer-contact">CONTACT US</h3>
-                    <div class="uitm-footer__contact-block">
-                        <p class="uitm-footer__org">Unit Kesihatan,</p>
-                        <p>(Kompleks Kolej Beringin),</p>
-                        <p>Bahagian Hal Ehwal Pelajar,</p>
-                        <p>Universiti Teknologi MARA Cawangan Perlis,</p>
-                        <p>Kampus Arau,</p>
-                        <p>02600 Arau,</p>
-                        <p>Perlis.</p>
+            #site-footer .uitm-footer__contact-block .uitm-footer__org {
+                font-weight: 700;
+            }
+
+            #site-footer .uitm-footer__contact-list {
+                display: grid;
+                gap: 0.3rem;
+                margin-bottom: 0.85rem;
+            }
+
+            #site-footer .uitm-footer__contact-list li {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.45rem;
+            }
+
+            #site-footer .uitm-footer__contact-list li span,
+            #site-footer .uitm-footer__contact-list li img {
+                color: #f0effa;
+                width: 1rem;
+                text-align: center;
+                font-size: 0.88rem;
+            }
+
+            #site-footer .uitm-footer__contact-list li img {
+                height: 1rem;
+                object-fit: contain;
+            }
+
+            #site-footer .uitm-footer__brand-logo {
+                display: inline-flex;
+                margin-bottom: 0.7rem;
+            }
+
+            #site-footer .uitm-footer__brand-logo img {
+                width: min(235px, 100%);
+                height: auto;
+                display: block;
+            }
+
+            #site-footer .uitm-footer__socials {
+                display: flex;
+                align-items: center;
+                gap: 0.8rem;
+            }
+
+            #site-footer .uitm-footer__socials a {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0.96;
+            }
+
+            #site-footer .uitm-footer__socials a img {
+                width: 1.85rem;
+                height: 1.85rem;
+                display: block;
+            }
+
+            #site-footer .uitm-footer__socials a:hover {
+                opacity: 1;
+            }
+
+            #site-footer .uitm-footer__bottom {
+                background-image:
+                    linear-gradient(rgba(23, 12, 56, 0.92), rgba(23, 12, 56, 0.92)),
+                    url("https://perlis.uitm.edu.my/images/gambar/FooterBackground.jpg");
+                background-position: center;
+                background-repeat: no-repeat;
+                border-top: 1px solid #b68c2f;
+                padding: 0.92rem 0;
+            }
+
+            #site-footer .uitm-footer__inner--bottom {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 0.9rem;
+            }
+
+            #site-footer .uitm-footer__inner--bottom p {
+                margin: 0;
+                color: #f2f1fa;
+                font-size: 0.82rem;
+                letter-spacing: 0.02em;
+                text-transform: uppercase;
+            }
+
+            #site-footer .uitm-footer__policy-links {
+                display: inline-flex;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 0.4rem;
+                font-size: 0.82rem;
+                text-transform: uppercase;
+                letter-spacing: 0.01em;
+            }
+
+            #site-footer .uitm-footer__policy-links span {
+                color: #dad8eb;
+            }
+
+            #site-footer .uitm-footer__to-top {
+                width: 1.85rem;
+                height: 1.85rem;
+                border-radius: 0.25rem;
+                border: 1px solid rgba(255, 255, 255, 0.38);
+                color: #ffffff;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                text-decoration: none;
+                background: rgba(255, 255, 255, 0.05);
+                font-size: 0.95rem;
+            }
+
+            #site-footer .uitm-footer__to-top:hover {
+                background: rgba(255, 255, 255, 0.18);
+                text-decoration: none;
+            }
+
+            @media (max-width: 1024px) {
+                #site-footer .uitm-footer__inner {
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                    gap: 1.35rem;
+                }
+
+                #site-footer .uitm-footer__inner--bottom {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+            }
+
+            @media (max-width: 768px) {
+                #site-footer .uitm-footer__top {
+                    padding: 2rem 0 1.75rem;
+                }
+
+                #site-footer .uitm-footer__inner {
+                    width: min(1200px, calc(100% - 1.75rem));
+                    grid-template-columns: 1fr;
+                    gap: 1.2rem;
+                }
+
+                #site-footer .uitm-footer__column h3 {
+                    margin-bottom: 0.75rem;
+                }
+
+                #site-footer .uitm-footer__policy-links {
+                    font-size: 0.82rem;
+                    line-height: 1.5;
+                }
+
+                #site-footer .uitm-footer__to-top {
+                    align-self: flex-end;
+                }
+            }
+        </style>
+
+        <footer class="uitm-footer" id="site-footer">
+            <div class="uitm-footer__top">
+                <div class="uitm-footer__inner">
+                    <div class="uitm-footer__column" aria-labelledby="uitm-footer-student-info">
+                        <h3 id="uitm-footer-student-info">INFORMASI PELAJAR</h3>
+                        <ul class="uitm-footer__news">
+                            <li>
+                                <time datetime="2026-01-18"><span aria-hidden="true">◷</span> 18 January 2026</time>
+                                <a href="https://perlis.uitm.edu.my/index.php/component/content/article/298-jadual-waktu-peperiksaan-akhir-julai-2025?catid=47&amp;Itemid=209" target="_blank" rel="noopener noreferrer">
+                                    Maklumat Peperiksaan Khas Mac 2026 (MyExamHub)
+                                </a>
+                            </li>
+                            <li>
+                                <time datetime="2025-09-18"><span aria-hidden="true">◷</span> 18 September 2025</time>
+                                <a href="https://perlis.uitm.edu.my/index.php/component/content/article/305-maklumat-peperiksaan-khas?catid=47&amp;Itemid=209" target="_blank" rel="noopener noreferrer">
+                                    Maklumat Peperiksaan Khas September 2025
+                                </a>
+                            </li>
+                        </ul>
                     </div>
-                    <ul class="uitm-footer__contact-list">
-                        <li><span aria-hidden="true">☎</span><a href="tel:+6049882075">+604-9882075</a></li>
-                        <li>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="" aria-hidden="true" loading="lazy">
-                            <a href="https://wa.me/6049882075" target="_blank" rel="noopener noreferrer">+6049882075</a>
-                        </li>
-                    </ul>
-                    <a class="uitm-footer__brand-logo" href="https://www.uitm.edu.my/" target="_blank" rel="noopener noreferrer" aria-label="UiTM official website">
-                        <img src="https://perlis.uitm.edu.my/images/logo/uitmdihatiku-footer.png" alt="UiTM dihatiku footer logo" loading="lazy">
-                    </a>
-                    <div class="uitm-footer__socials">
-                        <a href="https://www.google.com/maps/dir/6.4421888,100.2831872/Unit+Kesihatan+Klinik+UiTM,+UiTM+Cawangan+Perlis,+Uit" target="_blank" rel="noopener noreferrer" aria-label="Unit Kesihatan UiTM Arau direction on Google Maps">
-                            <img src="https://perlis.uitm.edu.my/images/gambar/google-maps-uitm.png" alt="" loading="lazy">
+
+                    <div class="uitm-footer__column" aria-labelledby="uitm-footer-quick-links">
+                        <h3 id="uitm-footer-quick-links">QUICK LINKS</h3>
+                        <ul class="uitm-footer__links">
+                            <li><a href="https://hea.uitm.edu.my/v4/index.php/calendars/academic-calendar" target="_blank" rel="noopener noreferrer">Academic Calendar</a></li>
+                            <li><a href="https://pengambilan.uitm.edu.my/kalendar-pengambilan" target="_blank" rel="noopener noreferrer">Intake Calendar</a></li>
+                            <li><a href="https://simsweb.uitm.edu.my/sportal_app/graduat/" target="_blank" rel="noopener noreferrer">Graduate Quick Search</a></li>
+                            <li><a href="https://news.uitm.edu.my/" target="_blank" rel="noopener noreferrer">News</a></li>
+                            <li><a href="https://uitmholdings.com/" target="_blank" rel="noopener noreferrer">UiTM Holding</a></li>
+                            <li><a href="https://hoteluitm.com/" target="_blank" rel="noopener noreferrer">Hotel UiTM</a></li>
+                            <li><a href="https://www.facebook.com/uitmfclions/" target="_blank" rel="noopener noreferrer">UiTM FC</a></li>
+                            <li><a href="https://aduan.uitm.edu.my" target="_blank" rel="noopener noreferrer">e-Aduan</a></li>
+                            <li><a href="https://www.uitm.edu.my/index.php/en/frequently-asked-questions" target="_blank" rel="noopener noreferrer">FAQ</a></li>
+                            <li><a href="https://wifi.uitm.edu.my/wifi/" target="_blank" rel="noopener noreferrer">UiTM WiFi</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="uitm-footer__column" aria-labelledby="uitm-footer-contact">
+                        <h3 id="uitm-footer-contact">CONTACT US</h3>
+                        <div class="uitm-footer__contact-block">
+                            <p class="uitm-footer__org">Unit Kesihatan,</p>
+                            <p>(Kompleks Kolej Beringin),</p>
+                            <p>Bahagian Hal Ehwal Pelajar,</p>
+                            <p>Universiti Teknologi MARA Cawangan Perlis,</p>
+                            <p>Kampus Arau,</p>
+                            <p>02600 Arau,</p>
+                            <p>Perlis.</p>
+                        </div>
+                        <ul class="uitm-footer__contact-list">
+                            <li><span aria-hidden="true">☎</span><a href="tel:+6049882075">+604-9882075</a></li>
+                            <li>
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="" aria-hidden="true" loading="lazy">
+                                <a href="https://wa.me/6049882075" target="_blank" rel="noopener noreferrer">+6049882075</a>
+                            </li>
+                        </ul>
+                        <a class="uitm-footer__brand-logo" href="https://www.uitm.edu.my/" target="_blank" rel="noopener noreferrer" aria-label="UiTM official website">
+                            <img src="https://perlis.uitm.edu.my/images/logo/uitmdihatiku-footer.png" alt="UiTM dihatiku footer logo" loading="lazy">
                         </a>
-                        <a href="https://www.waze.com/ul?q=Unit%20Kesihatan%20UiTM%20Arau&amp;navigate=yes" target="_blank" rel="noopener noreferrer" aria-label="Unit Kesihatan UiTM Arau location on Waze">
-                            <img src="https://perlis.uitm.edu.my/images/gambar/waze.png" alt="" loading="lazy">
-                        </a>
+                        <div class="uitm-footer__socials">
+                            <a href="https://www.google.com/maps/dir/6.4421888,100.2831872/Unit+Kesihatan+Klinik+UiTM,+UiTM+Cawangan+Perlis,+Uit" target="_blank" rel="noopener noreferrer" aria-label="Unit Kesihatan UiTM Arau direction on Google Maps">
+                                <img src="https://perlis.uitm.edu.my/images/gambar/google-maps-uitm.png" alt="" loading="lazy">
+                            </a>
+                            <a href="https://www.waze.com/ul?q=Unit%20Kesihatan%20UiTM%20Arau&amp;navigate=yes" target="_blank" rel="noopener noreferrer" aria-label="Unit Kesihatan UiTM Arau location on Waze">
+                                <img src="https://perlis.uitm.edu.my/images/gambar/waze.png" alt="" loading="lazy">
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="uitm-footer__bottom">
-            <div class="uitm-footer__inner uitm-footer__inner--bottom">
-                <p>© COPYRIGHT UNIT KESIHATAN UiTM CAWANGAN PERLIS 2026. ALL RIGHTS RESERVED.</p>
-                <nav class="uitm-footer__policy-links" aria-label="Footer policy links">
-                    <a href="https://www.uitm.edu.my/index.php/en/disclaimer-copyright" target="_blank" rel="noopener noreferrer">DISCLAIMER &amp; COPYRIGHT</a>
-                    <span>|</span>
-                    <a href="https://www.uitm.edu.my/index.php/en/privacy-statement" target="_blank" rel="noopener noreferrer">PRIVACY STATEMENT</a>
-                    <span>|</span>
-                    <a href="https://ppii.uitm.edu.my/images/pekeliling/universiti/Dasar/DasarKeselamatanICTv2.pdf" target="_blank" rel="noopener noreferrer">ICT SECURITY POLICY</a>
-                </nav>
-                <a class="uitm-footer__to-top" href="#top" aria-label="Back to top">↑</a>
+            <div class="uitm-footer__bottom">
+                <div class="uitm-footer__inner uitm-footer__inner--bottom">
+                    <p>© COPYRIGHT UNIT KESIHATAN UiTM CAWANGAN PERLIS 2026. ALL RIGHTS RESERVED.</p>
+                    <nav class="uitm-footer__policy-links" aria-label="Footer policy links">
+                        <a href="https://www.uitm.edu.my/index.php/en/disclaimer-copyright" target="_blank" rel="noopener noreferrer">DISCLAIMER &amp; COPYRIGHT</a>
+                        <span>|</span>
+                        <a href="https://www.uitm.edu.my/index.php/en/privacy-statement" target="_blank" rel="noopener noreferrer">PRIVACY STATEMENT</a>
+                        <span>|</span>
+                        <a href="https://ppii.uitm.edu.my/images/pekeliling/universiti/Dasar/DasarKeselamatanICTv2.pdf" target="_blank" rel="noopener noreferrer">ICT SECURITY POLICY</a>
+                    </nav>
+                    <a class="uitm-footer__to-top" href="#top" aria-label="Back to top">↑</a>
+                </div>
             </div>
+        </footer>
+    @else
+        <div class="page-copyright" style="width: 100%; text-align: center; display: block; margin: 0 auto;">
+            © COPYRIGHT UNIT KESIHATAN UiTM CAWANGAN PERLIS 2026. ALL RIGHTS RESERVED.
         </div>
-    </footer>
+    @endif
  
     <script>
         (function () {
