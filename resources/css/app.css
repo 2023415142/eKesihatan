@@ -32,6 +32,14 @@ body {
 body.poster-modal-open {
     overflow: hidden;
 }
+
+/* Keep institution logo assets from dominating auth/dashboard layouts. */
+img[src*="eksalogo" i] {
+    width: min(170px, 40vw);
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
  
 a {
     color: var(--color-primary);
