@@ -67,6 +67,14 @@ header {
     margin: 0;
     font-size: 1.4rem;
 }
+
+.brand img {
+    display: block;
+    width: auto;
+    max-width: 180px;
+    max-height: 56px;
+    object-fit: contain;
+}
  
 .brand-subtitle {
     font-size: 0.9rem;
@@ -1133,6 +1141,11 @@ footer {
 @media (max-width: 768px) {
     header {
         align-items: flex-start;
+    }
+
+    .brand img {
+        max-width: 140px;
+        max-height: 44px;
     }
  
     .top-nav {
