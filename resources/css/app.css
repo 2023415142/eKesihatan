@@ -1,5 +1,6 @@
 :root {
     --base-font-size: 16px;
+    --brand-logo-size: 96px;
     --color-bg: #f5f7fa;
     --color-surface: #ffffff;
     --color-text: #1b1f24;
@@ -74,8 +75,8 @@ header {
 }
 
 .brand-logo {
-    width: 160px;
-    height: 160px;
+    width: var(--brand-logo-size);
+    height: var(--brand-logo-size);
     object-fit: contain;
     flex-shrink: 0;
 }
@@ -1926,8 +1927,8 @@ footer {
     }
 
     .brand-logo {
-        width: 160px;
-        height: 160px;
+        width: var(--brand-logo-size);
+        height: var(--brand-logo-size);
     }
 
     .uitm-footer__links,

@@ -269,8 +269,8 @@
             }
 
             .brand-logo {
-                width: 160px;
-                height: 160px;
+                width: var(--brand-logo-size, 96px);
+                height: var(--brand-logo-size, 96px);
                 object-fit: contain;
                 flex-shrink: 0;
             }
