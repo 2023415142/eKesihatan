@@ -1,6 +1,6 @@
 :root {
     --base-font-size: 16px;
-    --brand-logo-size: 96px;
+    --brand-logo-size: 80px;
     --color-bg: #f5f7fa;
     --color-surface: #ffffff;
     --color-text: #1b1f24;
@@ -82,8 +82,12 @@ header {
 }
 
 body.auth-page .brand-logo {
-    width: 72px;
-    height: 72px;
+    width: 52px;
+    height: 52px;
+}
+
+body.auth-page header {
+    padding: 0.85rem 1.25rem;
 }
 
 .brand-text {
@@ -1791,8 +1795,8 @@ footer {
     }
 
     body.auth-page .brand-logo {
-        width: 56px;
-        height: 56px;
+        width: 44px;
+        height: 44px;
     }
  
     .top-nav {
