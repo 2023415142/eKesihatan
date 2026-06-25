@@ -83,13 +83,6 @@ header {
     flex-shrink: 0;
 }
 
-.brand-logo--auth {
-    width: var(--brand-logo-size) !important;
-    height: var(--brand-logo-size) !important;
-    max-width: var(--brand-logo-size) !important;
-    max-height: var(--brand-logo-size) !important;
-}
-
 .brand-text {
     display: flex;
     flex-direction: column;
