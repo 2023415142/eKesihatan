@@ -77,17 +77,17 @@ header {
 .brand-logo {
     width: var(--brand-logo-size);
     height: var(--brand-logo-size);
+    max-width: var(--brand-logo-size);
+    max-height: var(--brand-logo-size);
     object-fit: contain;
     flex-shrink: 0;
 }
 
 .brand-logo--auth {
-    width: 46px !important;
-    height: 46px !important;
-}
-
-body.auth-page header {
-    padding: 0.85rem 1.25rem;
+    width: var(--brand-logo-size) !important;
+    height: var(--brand-logo-size) !important;
+    max-width: var(--brand-logo-size) !important;
+    max-height: var(--brand-logo-size) !important;
 }
 
 .brand-text {
@@ -1794,11 +1794,6 @@ footer {
         align-items: flex-start;
     }
 
-    .brand-logo--auth {
-        width: 40px !important;
-        height: 40px !important;
-    }
- 
     .top-nav {
         width: 100%;
     }

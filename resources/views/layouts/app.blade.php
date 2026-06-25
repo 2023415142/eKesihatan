@@ -127,6 +127,8 @@
                     class="brand-logo {{ $isAuthPage ? 'brand-logo--auth' : '' }}"
                     src="{{ asset($headerLogoPath) }}"
                     alt="Unit Kesihatan UiTM Perlis logo"
+                    width="80"
+                    height="80"
                     loading="lazy"
                     onerror="this.onerror=null;this.src='{{ asset('images/eksa.png') }}';"
                 >
