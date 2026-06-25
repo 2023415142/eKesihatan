@@ -124,7 +124,7 @@
         <div class="brand">
             @if ($headerLogoPath)
                 <img
-                    class="brand-logo"
+                    class="brand-logo {{ $isAuthPage ? 'brand-logo--auth' : '' }}"
                     src="{{ asset($headerLogoPath) }}"
                     alt="Unit Kesihatan UiTM Perlis logo"
                     loading="lazy"
