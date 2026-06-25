@@ -105,7 +105,10 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     @endif
 </head>
-<body id="top">
+@php
+    $isAuthPage = request()->routeIs('login', 'register');
+@endphp
+<body id="top" class="{{ $isAuthPage ? 'auth-page' : '' }}">
     <a class="skip-link" href="#main-content" data-i18n="Skip to content">Skip to content</a>
     @php
         $headerLogoPath = null;
