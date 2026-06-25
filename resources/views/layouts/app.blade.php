@@ -99,10 +99,9 @@
             img.src = source;
         })();
     </script>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @else
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     @endif
 </head>
 @php
@@ -127,6 +126,8 @@
                     class="brand-logo"
                     src="{{ asset($headerLogoPath) }}"
                     alt="Unit Kesihatan UiTM Perlis logo"
+                    width="80"
+                    height="80"
                     loading="lazy"
                     onerror="this.onerror=null;this.src='{{ asset('images/eksa.png') }}';"
                 >
